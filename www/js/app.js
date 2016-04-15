@@ -40,6 +40,24 @@ window.app = angular.module('starter', ['ionic'])
           }
         }
       })
+      .state("app.palestrantes",{
+        url : "/palestrantes",
+        views : {
+          "mainContent" : {
+            templateUrl: "templates/home.html",
+            controller: "HomeCtrl"
+          }
+        }
+      })
+      .state("app.ask",{
+        url : "/ask",
+        views : {
+          "mainContent" : {
+            templateUrl: "templates/home.html",
+            controller: "HomeCtrl"
+          }
+        }
+      })
       .state("login",{
         url: '/login',
         templateUrl: 'templates/login.html',

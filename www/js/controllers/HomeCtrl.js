@@ -3,5 +3,8 @@
  */
 window.app.controller('HomeCtrl',['$scope','Person',function($scope,Person){
 
+  $scope.ask = function(){
+    alert("pergunta");
+  }
 
 }]);

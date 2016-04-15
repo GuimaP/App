@@ -1,6 +1,26 @@
-<ion-view>
-    <ion-content>
-        <h1>Login</h1>
-        <button class="button button-assertive" ng-click="signin()">Entrar</button>
+<ion-view title="Login">
+
+    <ion-nav-bar class='bar bar-assertive'>
+      <ion-nav-back-button class="button-icon ion-arrow left-c"></ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class='padding'>
+      <form ng-submit="signin()">
+        <div class="list wrapper-login">
+
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Usuário</span>
+            <input type="text" placeholder="Usuário" ng-model='usuario.user'>
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Senha</span>
+            <input type="password" placeholder="Senha" ng-model='usuario.password'>
+          </label>
+
+        </div>
+
+        <button class="button-block button button-assertive" type="submit">Entrar</button>
+      </form>
     </ion-content>
+
 </ion-view>

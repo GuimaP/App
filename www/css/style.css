@@ -1,1 +1,9 @@
-/* Empty. Add your own CSS if you like */
+/* import */
+/* CSS */
+.wrapper-login .item {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid #ddd; }
+
+/*# sourceMappingURL=style.css.map */

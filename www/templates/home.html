@@ -1,6 +1,34 @@
-<ion-view>
-<ion-content>
+<ion-view title="Home">
 
-    <h1>ae</h1>
-</ion-content>
+  <ion-content class="padding">
+
+    <div class=" list row responsive-sm responsive-md" >
+
+        <div class="col-50 card" ng-click="ask()">
+
+            <div class="item item-body">
+                <img class='full-image' src="..."/>
+                <p>
+                    Pergunta
+                </p>
+
+            </div>
+
+        </div>
+
+          <div class="col-50 card">
+            <a ui-sref="app.palestrantes">
+              <div class="item item-body">
+                  <img class='full-image' src="..."/>
+                  <p>
+                      palestrantes
+                  </p>
+
+              </div>
+            </a>
+          </div>
+
+    </div>
+
+  </ion-content>
 </ion-view>

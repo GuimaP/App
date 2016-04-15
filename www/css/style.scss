@@ -1,0 +1,12 @@
+/* import */
+@import "utilities/__variables";
+
+/* CSS */
+.wrapper-login{
+  .item{
+    border-left:none;
+    border-right:none;
+    border-top:none;
+    border-bottom: 1px solid $color-border;
+  }
+}
