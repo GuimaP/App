@@ -58,14 +58,24 @@ window.app = angular.module('starter', ['ionic'])
           }
         }
       })
+      .state("app.nuvem",{
+          url: '/nuvem',
+          views : {
+              "mainContent" : {
+                  templateUrl: 'templates/nuvem.html',
+                  controller: 'NuvemCtrl'
+              }
+          }
+
+      })
       .state("login",{
-        url: '/login',
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
+          url: '/login',
+          templateUrl: 'templates/login.html',
+          controller: 'LoginCtrl'
       });
 
 
 
 
-  $urlRouterProvider.otherwise('app/login');
+  $urlRouterProvider.otherwise('/login');
 });

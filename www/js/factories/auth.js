@@ -15,9 +15,6 @@ window.app.factory('Auth',[function(){
       }else {
         throw "Parametro incorreto, somente do tipo Pessoa";
       }
-    },
-    isPalestrante(){
-
     }
   }
 }]);

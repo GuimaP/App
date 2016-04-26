@@ -3,8 +3,14 @@
  */
 window.app.controller('HomeCtrl',['$scope','Person',function($scope,Person){
 
-  $scope.ask = function(){
-    alert("pergunta");
-  }
+
+
+  $scope.opcoes = [
+    {name:"Conograma",link:""},
+    {name:"Enviar Palavra",link:""},
+    {name:"Conteudo das apresentações",link:""},
+    {name:"Anotaões",link:""},
+    {name:"Nuvem de palavras",link:"#/app/nuvem"}
+  ]
 
 }]);

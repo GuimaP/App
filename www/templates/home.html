@@ -4,29 +4,19 @@
 
     <div class=" list row responsive-sm responsive-md" >
 
-        <div class="col-50 card" ng-click="ask()">
+        <div class="row card" ng-repeat="opcao in opcoes">
+            <a href="{{opcao.link}}">
+                <div class="item item-body">
+                    <img class='full-image' src="..."/>
+                    <p>
+                        {{opcao.name}}
+                    </p>
 
-            <div class="item item-body">
-                <img class='full-image' src="..."/>
-                <p>
-                    Pergunta
-                </p>
-
-            </div>
+                </div>
+            </a>
 
         </div>
 
-          <div class="col-50 card">
-            <a ui-sref="app.palestrantes">
-              <div class="item item-body">
-                  <img class='full-image' src="..."/>
-                  <p>
-                      palestrantes
-                  </p>
-
-              </div>
-            </a>
-          </div>
 
     </div>
 
