@@ -1,8 +1,8 @@
 window.app.controller('GlobalCtrl',['$http',function($http){
     //Registrar os eventos aqui....
-    window.io = io.connect("http://192.168.0.21:3000/");
+    window.io = io.connect("http://192.168.0.149:3000");
 
-    window.io.on('pergunta',function(data){
+    io.on('pergunta',function(data){
         alert(data);
     });
 
