@@ -4,7 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 window.app = angular.module('starter', ['ionic'])
-
+.constant("host", {
+    "url": "http://192.168.0.136:8000"
+})
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -22,7 +24,7 @@ window.app = angular.module('starter', ['ionic'])
     }
   });
 })
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider,$httpProvider){
 
   $stateProvider
       .state('app',{
@@ -40,24 +42,17 @@ window.app = angular.module('starter', ['ionic'])
           }
         }
       })
-      .state("app.palestrantes",{
-        url : "/palestrantes",
-        views : {
-          "mainContent" : {
-            templateUrl: "templates/home.html",
-            controller: "HomeCtrl"
+      .state("app.perfil",{
+          url : "/perfil",
+          views : {
+              "mainContent" : {
+                  templateUrl: "templates/perfil.html",
+                  controller: "PerfilCtrl"
+              }
           }
-        }
       })
-      .state("app.ask",{
-        url : "/ask",
-        views : {
-          "mainContent" : {
-            templateUrl: "templates/home.html",
-            controller: "HomeCtrl"
-          }
-        }
-      })
+
+
       .state("app.nuvem",{
           url: '/nuvem',
           views : {
@@ -74,6 +69,11 @@ window.app = angular.module('starter', ['ionic'])
           controller: 'LoginCtrl'
       });
 
+
+    $httpProvider.defaults.headers.common = {};
+    $httpProvider.defaults.headers.post = {};
+    $httpProvider.defaults.headers.put = {};
+    $httpProvider.defaults.headers.patch = {};
 
 
 
