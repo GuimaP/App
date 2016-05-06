@@ -1,0 +1,16 @@
+<ion-view view-title="Mensagens">
+    <ion-content>
+        <div class="list">
+
+            <a class="item item-avatar" ng-click="selectUser(people)" ng-repeat="people in peoples" ng-show="myUser.user_id != people.user_id">
+                <img src="">
+                <h2>{{people.name}}</h2>
+                <span class="badge badge-assertive">{{people.count}}</span>
+                <p>A note</p>
+                <p>{{people}}</p>
+
+            </a>
+
+        </div>
+    </ion-content>
+</ion-view>

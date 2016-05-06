@@ -1,0 +1,22 @@
+<ion-view view-title="@{{user.name}}">
+    <ion-content>
+        <h4>Conversa com {{user.name}}</h4>
+        <ul>
+
+        </ul>
+        <form ng-submit="sendMessage()">
+            <div class="list wrapper-login">
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Pergunta</span>
+                    <textarea ng-model="message"></textarea>
+                </label>
+
+
+            </div>
+
+            <button class="button-block button button-assertive" type="submit">Enviar</button>
+        </form>
+
+    </ion-content>
+</ion-view>

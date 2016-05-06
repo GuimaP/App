@@ -7,6 +7,7 @@ function Person(user){
     this.name = user.name;
     this.password = user.password;
     this.role = user.role;
+    this.photo = user.photo;
 
     this.setToken = function(token){
         this.access_token = token;
@@ -19,6 +20,10 @@ function Person(user){
 
     this.setUserId = function(id){
         this.user_id = id;
+        return this;
+    }
+    this.setPhoto = function(photo){
+        this.photo = photo;
         return this;
     }
     this.setLogin = function(nome) {
@@ -75,6 +80,9 @@ function Person(user){
     this.getRole = function(){
         return this.role;
     }
+    this.getPhoto = function(){
+        return this.photo;
+    }
     /**
      * @desc convert The object into a Pure JSON
      */
@@ -85,12 +93,15 @@ function Person(user){
             user_id         :this.user_id,
             login           :this.login,
             //email           :this.email,
-            //name            :this.name,
+            name            :this.login,
             password        :this.password,
+            photo           :this.photo,
             role            :this.role
 
         }
     }
+
+
 
 
 }

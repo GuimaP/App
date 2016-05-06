@@ -3,20 +3,28 @@
  */
 window.app.controller('LoginCtrl',
   [
-    '$scope','$state','PopupFactory','Person','Auth','$rootScope',
-    function($scope,$state,PopupFactory,Person,Auth,$rootScope){
+    '$scope','$state','PopupFactory','Person','Auth','$rootScope','$cookies',
+    function($scope,$state,PopupFactory,Person,Auth,$rootScope,$cookies){
+
+
 
         //Create new instance of Person
         $scope.usuario = Person.createNew();
 
 
 
-      //Checa se existe uma "sessão" ativa
+        //Checa se existe uma "sessão" ativa
+        if($cookies.getObject('user') != null & $cookies.getObject('user') == true){
+            $state.go('app.home');
+        }
 
 
-      //Event for Auth.
-      $scope.signin = function(){
-          Auth.check($scope.usuario)
+        //Event for Auth.
+        $scope.signin = function(){
+            console.log($scope.usuario);
+            console.log(Auth);
+
+            Auth.check($scope.usuario)
               .then(function(data){
 
 
@@ -29,20 +37,23 @@ window.app.controller('LoginCtrl',
                       id : userRemote.role.role_id,
                       name: userRemote.role.role_name
                   });
-
+                  //Salvo o objeto user na sessão
                   $rootScope.user = $scope.usuario;
                   $rootScope.user.setRole(role);
                   $rootScope.user.setToken(userRemote.access_token);
                   $rootScope.user.setUserId(userRemote.user_id);
 
+                  //Define default image
+                  $rootScope.user.setPhoto("/img/ionic.png");
 
 
-                  $state.go("app.home");
+
+                  $state.go("foto");
               })
               .catch(function(err){
                   console.log(err);
                   PopupFactory.error("Invalido","Verifique sua senha");
               });
 
-      }
+            }
 }]);

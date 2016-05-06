@@ -1,0 +1,16 @@
+
+<ion-view title="Tirar Foto">
+
+    <ion-nav-bar class='bar bar-positive'>
+        <ion-nav-back-button class="button-icon ion-arrow left-c"></ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class='padding'>
+        <button class="button button-positive button-block" ng-click="picture()">Tirar Foto</button>
+
+        <img class="full-image" ng-src="{{user.photo}}" style="text-align: center">
+
+        <button class="button button-positive button-block" ng-click="nextState()">Proximo</button>
+    </ion-content>
+
+</ion-view>

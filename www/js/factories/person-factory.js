@@ -1,7 +1,7 @@
 /**
  * Created by guilherme on 14/04/16.
  */
-window.app.factory('Person',function(PersonDB){
+window.app.factory('Person',function(PersonDB,host,$http){
 
 
    var roles = ["palestrante","moderador","participante"];
@@ -16,14 +16,8 @@ window.app.factory('Person',function(PersonDB){
                 role: new Role({id:0, name: null})
             });
         },
-        createFrom: function(nome,email,senha,role){
-            return new Person({
-                nome: nome,
-                login: nome,
-                email: email,
-                password: senha,
-                role: role
-            })
+        createFrom: function(obj){
+            return new Person(obj);
         },
         getRole: function(roleName){
              return roles.indexOf(roleName);
@@ -40,7 +34,7 @@ window.app.factory('Person',function(PersonDB){
                             console.log(result);
                             //Se n existir insere
                             if(result.length == 0){
-                                alert("nda");
+                                //Tenta inserir
                                 PersonDB.insert(user)
                                     .then(function(data){
                                         console.log(data);
@@ -50,12 +44,24 @@ window.app.factory('Person',function(PersonDB){
                                     });
                             }else {
                                 console.log("update");
+                                user._id = result[0].id;
+
+
+                                console.log(result);
+                                console.log(user);
+                                PersonDB.update(user)
+                                    .then(function(data){
+                                        console.log(data);
+                                    })
+                                    .catch(function(err){
+                                        console.log(err);
+                                    });
                             }
 
                             //Se existir update...
                         })
                         .catch(function(err){
-                            console.log(err);
+                            reject(Error(err));
                         });
 
 
@@ -65,11 +71,37 @@ window.app.factory('Person',function(PersonDB){
             });
 
         },
+        add: function(user){
+            var data = {
+                client_name: "Teste",
+                client_photo: user.photo,
+                user : user.user_id
+            };
+            console.log(data);
+            console.log(user);
+            console.log({
+                url:host.url+"/api/client",
+                method: "POST",
+                data: data,
+                headers: {
+                    'Authorization': user.access_token,
+                    'Content-Type': 'application/json'
+                }
+                });
+
+
+            $http.post(host.url+"/api/client",data,{
+                headers: {
+                    'Authorization' : "OB2EX2chHZr0UfqEBxlaX38wHdpa/Eyy0nhLexMXxwk6/MYCcwrQ5HkVZM17AmztU4HjFiZTyOf2NG1kJfxDC+eTXCT495BYzWbHAsAgKZCLYwgkUVwltxcx7MEuqBAyrNnlDQRXkU29RC1AhkpV9/XmLk0pMmvN"
+                }
+            });
+
+        },
+        remove: function(doc_id){
+          return PersonDB.remove(doc_id);
+        },
         search : function(searchKey){
-           PersonDB.search(searchKey).
-               then(function(d){
-               console.log(d);
-           });
+           return PersonDB.search(searchKey);
         }
     }
 });

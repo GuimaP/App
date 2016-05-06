@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; *; style-src  &apos;self&apos; &apos;unsafe-inline&apos; *">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; *; style-src  &apos;self&apos; &apos;unsafe-inline&apos; *;img-src 'self' data:; ">
+
     <link rel="apple-touch-icon" href="apple-touch-icon-iphone.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -24,6 +25,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="www/lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
 
     <!--External libs-->
@@ -34,6 +36,8 @@
 
     <!--Libs-->
     <script src="www/lib/pouchdb/dist/pouchdb.js"></script>
+    <script src="www/lib/angular-cookies/angular-cookies.js"></script>
+
 
     <!--Controllers-->
     <script src="js/controllers/GlobalCtrl.js"></script>
@@ -42,6 +46,11 @@
     <script src="js/controllers/LoginCtrl.js"></script>
     <script src="js/controllers/NuvemCtrl.js"></script>
     <script src="js/controllers/PerfilCtrl.js"></script>
+    <script src="js/controllers/ApresentacaoCtrl.js"></script>
+    <script src="js/controllers/FotoCtrl.js"></script>
+    <script src="js/controllers/QuizCtrl.js"></script>
+    <script src="js/controllers/ChatCtrl.js"></script>
+    <script src="js/controllers/ConversationCtrl.js"></script>
 
     <!--Models-->
     <script src="js/models/Person.js"></script>
@@ -50,6 +59,8 @@
     <!--Factories-->
     <script src="js/factories/person-factory.js"></script>
     <script src="js/factories/auth.js"></script>
+    <script src="js/factories/apresentacao.js"></script>
+    <script src="js/factories/quiz.js"></script>
 
     <!--DB-->
     <script src="js/factories/db/DB.js"></script>

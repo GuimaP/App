@@ -3,7 +3,7 @@ window.app.factory('Auth',['host','$http',function(host,$http){
     check: function(user){
         return new Promise(function(resolve,reject){
             if(user instanceof Person){
-
+                console.log(JSON.stringify(user));
                 $http({
                     url: host.url+"/auth",
                     method: "POST",

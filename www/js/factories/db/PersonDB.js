@@ -2,7 +2,7 @@
  * Created by guilherme on 04/05/16.
  */
 window.app.factory('PersonDB',function($rootScope){
-    var table = {
+    var type = {
         name: Person.name
     };
 
@@ -12,21 +12,46 @@ window.app.factory('PersonDB',function($rootScope){
                 console.log(person.toJSON());
                 if(person instanceof Person){
                     var object = {
+                        type            : type.name,
                         access_token    : person.getToken(),
-                        _id             : new Date().getTime()+"", //Gera um id
+                        photo           : person.getPhoto(),
                         user_id         :person.getUserId(),
                         login           :person.getLogin(),
                         email           :person.getEmail(),
                         name            :person.getName(),
                         password        :person.getPassword(),
-                        //role            :person.getRole()
+                        role            :{
+                            name            : person.getRole().getName(),
+                            id              : person.getRole().getId()
+                        }
                     };
 
 
 
                     console.log(object);
 
-                    $rootScope.pdb.put(object,function(err,result){
+                    $rootScope.pdb.post(object,function(err,result){
+                        if(!err){
+                            resolve(result);
+                        }else {
+                            reject(err);
+                        }
+                    })
+                }else {
+                    reject(Error("É preciso uma instancia de Person"));
+                }
+
+            });
+
+        },
+        update: function(person){
+            return new Promise(function(resolve,reject){
+
+                if(person instanceof Person){
+
+                    console.log(person);
+
+                    $rootScope.pdb.put(person,function(err,result){
                         if(!err){
                             resolve(result);
                         }else {
@@ -47,26 +72,36 @@ window.app.factory('PersonDB',function($rootScope){
                 var map = function(person){
                     var regex,searchKey;
                     searchKey = window.q;
-
                     regex = new RegExp(searchKey,"i");
 
-                    if(
-                        person.name.match(regex)  || //Se Algum dos atributos for igual ao passado então atende
-                        person.login.match(regex) || // Ex; Where name like %searchkey% OR login like %searchkey%
-                        person.email.match(regex) ||
-                        person._id.match(regex)
-                    ){
-                        emit(person._id,{ //O primeiro argumento informa o ID do objeto, e o segundo, é como ele deve ser mostrado
-                            _id  : person._id,
-                            user_id : person.user_id,
-                            login : person.login,
-                            email : person.email,
-                            name : person.name,
-                            password : person.password,
-                            role : person.role
-                        });
+
+
+                    //Se o objeto n tiver o _id, então ele ja foi removido
+                    if(person._id != undefined) {
+
+                        if (
+                            person.name.match(regex) || //Se Algum dos atributos for igual ao passado então atende
+                            person.login.match(regex) || // Ex; Where name like %searchkey% OR login like %searchkey%
+                            person.user_id == searchKey ||
+                            person.type.match(regex)
+                        ) {
+                            emit(person._id, { //O primeiro argumento informa o ID do objeto, e o segundo, é como ele deve ser mostrado
+                                _id: person._doc_id_rev,
+                                _rev: person._rev,
+                                user_id: person.user_id,
+                                access_token  : person.access_token,
+                                login: person.login,
+                                photo: person.photo,
+                                email: person.email,
+                                name: person.name,
+                                password: person.password,
+                                type: person.type,
+                                role: person.role
+                            });
+                        }
                     }
                 };
+
 
                 $rootScope.pdb.query(map,function(err,response){
                     if(err){
@@ -92,10 +127,34 @@ window.app.factory('PersonDB',function($rootScope){
 
             });
 
+        },
+        remove : function(doc_id){
+            console.log('ae');
+
+            return new Promise(function(resolve, reject){
+                console.log(doc_id);
+
+                $rootScope.pdb.get(doc_id)
+                    .then(function(d){
+                        console.log(d);
+                        console.log(doc_id);
+
+                        $rootScope.pdb.remove(d);
+
+                        resolve(d);
+                    }).catch(function(err){
+                        console.log(err);
+
+                        reject(err);
+
+                    });
 
 
 
 
+
+
+            });
 
         }
     }

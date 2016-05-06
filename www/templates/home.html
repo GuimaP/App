@@ -1,4 +1,4 @@
-<ion-view title="Home">
+<ion-view view-title="Home">
 
   <ion-content class="padding">
 
@@ -6,13 +6,11 @@
 
         <div class="row card" ng-repeat="opcao in opcoes">
             <a href="{{opcao.link}}">
-                <div class="item item-body">
-                    <img class='full-image' src="..."/>
-                    <p>
-                        {{opcao.name}}
-                    </p>
-
+                <div class="item item-avatar">
+                    <img class='full-image' src="{{opcao.icon}}"/>
+                    <h2>{{opcao.name}}</h2>
                 </div>
+
             </a>
 
         </div>

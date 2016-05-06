@@ -6,4 +6,8 @@
   border-top: none;
   border-bottom: 1px solid #ddd; }
 
+.topo-menu .badge.badge-assertive {
+  margin-top: -20px;
+  left: -20px; }
+
 /*# sourceMappingURL=style.css.map */

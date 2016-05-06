@@ -1,0 +1,11 @@
+window.app.controller("ApresentacaoCtrl",
+['$scope','$rootScope','Apresentacao',
+function($scope,$rootScope,Apresentacao){
+    Apresentacao.all()
+        .then(function(d){
+            console.log(d);
+        })
+        .catch(function(err){
+            console.log(err);
+        });
+}]);

@@ -1,11 +1,49 @@
-<ion-view>
+<ion-view enable-menu-with-back-views="true">
+    <ion-side-menus>
+        <!--<ion-nav-bar class='bar-positive nav-title-slide-ios7' align-title="center">-->
+        <ion-nav-bar class='bar bar-positive' align-title="center">
 
-  <ion-nav-bar class='bar bar-assertive'>
-      <ion-nav-back-button class="button-icon ion-arrow left-c"></ion-nav-back-button>
-  </ion-nav-bar>
+          <ion-nav-back-button class="button-icon ion-arrow-left-c">
 
-    <ion-nav-view name="mainContent"></ion-nav-view>
+          </ion-nav-back-button>
+
+            <ion-nav-buttons side="right">
+                <button class="button button-icon button-clear ion-navicon topo-menu" ng-click="toggleLeft()">
+                    <span class="badge badge-assertive">{{messages.length}}</span>
+                </button>
+            </ion-nav-buttons>
+
+            <!--<ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-android-exit" ng-click="logoff()">
+                </button>
+            </ion-nav-buttons>-->
+        </ion-nav-bar>
+
+        <ion-side-menu-content>
+            <ion-nav-view name="mainContent"></ion-nav-view>
+        </ion-side-menu-content>
 
 
+        <ion-side-menu side="right">
+            <ion-header-bar class="bar-assertive">
+                <h1 class="title">Left Menu</h1>
+            </ion-header-bar>
+            <ion-content>
+                <div class="list">
+                    <div class="item item-avatar">
+                        <img ng-src="{{user.photo}}">
+                        <h2>{{user.name}}</h2>
+                    </div>
+                    <div class="item" >
+                        <a ui-sref="app.chat()">Conversa</a>
+                        <span class="badge badge-assertive">{{messages.length}}</span>
+                    </div>
+                    <div class="item" >
+                        <label ng-click="logoff()">Sair</label>
+                    </div>
+                </div>
+            </ion-content>
+        </ion-side-menu>
+    </ion-side-menus>
 
 </ion-view>

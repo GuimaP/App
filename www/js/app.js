@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-window.app = angular.module('starter', ['ionic'])
+window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
 .constant("host", {
     "url": "http://192.168.0.136:8000"
 })
@@ -51,8 +51,47 @@ window.app = angular.module('starter', ['ionic'])
               }
           }
       })
-
-
+      .state("app.apresentacao",{
+          url : "/apresentacao",
+          views : {
+              "mainContent" : {
+                  templateUrl: "templates/apresentacao.html",
+                  controller: "ApresentacaoCtrl"
+              }
+          }
+      })
+      .state("foto",{
+          url : "/foto",
+          templateUrl: "templates/foto.html",
+          controller: "FotoCtrl"
+      })
+      .state("app.quiz",{
+          url : "/quiz",
+          views : {
+              "mainContent" : {
+                  templateUrl: "templates/quiz.html",
+                  controller: "QuizCtrl"
+              }
+          }
+      })
+      .state("app.chat",{
+          url : "/chat",
+          views : {
+              "mainContent" : {
+                  templateUrl: "templates/chat.html",
+                  controller: "ChatCtrl"
+              }
+          }
+      })
+      .state("app.converstation",{
+          url : "/conversation/:id",
+          views : {
+              "mainContent" : {
+                  templateUrl: "templates/conversation.html",
+                  controller: "ConversationCtrl"
+              }
+          }
+      })
       .state("app.nuvem",{
           url: '/nuvem',
           views : {
