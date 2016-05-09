@@ -6,7 +6,8 @@ window.app.factory('DB',function($rootScope){
     return {
         init : function(){
 
-            $rootScope.pdb = new PouchDB('revmais');
+                $rootScope.pdb = new PouchDB('revmaisv2',{adapter:"websql"});
+                //$rootScope.pdb = new PouchDB('revmais');
             /*$rootScope.pdb.destroy()
                 .then(function(d){
                     console.log(d)

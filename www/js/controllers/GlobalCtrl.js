@@ -1,6 +1,6 @@
 window.app.controller('GlobalCtrl',
-    ['$http','DB','$scope','$rootScope','$cookies','Person','$state','PersonDB',
-    function($http,DB,$scope,$rootScope,$cookies,Person,$state,PersonDB){
+    ['$http','DB','$scope','$rootScope','$cookies','Person','$state','PersonDB','MessageDB',
+    function($http,DB,$scope,$rootScope,$cookies,Person,$state,PersonDB,MessageDB){
     //Registrar os eventos aqui....
     window.io = io.connect("http://192.168.0.149:3000");
         $rootScope.messages = [];
@@ -50,6 +50,68 @@ window.app.controller('GlobalCtrl',
             io.emit('disconnectUser');
         }
 
+        window.io.on('messageReceived',function(data){
+            console.log($rootScope.conversas.length);
+            console.log(data);
+
+            for(var i =0; i < $rootScope.conversas.length; i++){
+                if($rootScope.conversas[i].user_id == data.from.user_id){
+                    $rootScope.conversas[i].count = $rootScope.conversas[i].count + 1;
+
+                    if(!$rootScope.conversas[i].messages || $rootScope.conversas[i].messages == undefined){
+                        $rootScope.conversas[i].messages = new Array();
+                    }
+                    /*var msg = new Message({
+                        owner: $rootScope.user,
+                        to: data.to,
+                        from: data.from,
+                        data : data.data,
+                        message: data.message
+                    });*/
+
+                    var message = new Message({
+                        owner: {
+                            user_id: $rootScope.user.user_id,
+                            name: $rootScope.user.name
+                        },
+                        conversationWith: {
+                            user_id: data.from.user_id,
+                            name: data.from.name
+                        },
+                        to: {
+                            user_id:  data.to.user_id,
+                            name: data.to.name
+                        },
+                        from: {
+                            user_id: data.from.user_id,
+                            name: data.from.name
+                        },
+                        data : data.data,
+                        message: data.message
+                    });
+
+
+                    console.info("Message received");
+                    console.info(message);
+
+                    MessageDB.insert(message)
+                    .then(function(d){
+                        console.info(d);
+
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    });
+
+                    //$rootScope.conversas[i].messages.push(data.message);
+                    //console.log($rootScope.conversas);
+
+                    $rootScope.$apply();
+                    break;
+                }
+            }
+        });
+
         $rootScope.toDataUrl = function(url, callback, outputFormat){
             var img = new Image();
             img.crossOrigin = 'Anonymous';
@@ -66,5 +128,6 @@ window.app.controller('GlobalCtrl',
             };
             img.src = url;
         }
+
 
 }]);

@@ -7,14 +7,6 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
 
         $rootScope.messages = [];
 
-        io.on('messageReceived',function(data){
-            $rootScope.messages.push(data);
-
-            $rootScope.$apply();
-
-            console.log($scope.messages);
-            console.log(data);
-        });
 
         io.on('note',function(data){
             console.log(data);

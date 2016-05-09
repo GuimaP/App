@@ -57,6 +57,8 @@ window.app.controller('FotoCtrl',
             $cookies.putObject("user",true);
             $cookies.putObject("userData",$rootScope.user.toJSON());
 
+
+
             //Adiciono no BANCO
             Person.insert($rootScope.user);
 

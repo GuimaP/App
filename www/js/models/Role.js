@@ -2,6 +2,7 @@
  * Created by guilherme on 04/05/16.
  */
 function Role(role){
+    this._id  = 0;
     this.id = role.id;
     this.name = role.name;
 

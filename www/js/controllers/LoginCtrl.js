@@ -3,8 +3,8 @@
  */
 window.app.controller('LoginCtrl',
   [
-    '$scope','$state','PopupFactory','Person','Auth','$rootScope','$cookies',
-    function($scope,$state,PopupFactory,Person,Auth,$rootScope,$cookies){
+    '$scope','$state','PopupFactory','Person','Auth','$rootScope','$cookies','PersonDB',
+    function($scope,$state,PopupFactory,Person,Auth,$rootScope,$cookies,PersonDB){
 
 
 
@@ -14,9 +14,21 @@ window.app.controller('LoginCtrl',
 
 
         //Checa se existe uma "sessão" ativa
-        if($cookies.getObject('user') != null & $cookies.getObject('user') == true){
-            $state.go('app.home');
-        }
+        /*if($cookies.getObject('user') != null & $cookies.getObject('user') == true){
+
+        }*/
+        PersonDB.search("Person")
+        .then(function(data){
+            if(data.length > 0) {
+                $rootScope.user = data[0];
+                console.log($rootScope.user);
+
+                $state.go('app.home');
+            }
+        })
+        .catch(function(err){
+            console.log(err);
+        });
 
 
         //Event for Auth.
@@ -26,8 +38,6 @@ window.app.controller('LoginCtrl',
 
             Auth.check($scope.usuario)
               .then(function(data){
-
-
 
                   //Pego o objeto usuario
                   var userRemote = data.data.user;
@@ -45,8 +55,6 @@ window.app.controller('LoginCtrl',
 
                   //Define default image
                   $rootScope.user.setPhoto("/img/ionic.png");
-
-
 
                   $state.go("foto");
               })

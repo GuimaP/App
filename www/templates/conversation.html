@@ -1,20 +1,21 @@
-<ion-view view-title="@{{user.name}}">
+<ion-view view-title="@{{currentConversation.name}}">
     <ion-content>
-        <h4>Conversa com {{user.name}}</h4>
+        <h4>Conversa com {{currentConversation.name}}</h4>
         <ul>
-
+            <li ng-repeat="message in messages track by $index">
+                <b>{{message.doc.from.name}}:</b>{{message.doc.message}}
+            </li>
         </ul>
         <form ng-submit="sendMessage()">
             <div class="list wrapper-login">
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Pergunta</span>
-                    <textarea ng-model="message"></textarea>
+                    <textarea ng-model="message" my-enter="sendMessage()"></textarea>
                 </label>
 
 
             </div>
-
             <button class="button-block button button-assertive" type="submit">Enviar</button>
         </form>
 

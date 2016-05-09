@@ -84,7 +84,7 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
           }
       })
       .state("app.converstation",{
-          url : "/conversation/:id",
+          url : "/conversation/:index",
           views : {
               "mainContent" : {
                   templateUrl: "templates/conversation.html",
@@ -117,4 +117,18 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
 
 
   $urlRouterProvider.otherwise('/login');
-});
+})
+.directive('myEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.myEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});;
+

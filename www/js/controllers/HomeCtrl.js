@@ -5,7 +5,17 @@ window.app.controller('HomeCtrl',['$scope','$rootScope','Person','PersonDB',func
 
 
 
+  PersonDB.search("Person")
+      .then(function(data){
+        if(data.length > 0){
+          window.io.emit('connectUser',$rootScope.user);
+        }
 
+        $state.go('app.home');
+      })
+      .catch(function(err){
+        console.log(err);
+      });
 
 
 
