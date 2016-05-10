@@ -8,6 +8,8 @@ function Person(user){
     this.password = user.password;
     this.role = user.role;
     this.photo = user.photo;
+    this.lastname = user.lastname;
+
 
     this.setToken = function(token){
         this.access_token = token;
@@ -92,8 +94,8 @@ function Person(user){
             _id             :this._id,
             user_id         :this.user_id,
             login           :this.login,
-            //email           :this.email,
-            name            :this.login,
+            email           :this.email,
+            name            :this.name,
             password        :this.password,
             photo           :this.photo,
             role            :this.role

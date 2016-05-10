@@ -5,6 +5,7 @@ window.app.factory('PersonDB',function($rootScope){
     var type = {
         name: Person.name
     };
+    window.type = type;
 
     return {
         insert: function(person){
@@ -77,7 +78,7 @@ window.app.factory('PersonDB',function($rootScope){
 
 
                     //Se o objeto n tiver o _id, então ele ja foi removido
-                    if(person._id != undefined) {
+                    if(person._id != undefined && person.type == type.name) {
 
                         if (
                             person.name.match(regex) || //Se Algum dos atributos for igual ao passado então atende

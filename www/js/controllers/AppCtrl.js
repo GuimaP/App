@@ -4,7 +4,22 @@
 window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope','PersonDB','Person','$cookies',
         function($scope,$ionicSideMenuDelegate,$rootScope,PersonDB,Person,$cookies){
 
+            $scope.$on("$ionicView.beforeEnter", function(event, data){
 
+                PersonDB.search("Person")
+                    .then(function(data){
+                        if(data.length > 0){
+
+                            console.log($rootScope.user);
+                            window.io.emit('connectUser',$rootScope.user);
+                        }
+
+                        $state.go('app.home');
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    });
+            });
         $rootScope.messages = [];
 
 

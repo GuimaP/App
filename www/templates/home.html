@@ -2,17 +2,26 @@
 
   <ion-content class="padding">
 
-    <div class=" list row responsive-sm responsive-md" >
+    <div class="container-fluid" >
+        <h2>Bem Vindo</h2>
+        <h3>{{user.name}}</h3>
 
-        <div class="row card" ng-repeat="opcao in opcoes">
-            <a href="{{opcao.link}}">
-                <div class="item item-avatar">
-                    <img class='full-image' src="{{opcao.icon}}"/>
-                    <h2>{{opcao.name}}</h2>
+        <!--Lista de Opções-->
+        <div class="row">
+            <div class="list">
+                <div class="col-sm-6 col-xs-12" ng-repeat="opcao in opcoes">
+                    <div class="card">
+                        <a href="{{opcao.link}}">
+                            <div class="item item-avatar">
+                                <img class='full-image' src="{{opcao.icon}}"/>
+                                <h2>{{opcao.name}}</h2>
+                            </div>
+
+                        </a>
+                    </div>
+
                 </div>
-
-            </a>
-
+            </div>
         </div>
 
 

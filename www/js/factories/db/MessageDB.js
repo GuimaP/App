@@ -133,7 +133,7 @@ window.app.factory('MessageDB',function($rootScope){
                     searchKey = window.q;
                     regex = new RegExp(searchKey,"i");
 
-                   
+
                     //Se o objeto n tiver o _id, então ele ja foi removido
                     if(message._id != undefined) {
 

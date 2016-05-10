@@ -4,10 +4,10 @@
 
             <a class="item item-avatar" ng-click="selectUser($index)" ng-repeat="conversa in conversas" ng-show="myUser.user_id != conversa.user_id">
                 <img src="">
-                <h2>{{conversa.name}}</h2>
+                <h2>{{conversa.login}}</h2>
                 <span class="badge badge-assertive">{{conversa.count}}</span>
-                <p>A note</p>
-                <p>{{people}}</p>
+                <p>{{conversa.name}}</p>
+                
 
             </a>
 

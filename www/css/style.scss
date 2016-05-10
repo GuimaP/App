@@ -1,6 +1,12 @@
 /* import */
 @import "utilities/__variables";
 
+$padding-container: 50px;
+$padding-floating: 30px;
+
+$blue-color : #0c60ee;
+$font-color: #fff;
+
 /* CSS */
 .wrapper-login{
   .item{
@@ -16,5 +22,55 @@
   .badge.badge-assertive{
     margin-top: -20px;
     left: -20px;
+  }
+}
+
+.img-responsive.center {
+  margin: auto;
+  display: block;
+}
+
+* {
+  z-index: 1;
+}
+
+.floating {
+  position: absolute;
+  right: -30px;
+  border-radius: 50%;
+  background-color: $blue-color;
+  color: $font-color;
+  box-shadow: 2px 3px 6px darken($blue-color,5);
+  //box-shadow: 2px 3px 6px #e7e7e7;
+
+  padding: $padding-floating;
+  z-index: 2;
+
+  &:nth-child(1){
+    top: 0px;
+    z-index: 3;
+  }
+  &:nth-child(2){
+    top: 60px;
+  }
+}
+
+
+.wrapper {
+  &.foto {
+    min-height: 60vh;
+    .img-responsive {
+      text-align: center;
+      width: 100%;
+      margin: 25% auto;
+    }
+
+  }
+  &.black{
+    background-color: rgba(0, 0, 0, 0.41);
+    //padding: $padding-container;
+
+
+
   }
 }

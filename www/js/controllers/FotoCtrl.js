@@ -3,7 +3,7 @@ window.app.controller('FotoCtrl',
     function($scope,$rootScope,$cordovaCamera,Person,$cookies,$state){
         $scope.user = $rootScope.user == undefined ? {} : $rootScope.user;
 
-        $scope.user.photo = $scope.user.photo == undefined ? '/img/ionic.png' : $scope.user.photo;
+        $scope.user.photo = $scope.user.photo == undefined ? '../../img/ionic.png' : $scope.user.photo;
 
 
         $scope.picture = function(){
@@ -51,9 +51,13 @@ window.app.controller('FotoCtrl',
 
             //Adiciona na API
             //Person.add($rootScope.user);
+            console.log(this.userCadastro);
+            $rootScope.user.name = this.userCadastro.name;
+            $rootScope.user.lastname = this.userCadastro.lastname;
+            $rootScope.user.email = this.userCadastro.email;
 
-            console.log($rootScope.user);
-            console.log($rootScope.user.toJSON());
+
+
             $cookies.putObject("user",true);
             $cookies.putObject("userData",$rootScope.user.toJSON());
 
@@ -66,7 +70,6 @@ window.app.controller('FotoCtrl',
 
 
             $state.transitionTo("app.home");
-
 
             /*$rootScope.toDataUrl($rootScope.user.photo, function(url){
                 //$rootScope.user.setPhoto(url);

@@ -1,8 +1,8 @@
 window.app.controller('GlobalCtrl',
-    ['$http','DB','$scope','$rootScope','$cookies','Person','$state','PersonDB','MessageDB',
-    function($http,DB,$scope,$rootScope,$cookies,Person,$state,PersonDB,MessageDB){
+    ['$http','DB','$scope','$rootScope','$cookies','Person','$state','PersonDB','MessageDB','host',
+    function($http,DB,$scope,$rootScope,$cookies,Person,$state,PersonDB,MessageDB,host){
     //Registrar os eventos aqui....
-    window.io = io.connect("http://192.168.0.149:3000");
+    window.io = io.connect(host.websocket);
         $rootScope.messages = [];
 
 
@@ -111,6 +111,18 @@ window.app.controller('GlobalCtrl',
                 }
             }
         });
+        window.io.on('newUser',function(data){
+            $rootScope.conversas = data;
+            console.log($rootScope.conversas);
+            $rootScope.$apply();
+        });
+        window.io.on('receiveUsers',function(data){
+            $rootScope.conversas = data;
+            console.log($rootScope.conversas);
+            $rootScope.$apply();
+        });
+
+
 
         $rootScope.toDataUrl = function(url, callback, outputFormat){
             var img = new Image();

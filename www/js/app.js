@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
 .constant("host", {
-    "url": "http://192.168.0.136:8000"
+    "websocket": "http://192.168.0.56:3000",
+    "url": "http://192.168.0.72:8000"
+    //"url": "http://localhost:8080"
 })
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -89,6 +91,15 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
               "mainContent" : {
                   templateUrl: "templates/conversation.html",
                   controller: "ConversationCtrl"
+              }
+          }
+      })
+      .state("app.pergunta",{
+          url : "/perguntas",
+          views : {
+              "mainContent" : {
+                  templateUrl: "templates/pergunta.html",
+                  controller: "PerguntaCtrl"
               }
           }
       })

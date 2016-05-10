@@ -9,6 +9,7 @@ window.app.factory('Auth',['host','$http',function(host,$http){
                     method: "POST",
                     data: JSON.stringify(user)
                 }).success(function(data){
+                    console.log(data);
                     resolve(data);
                 }).error(function(er){
                     console.log(er);

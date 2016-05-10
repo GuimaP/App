@@ -6,9 +6,51 @@
     </ion-nav-bar>
 
     <ion-content class='padding'>
-        <button class="button button-positive button-block" ng-click="picture()">Tirar Foto</button>
 
-        <img class="full-image" ng-src="{{user.photo}}" style="text-align: center">
+        <div class="container-fluid">
+               <!--Floating Options-->
+                <div class="floating">
+                    Algo
+                </div>
+                <div class="floating">
+                    Algo
+                </div>
+
+                <div class="col-sm-4 col-xs-12 wrapper foto">
+                    <div class="col-md-12">
+                        <img  class="img-responsive center" ng-src="{{user.photo}}" style="text-align: center">
+                    </div>
+                    <div class="col-md-12">
+                        <button class="button button-block button-assertive" ng-click="picture()">
+                            Tirar uma Foto
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-sm-8  col-xs-12 wrapper foto black">
+                    <div class="card ">
+                        <div class="list">
+                            <label class="item item-input">
+                                <span class="input-label">Nome</span>
+                                <input type="text" ng-model="userCadastro.name">
+                            </label>
+                            <label class="item item-input">
+                                <span class="input-label">Sobrenome</span>
+                                <input type="text" ng-model="userCadastro.lastname">
+                            </label>
+
+                            <label class="item item-input">
+                                <span class="input-label">Email</span>
+                                <input type="text" ng-model="userCadastro.email">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+        </div>
+
 
         <button class="button button-positive button-block" ng-click="nextState()">Proximo</button>
     </ion-content>
