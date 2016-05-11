@@ -2,7 +2,7 @@
 
 
         <ion-slide-box on-slide-changed="slideHasChanged($index)">
-            <ion-slide ng-repeat="quiz in quizies">
+            <ion-slide ng-repeat="quiz in quizies" on-finish-render-slider="ngRepeatFinishedSlider">
                 <div class="quiz">
                     <h1>{{quiz.quiz_name}}</h1>
                 </div>

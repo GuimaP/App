@@ -5,6 +5,7 @@ window.app.controller('GlobalCtrl',
     window.io = io.connect(host.websocket);
         $rootScope.messages = [];
         $rootScope.canDrag = true;
+        $rootScope.listAsks = [];
 
 
         //Add event to notify if the user leave out from the page
@@ -21,9 +22,7 @@ window.app.controller('GlobalCtrl',
             return;
         };
 
-        io.on('pergunta',function(data){
-            alert(data);
-        });
+
 
 
         //Init Config Database

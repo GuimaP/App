@@ -5,6 +5,7 @@ $padding-container: 50px;
 $padding-floating: 30px;
 
 $blue-color : #0c60ee;
+$blue-dark-color: $blue-color;
 $font-color: #fff;
 
 /* CSS */
@@ -25,7 +26,7 @@ $font-color: #fff;
   }
 }
 
-.img-responsive.center {
+.center {
   margin: auto;
   display: block;
 }
@@ -69,6 +70,26 @@ $font-color: #fff;
   &.black{
     background-color: rgba(0, 0, 0, 0.41);
     //padding: $padding-container;
+  }
+
+  .box {
+    color: #fff;
+    border-radius: 20px;
+    &.blue {
+      background-color: $blue-color;
+    }
+  }
+}
+
+
+.like-box {
+  background-color: $blue-dark-color;
+}
+
+.popup-pergunta {
+  .popup {
+    width: 75%;
+    height: 30%;
   }
 }
 

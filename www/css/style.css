@@ -10,7 +10,7 @@
   margin-top: -20px;
   left: -20px; }
 
-.img-responsive.center {
+.center {
   margin: auto;
   display: block; }
 
@@ -40,6 +40,18 @@
     margin: 25% auto; }
 .wrapper.black {
   background-color: rgba(0, 0, 0, 0.41); }
+.wrapper .box {
+  color: #fff;
+  border-radius: 20px; }
+  .wrapper .box.blue {
+    background-color: #0c60ee; }
+
+.like-box {
+  background-color: #0c60ee; }
+
+.popup-pergunta .popup {
+  width: 75%;
+  height: 30%; }
 
 .slider {
   height: 100%; }

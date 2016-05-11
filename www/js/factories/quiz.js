@@ -9,7 +9,7 @@ window.app.factory('Quiz',['host','$http','$rootScope',function(host,$http,$root
 
                 //$http.defaults.headers.common['Authorization'] = $rootScope.user.access_token;
                 $http({
-                    url: host.url+"/api/quiz",
+                    url: host.url+"/api/quiz-question-answer",
                     method: "GET",
                     //withCredentials: true,
                     headers: {
