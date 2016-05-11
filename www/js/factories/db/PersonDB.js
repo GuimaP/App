@@ -14,16 +14,16 @@ window.app.factory('PersonDB',function($rootScope){
                 if(person instanceof Person){
                     var object = {
                         type            : type.name,
-                        access_token    : person.getToken(),
-                        photo           : person.getPhoto(),
-                        user_id         :person.getUserId(),
-                        login           :person.getLogin(),
-                        email           :person.getEmail(),
-                        name            :person.getName(),
-                        password        :person.getPassword(),
+                        access_token    : person.access_token,
+                        photo           : person.photo,
+                        user_id         :person.user_id,
+                        login           :person.login,
+                        email           :person.email,
+                        name            :person.name,
+                        password        :person.password,
                         role            :{
-                            name            : person.getRole().getName(),
-                            id              : person.getRole().getId()
+                            name            : person.role.name,
+                            id              : person.role.id
                         }
                     };
 

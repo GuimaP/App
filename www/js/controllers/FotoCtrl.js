@@ -1,9 +1,11 @@
 window.app.controller('FotoCtrl',
-    ['$scope','$rootScope','$cordovaCamera','Person','$cookies','$state',
-    function($scope,$rootScope,$cordovaCamera,Person,$cookies,$state){
+    ['$scope','$rootScope','$cordovaCamera','Person','$cookies','$state','PersonAPI',
+    function($scope,$rootScope,$cordovaCamera,Person,$cookies,$state,PersonAPI){
         $scope.user = $rootScope.user == undefined ? {} : $rootScope.user;
 
-        $scope.user.photo = $scope.user.photo == undefined ? '../../img/ionic.png' : $scope.user.photo;
+        $scope.user.photo = $scope.user.photo == undefined ? '../img/ionic.png' : $scope.user.photo;
+
+
 
 
         $scope.picture = function(){
@@ -14,7 +16,7 @@ window.app.controller('FotoCtrl',
                     destinationType: Camera.DestinationType.DATA_URL,
                     sourceType: Camera.PictureSourceType.CAMERA,
                     encodingType: Camera.EncodingType.JPEG,
-                    allowEdit: false,
+                    allowEdit: true,
                     targetWidth: 100,
                     targetHeight: 100,
                     cameraDirection : 1,
@@ -26,11 +28,13 @@ window.app.controller('FotoCtrl',
                 $cordovaCamera.getPicture(options).then(function(imageData) {
 
 
-                    console.log(imageData);
-                    // $scope.imgURI = "data:image/jpeg;base64,"+ imageData;
                     //Pego a imagem tirada e atualizo no objeto
-                    $scope.imgURI = imageData;
-                    $scope.user.setPhoto(imageData);
+
+                    //$scope.imgURI = imageData;
+                    console.log(imageData);
+                    $scope.imgURI = "data:image/jpeg;base64,"+ imageData;
+
+                    $scope.user.setPhoto($scope.imgURI);
 
                     $rootScope.user = $scope.user;
 
@@ -38,8 +42,11 @@ window.app.controller('FotoCtrl',
 
 
 
+
+
+
+
                 }, function(err) {
-                    // error
                     console.log(err);
                 }).catch(function(err){
                     console.log(err);
@@ -48,28 +55,38 @@ window.app.controller('FotoCtrl',
         }
 
         $scope.nextState = function(){
-
-            //Adiciona na API
-            //Person.add($rootScope.user);
-            console.log(this.userCadastro);
-            $rootScope.user.name = this.userCadastro.name;
-            $rootScope.user.lastname = this.userCadastro.lastname;
-            $rootScope.user.email = this.userCadastro.email;
+            $scope.show();
 
 
+            try {
 
-            $cookies.putObject("user",true);
-            $cookies.putObject("userData",$rootScope.user.toJSON());
-
-
-
-            //Adiciono no BANCO
-            Person.insert($rootScope.user);
-
-            //Registro um cookie para identificar que ele está logdo
+                console.log(this.userCadastro);
+                $rootScope.user.name = this.userCadastro.name;
+                $rootScope.user.lastname = this.userCadastro.lastname;
+                $rootScope.user.email = this.userCadastro.email;
 
 
-            $state.transitionTo("app.home");
+                $cookies.putObject("user",true);
+                 $cookies.putObject("userData",$rootScope.user.toJSON());
+
+                console.log($rootScope.user);
+
+                //Adiciono no BANCO
+                Person.insert($rootScope.user);
+
+                //Envio para a API
+                PersonAPI.insert($rootScope.user)
+                    .then(function (d) {
+                        $scope.hide();
+                        $state.transitionTo("app.home");
+                    }).catch(function (err) {
+                    $scope.hide();
+                    console.log(err);
+                });
+
+            }catch(e){
+                $scope.hide();
+            }
 
             /*$rootScope.toDataUrl($rootScope.user.photo, function(url){
                 //$rootScope.user.setPhoto(url);

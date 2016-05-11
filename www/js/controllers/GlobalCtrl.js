@@ -1,10 +1,25 @@
 window.app.controller('GlobalCtrl',
-    ['$http','DB','$scope','$rootScope','$cookies','Person','$state','PersonDB','MessageDB','host',
-    function($http,DB,$scope,$rootScope,$cookies,Person,$state,PersonDB,MessageDB,host){
+    ['$http','DB','$scope','$rootScope','$cookies','Person','$state','PersonDB','MessageDB','host','$ionicLoading',
+    function($http,DB,$scope,$rootScope,$cookies,Person,$state,PersonDB,MessageDB,host,$ionicLoading){
     //Registrar os eventos aqui....
     window.io = io.connect(host.websocket);
         $rootScope.messages = [];
+        $rootScope.canDrag = true;
 
+
+        //Add event to notify if the user leave out from the page
+        window.onunload = function (e) {
+            io.emit('disconnectUser');
+            var message = "Your confirmation message goes here.",
+                e = e || window.event;
+            // For IE and Firefox
+            if (e) {
+                e.returnValue = message;
+            }
+
+            // For Safari
+            return;
+        };
 
         io.on('pergunta',function(data){
             alert(data);
@@ -19,7 +34,7 @@ window.app.controller('GlobalCtrl',
             $cookies.remove('user');
             $cookies.remove('userData');
 
-            //Remove All Data from BD
+            //Remove todos os dados relacionados a Pessoa do banco de dados
             Person.search("Person")
                 .then(function(d){
 
@@ -140,6 +155,17 @@ window.app.controller('GlobalCtrl',
             };
             img.src = url;
         }
+
+
+        $scope.show = function() {
+            $ionicLoading.show({
+                template: 'Carregando...'
+            });
+        };
+        $scope.hide = function(){
+            $ionicLoading.hide();
+        };
+
 
 
 }]);

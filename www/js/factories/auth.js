@@ -7,7 +7,11 @@ window.app.factory('Auth',['host','$http',function(host,$http){
                 $http({
                     url: host.url+"/auth",
                     method: "POST",
-                    data: JSON.stringify(user)
+                    data: JSON.stringify(user),
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    }
+
                 }).success(function(data){
                     console.log(data);
                     resolve(data);
@@ -16,6 +20,30 @@ window.app.factory('Auth',['host','$http',function(host,$http){
 
                     reject(er);
                 });
+                console.log(user);
+               /* var data = {
+                    username: user.login,
+                    password:user.password,
+                    client_id:'1',
+                    client_secret:'secret',
+                    grant_type:'password'
+                };
+
+                $http({
+                    url: host.url+"/oauth2/token",
+                    method: "POST",
+                    data: $.param(data),
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+
+
+                }).success(function(data){
+                    console.log(data);
+                    resolve(data);
+                }).error(function(er){
+                    console.log(er);
+
+                    reject(er);
+                });*/
 
             }else {
                 reject(Error("Parametro incorreto, somente do tipo Pessoa"));

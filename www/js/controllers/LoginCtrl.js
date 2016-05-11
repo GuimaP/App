@@ -3,8 +3,8 @@
  */
 window.app.controller('LoginCtrl',
   [
-    '$scope','$state','PopupFactory','Person','Auth','$rootScope','$cookies','PersonDB',
-    function($scope,$state,PopupFactory,Person,Auth,$rootScope,$cookies,PersonDB){
+    '$scope','$state','PopupFactory','Person','Auth','$rootScope','$cookies','PersonDB','$ionicLoading',
+    function($scope,$state,PopupFactory,Person,Auth,$rootScope,$cookies,PersonDB,$ionicLoading){
 
 
 
@@ -36,8 +36,11 @@ window.app.controller('LoginCtrl',
             console.log($scope.usuario);
             console.log(Auth);
 
+            $scope.show();
+
             Auth.check($scope.usuario)
               .then(function(data){
+                  $scope.hide();
 
                   //Pego o objeto usuario
                   var userRemote = data.data.user;
@@ -54,11 +57,12 @@ window.app.controller('LoginCtrl',
                   $rootScope.user.setUserId(userRemote.user_id);
 
                   //Define default image
-                  $rootScope.user.setPhoto("/img/ionic.png");
+                  $rootScope.user.setPhoto("../img/ionic.png");
 
                   $state.go("foto");
               })
               .catch(function(err){
+                  $scope.hide();
                   console.log(err);
                   PopupFactory.error("Invalido","Verifique sua senha");
               });

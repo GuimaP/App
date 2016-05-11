@@ -41,4 +41,15 @@
 .wrapper.black {
   background-color: rgba(0, 0, 0, 0.41); }
 
+.slider {
+  height: 100%; }
+
+.slider-slide {
+  padding-top: 80px;
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300; }
+
 /*# sourceMappingURL=style.css.map */

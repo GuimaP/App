@@ -3,11 +3,11 @@
         <div class="list">
 
             <a class="item item-avatar" ng-click="selectUser($index)" ng-repeat="conversa in conversas" ng-show="myUser.user_id != conversa.user_id">
-                <img src="">
+                <img ng-src="{{conversa.photo}}">
                 <h2>{{conversa.login}}</h2>
                 <span class="badge badge-assertive">{{conversa.count}}</span>
                 <p>{{conversa.name}}</p>
-                
+
 
             </a>
 

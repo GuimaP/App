@@ -71,32 +71,7 @@ window.app.factory('Person',function(PersonDB,host,$http){
             });
 
         },
-        add: function(user){
-            var data = {
-                client_name: "Teste",
-                client_photo: user.photo,
-                user : user.user_id
-            };
-            console.log(data);
-            console.log(user);
-            console.log({
-                url:host.url+"/api/client",
-                method: "POST",
-                data: data,
-                headers: {
-                    'Authorization': user.access_token,
-                    'Content-Type': 'application/json'
-                }
-                });
 
-
-            $http.post(host.url+"/api/client",data,{
-                headers: {
-                    'Authorization' : "OB2EX2chHZr0UfqEBxlaX38wHdpa/Eyy0nhLexMXxwk6/MYCcwrQ5HkVZM17AmztU4HjFiZTyOf2NG1kJfxDC+eTXCT495BYzWbHAsAgKZCLYwgkUVwltxcx7MEuqBAyrNnlDQRXkU29RC1AhkpV9/XmLk0pMmvN"
-                }
-            });
-
-        },
         remove: function(doc_id){
           return PersonDB.remove(doc_id);
         },

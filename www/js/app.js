@@ -5,11 +5,17 @@
 // the 2nd parameter is an array of 'requires'
 window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
 .constant("host", {
-    "websocket": "http://192.168.0.56:3000",
-    "url": "http://192.168.0.72:8000"
+    "websocket": "http://192.168.0.149:3000",
+    "url": "http://192.168.0.136:8000"
+    //"url": "http://localhost:8100"
     //"url": "http://localhost:8080"
 })
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$http) {
+    //$http.defaults.headers.common.ContentType = "application/json";
+
+
+
+    console.log("ae");
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -119,11 +125,17 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
           controller: 'LoginCtrl'
       });
 
+    console.log("OPS");
 
     $httpProvider.defaults.headers.common = {};
     $httpProvider.defaults.headers.post = {};
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    /*$httpProvider.defaults.headers.common = {};
+    $httpProvider.defaults.headers.post = {};
+    $httpProvider.defaults.headers.put = {};
+    $httpProvider.defaults.headers.patch = {};*/
 
 
 
