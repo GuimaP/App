@@ -1,23 +1,60 @@
 <ion-view view-title="@{{currentConversation.name}}">
     <ion-content>
-        <h4>Conversa com {{currentConversation.name}}</h4>
-        <ul>
-            <li ng-repeat="message in messages track by $index">
-                <b>{{message.doc.from.name}}:</b>{{message.doc.message}}
-            </li>
-        </ul>
-        <form ng-submit="sendMessage()">
-            <div class="list wrapper-login">
+        <div class="chat-container container-fluid">
 
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Pergunta</span>
-                    <textarea ng-model="message" my-enter="sendMessage()"></textarea>
-                </label>
 
+            <div class="col-75 box chat-messages">
+                <div class="row row-top">
+                    <div class="col-sm-12">
+                        <div class="list-card">
+                            <div class="item item-avatar header">
+                                <img ng-src="{{currentConversation.photo}}" />
+                                <label>{{currentConversation.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-center">
+                    <div class="col-sm-12">
+
+                        <div class="chat-messages">
+
+                            <ul class="messages">
+                                <ion-scroll zooming="false" direction="y" style="width: 100%; height: 300px;">
+
+                                    <li ng-repeat="message in messages track by $index" ng-class="{ 'mine': user.user_id == message.doc.from.user_id,'from': user.user_id != message.doc.from.user_id}">
+                                        <b>{{message.doc.from.name}}:</b>
+                                        <strong></strong>
+                                        <p>{{message.doc.message}}</p>
+                                    </li>
+                                </ion-scroll>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row row-bottom">
+                    <form class="col-sm-12" ng-submit="sendMessage()">
+                        <div class="list wrapper-login">
+
+                            <label class="item item-input item-floating-label">
+                                <span class="input-label">Sua Mensagem</span>
+                                <textarea ng-model="message" my-enter="sendMessage()"></textarea>
+                            </label>
+
+
+                        </div>
+                        <button class="button-block button button-assertive" type="submit">Enviar</button>
+                    </form>
+                </div>
 
             </div>
-            <button class="button-block button button-assertive" type="submit">Enviar</button>
-        </form>
+
+
+        </div>
 
     </ion-content>
 </ion-view>

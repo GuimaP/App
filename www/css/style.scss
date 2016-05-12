@@ -1,14 +1,37 @@
 /* import */
 @import "utilities/__variables";
 
-$padding-container: 50px;
-$padding-floating: 30px;
 
-$blue-color : #0c60ee;
-$blue-dark-color: $blue-color;
-$font-color: #fff;
+.custom-color {
+  &.bar.bar-positive{
+    background-color: $color-primary;
+  }
+  background-color: $color-primary;
+}
+
+
 
 /* CSS */
+.center {
+  margin: auto;
+  display: block;
+}
+ion-content {
+  background-color: $color-primary;
+}
+.wrapper {
+  .title {
+    text-transform: uppercase;
+    color: $black;
+    text-align: center;
+    border-top: 1px solid $font-white;
+    border-bottom: 1px solid $font-white;
+    padding: 15px 0;
+    width: 33%;
+  }
+}
+
+//Login
 .wrapper-login{
   .item{
     border-left:none;
@@ -16,9 +39,21 @@ $font-color: #fff;
     border-top:none;
     border-bottom: 1px solid $color-border;
   }
+  .item-input input{
+    //border:1px solid $black;
+
+  }
+  .button{
+    &.button-positive{
+      background-color: $black;
+      height:50%;
+      margin-top:5%;
+    }
+  }
 }
 
 
+//Home
 .topo-menu {
   .badge.badge-assertive{
     margin-top: -20px;
@@ -26,35 +61,9 @@ $font-color: #fff;
   }
 }
 
-.center {
-  margin: auto;
-  display: block;
-}
 
-* {
-  z-index: 1;
-}
 
-.floating {
-  position: absolute;
-  right: -30px;
-  border-radius: 50%;
-  background-color: $blue-color;
-  color: $font-color;
-  box-shadow: 2px 3px 6px darken($blue-color,5);
-  //box-shadow: 2px 3px 6px #e7e7e7;
 
-  padding: $padding-floating;
-  z-index: 2;
-
-  &:nth-child(1){
-    top: 0px;
-    z-index: 3;
-  }
-  &:nth-child(2){
-    top: 60px;
-  }
-}
 
 
 .wrapper {
@@ -98,10 +107,94 @@ $font-color: #fff;
 }
 .slider-slide {
   padding-top: 80px;
-  color: #000;
+  color: $black;
   background-color: #fff;
   text-align: center;
 
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
+}
+
+
+/*CHAT MESSAGES*/
+.chat-container{
+  background-color: $color-primary;
+  border-color: $color-primary;
+  .search {
+    margin: 0;
+    .item {
+      background-color: $black;
+      border-color: $black;
+      border-radius: 0;
+
+      .placeholder-icon:last-child{
+        margin-right:20px;
+      }
+      input {
+        border-radius: 0;
+        color: $font-white;
+      }
+
+    }
+  }
+  h1{
+    text-align: center;
+  }
+  hr {
+    border-color: $black;
+
+  }
+
+  .box {
+    background-color: #fff;
+    border:1px solid $black;
+    display: block;
+    margin: auto;
+    min-height:60vh;
+    position: relative;
+    padding: 0;
+
+    .chat {
+      ul {
+        li {
+          padding: 5px;
+        }
+      }
+    }
+  }
+
+  //Chat Messages
+  .chat-messages{
+    .header {
+      border-color: transparent;
+    }
+
+    .messages {
+      li {
+        padding: 8px;
+        border-radius: 9px;
+        margin-top: 10px;
+        width: 75%;
+        clear: both;
+
+        &.mine {
+          border:1px solid $chat-balom-color;
+          background-color: $chat-balom-color;
+          border-color: $chat-balom-border-color;
+          text-align: left;
+
+        }
+
+        &.from {
+          border:1px solid $chat-balom-from-color;
+          background-color: $chat-balom-from-color;
+          border-color: $chat-balom-from-border-color;
+          text-align: right;
+          float: right;
+          display: block;
+        }
+      }
+    }
+  }
+
 }

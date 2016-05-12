@@ -7,26 +7,15 @@ window.app.controller('GlobalCtrl',
         $rootScope.canDrag = true;
         $rootScope.listAsks = [];
 
-
-        //Add event to notify if the user leave out from the page
-        window.onunload = function (e) {
-            io.emit('disconnectUser');
-            var message = "Your confirmation message goes here.",
-                e = e || window.event;
-            // For IE and Firefox
-            if (e) {
-                e.returnValue = message;
-            }
-
-            // For Safari
-            return;
-        };
-
-
-
-
         //Init Config Database
         DB.init();
+
+
+
+
+
+
+
 
         $rootScope.logoff = function(){
             //Remove Cookie
@@ -36,9 +25,7 @@ window.app.controller('GlobalCtrl',
             //Remove todos os dados relacionados a Pessoa do banco de dados
             Person.search("Person")
                 .then(function(d){
-
                     console.log(d);
-
                     if(d.length > 0){
                         d.forEach(function(e){
 
@@ -50,38 +37,31 @@ window.app.controller('GlobalCtrl',
                                         console.log('Removed');
                                         console.log(d);
                                         $state.go('login');
+                                        $scope.messages = [];
                                     });
                             }
 
                         });
 
                     }else {
+                        $scope.messages = [];
                         $state.go('login');
                     }
                 });
-
-
-            io.emit('disconnectUser');
+            io.emit('disconnectUser',$rootScope.user);
         }
 
         window.io.on('messageReceived',function(data){
-            console.log($rootScope.conversas.length);
+            console.log($scope.conversas.length);
             console.log(data);
 
-            for(var i =0; i < $rootScope.conversas.length; i++){
-                if($rootScope.conversas[i].user_id == data.from.user_id){
-                    $rootScope.conversas[i].count = $rootScope.conversas[i].count + 1;
+            for(var i =0; i < $scope.conversas.length; i++){
+                if($scope.conversas[i].user_id == data.from.user_id){
+                    $scope.conversas[i].count = $scope.conversas[i].count + 1;
 
-                    if(!$rootScope.conversas[i].messages || $rootScope.conversas[i].messages == undefined){
-                        $rootScope.conversas[i].messages = new Array();
+                    if(!$scope.conversas[i].messages || $scope.conversas[i].messages == undefined){
+                        $scope.conversas[i].messages = new Array();
                     }
-                    /*var msg = new Message({
-                        owner: $rootScope.user,
-                        to: data.to,
-                        from: data.from,
-                        data : data.data,
-                        message: data.message
-                    });*/
 
                     var message = new Message({
                         owner: {
@@ -108,6 +88,8 @@ window.app.controller('GlobalCtrl',
                     console.info("Message received");
                     console.info(message);
 
+                    $scope.messages.push(message);
+
                     MessageDB.insert(message)
                     .then(function(d){
                         console.info(d);
@@ -117,24 +99,14 @@ window.app.controller('GlobalCtrl',
                         console.log(err);
                     });
 
-                    //$rootScope.conversas[i].messages.push(data.message);
-                    //console.log($rootScope.conversas);
 
-                    $rootScope.$apply();
+
+                    $scope.$apply();
                     break;
                 }
             }
         });
-        window.io.on('newUser',function(data){
-            $rootScope.conversas = data;
-            console.log($rootScope.conversas);
-            $rootScope.$apply();
-        });
-        window.io.on('receiveUsers',function(data){
-            $rootScope.conversas = data;
-            console.log($rootScope.conversas);
-            $rootScope.$apply();
-        });
+
 
 
 

@@ -1,16 +1,39 @@
 <ion-view view-title="Mensagens">
-    <ion-content>
-        <div class="list">
+    <ion-content class="chat-container container-fluid">
 
-            <a class="item item-avatar" ng-click="selectUser($index)" ng-repeat="conversa in conversas" ng-show="myUser.user_id != conversa.user_id">
-                <img ng-src="{{conversa.photo}}">
-                <h2>{{conversa.login}}</h2>
-                <span class="badge badge-assertive">{{conversa.count}}</span>
-                <p>{{conversa.name}}</p>
+        <hr/>
 
+        <!--Box de Mensagens-->
+        <div class="">
+            <div class="row box">
+                <div class="col-100">
+                    <div class="list list-inset search">
+                        <label class="item item-input ">
+                            <input type="text"  placeholder="Search" ng-model="pesquisa">
+                            <i class="icon ion-search placeholder-icon"></i>
+                        </label>
 
-            </a>
+                    </div>
+                </div>
 
+                <div class="col-100">
+                    <div class="chat">
+                        <ul>
+                            <ion-scroll zooming="false" direction="y" style="width: 100%; height: 100%">
+                            <li ng-repeat="conversa in conversas | filter:pesquisa" ng-show="myUser.user_id != conversa.user_id">
+                                <a class="item item-avatar" ng-click="selectUser($index)" >
+                                    <img ng-src="{{conversa.photo}}">
+                                    <h2>{{conversa.name}}</h2>
+                                    <span ng-hide="conversa.count == 0" class="badge badge-assertive">{{conversa.count}}</span>
+                                    <p></p>
+                                </a>
+                            </li>
+                            </ion-scroll>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </ion-content>
 </ion-view>

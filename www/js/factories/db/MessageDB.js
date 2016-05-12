@@ -124,28 +124,40 @@ window.app.factory('MessageDB',function($rootScope){
 
         },
         searchConversation: function(user_id,owner_id){
-            window.q = user_id;
-            window.owner_id = owner_id;
+
+            window.owner_conversation_id = owner_id;
+            window.currentType = type.name;
+            window.user_id = user_id;
+            console.log(user_id + ' e ' + owner_id + " ==> " +  window.q);
+
             return new Promise(function(resolve,reject){
+
                 //Function para filtrar os registros
                 var map = function(message){
                     var regex,searchKey;
-                    searchKey = window.q;
+                    searchKey = window.user_id;
                     regex = new RegExp(searchKey,"i");
+                    console.log("===> " +window.q);
+
 
 
                     //Se o objeto n tiver o _id, então ele ja foi removido
                     if(message._id != undefined) {
+                        console.log(message.type + " == " + currentType);
+                        if(message.type == currentType){
 
+                            console.log(message.conversationWith.user_id + " == " + searchKey + " && " + message.owner.user_id + " == " + window.owner_conversation_id);
 
-                        if (
-                            (message.conversationWith.user_id == searchKey)
-                            &&
-                            message.owner.user_id == window.owner_id
+                            if (
+                                (message.conversationWith.user_id == searchKey)
+                                &&
+                                message.owner.user_id == window.owner_conversation_id
 
-                        ) {
-                            emit(message._id, message);
+                            ) {
+                                emit(message._id, message);
+                            }
                         }
+
                     }
                 };
 
