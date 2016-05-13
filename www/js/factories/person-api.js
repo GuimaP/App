@@ -9,11 +9,22 @@ window.app.factory('PersonAPI',function(PersonDB,host,$http){
     return {
         insert: function(user){
             return new Promise(function(resolve,reject){
+                console.log(user);
+                console.log(user.name);
+                console.log(user.lastname);
+                console.log(user.email);
+                console.log(user.photo);
+
+
                 var data = {
                     client_name: user.name,
+                    client_second_name: user.lastname,
+                    client_email:user.email,
                     client_photo: user.photo,
                     user : user.user_id
                 };
+
+                console.log(data);
 
 
 

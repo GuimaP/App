@@ -59,7 +59,7 @@ window.app.controller('LoginCtrl',
                   //Define default image
                   $rootScope.user.setPhoto("../img/ionic.png");
 
-                  $state.go("foto");
+                  $state.go("app.foto");
               })
               .catch(function(err){
                   $scope.hide();

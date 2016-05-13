@@ -1,15 +1,20 @@
 <ion-view view-title="Mensagens">
-    <ion-content class="chat-container container-fluid">
-
-        <hr/>
-
+    <ion-content class="chat-container ">
+        <div class="container-fluid fundo-inner padding-inner border ">
+            <div class="row">
+                <div class="col-sm-12 title-label center">
+                    <h1>Mensagens</h1>
+                </div>
+            </div>
+        </div>
         <!--Box de Mensagens-->
-        <div class="">
+        <div class="container-fluid no-padding">
             <div class="row box">
                 <div class="col-100">
                     <div class="list list-inset search">
                         <label class="item item-input ">
-                            <input type="text"  placeholder="Search" ng-model="pesquisa">
+
+                            <input type="text"  placeholder="Search" ng-model="pesquisa" ng-class="{'focus': classSearch}"  ng-keyup="isEmpty()">
                             <i class="icon ion-search placeholder-icon"></i>
                         </label>
 
@@ -20,14 +25,20 @@
                     <div class="chat">
                         <ul>
                             <ion-scroll zooming="false" direction="y" style="width: 100%; height: 100%">
-                            <li ng-repeat="conversa in conversas | filter:pesquisa" ng-show="myUser.user_id != conversa.user_id">
-                                <a class="item item-avatar" ng-click="selectUser($index)" >
-                                    <img ng-src="{{conversa.photo}}">
-                                    <h2>{{conversa.name}}</h2>
-                                    <span ng-hide="conversa.count == 0" class="badge badge-assertive">{{conversa.count}}</span>
-                                    <p></p>
-                                </a>
-                            </li>
+                                <li ng-repeat="conversa in conversas | filter:pesquisa" ng-show="myUser.user_id != conversa.user_id">
+                                    <a class="item item-avatar" ng-click="selectUser($index)" >
+                                        <div class="col-sm-3">
+                                            <img ng-src="{{conversa.photo}}" class="img-responsive">
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <h2 class="" >{{conversa.name}}</h2>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <span class="col-sm-1" ng-hide="conversa.count == 0" class="badge badge-assertive">{{conversa.count}}</span>
+                                        </div>
+
+                                    </a>
+                                </li>
                             </ion-scroll>
                         </ul>
                     </div>

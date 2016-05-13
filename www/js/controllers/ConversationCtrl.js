@@ -2,6 +2,7 @@ window.app.controller('ConversationCtrl',[
     '$scope','$rootScope','$stateParams','MessageDB',
     function ($scope,$rootScope,$stateParams,MessageDB) {
 
+
         //Evento que da um update nas conversas do banco quando tem uma nova interação
         window.io.on('updateConversation',function(d){
 
@@ -13,6 +14,7 @@ window.app.controller('ConversationCtrl',[
                     $scope.messages = result;
                     //console.log($scope.messages);
                     $scope.$apply();
+                    $(".messages ion-scroll").animate({ scrollTop: $(document).height() }, "slow");
                 });
         });
 
@@ -45,6 +47,7 @@ window.app.controller('ConversationCtrl',[
                     $scope.$apply();
                 });
 
+            $(".messages ion-scroll").animate({ scrollTop: $(document).height() }, "slow");
 
         });
 

@@ -137,6 +137,4 @@ window.app.controller('GlobalCtrl',
             $ionicLoading.hide();
         };
 
-
-
 }]);

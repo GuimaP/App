@@ -1,25 +1,39 @@
-<ion-view title="Login">
+<ion-view title="" >
 
     <ion-nav-bar class='bar bar-positive custom-color' >
       <ion-nav-back-button class="button-icon ion-arrow left-c"></ion-nav-back-button>
     </ion-nav-bar>
 
-    <ion-content class='padding wrapper container-fluid'>
+    <ion-content class='padding wrapper container-fluid fundo-inner' >
+        <div class="row">
+            <h1 class="title-label center">
+                Login
+            </h1>
+        </div>
 
-        <h1 class="title center">
-            Login
-        </h1>
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="text center">Por favor efetue seu login</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="ballom text center">
+                    Verifique seu código de acesso impresso no seu crachá
+                </label>
+            </div>
+        </div>
 
         <div class="col-sm-8 col-sm-offset-2">
+
+
             <form ng-submit="signin()" class="row wrapper-login">
 
+                <label class="col-sm-8 item item-input">
+                    <input type="text" placeholder="Login"  ng-model='usuario.login'>
+                </label>
 
-                      <label class="col-sm-8 item item-input item-floating-label">
-                          <span class="input-label">Usuário</span>
-                          <input type="text" placeholder="Usuário" ng-model='usuario.login'>
-                      </label>
-
-                      <button class="col-sm-4 button button-positive" type="submit">Entrar</button>
+                <button class="col-sm-4 button button-positive" type="submit">Entrar</button>
 
 
 

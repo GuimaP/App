@@ -11,6 +11,13 @@ window.app.controller('ChatCtrl', function($scope,$rootScope,$state,$ionicHistor
         }
 
     });
+    $scope.isEmpty = function(){
+        console.log(this.pesquisa);
+        this.classSearch = this.pesquisa != "";
+        console.log(this.classSearch);
+        
+    }
+
 
 
 

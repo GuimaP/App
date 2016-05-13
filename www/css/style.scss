@@ -2,9 +2,34 @@
 @import "utilities/__variables";
 
 
+//Ionic Header
+/*.overflow-scroll {
+  padding-top: 13%;
+}
+ion-header-bar.bar.bar-positive.custom-color.bar-header {
+  height: 190px;
+
+  .title {
+    position: relative;
+    margin: auto;
+    display: block;
+    padding: 0;
+    height: auto;
+    padding: 20px;
+    font-size: 36px;
+    color: $black;
+  }
+}*/
+
+
+
+
+
+
 .custom-color {
   &.bar.bar-positive{
     background-color: $color-primary;
+    border-color: $color-primary;
   }
   background-color: $color-primary;
 }
@@ -12,42 +37,123 @@
 
 
 /* CSS */
+.no-padding {
+  padding: 0;
+}
 .center {
   margin: auto;
   display: block;
+  text-align: center;
 }
 ion-content {
-  background-color: $color-primary;
+  background-color: $font-white;
+  padding: 0;
 }
-.wrapper {
-  .title {
-    text-transform: uppercase;
-    color: $black;
-    text-align: center;
-    border-top: 1px solid $font-white;
-    border-bottom: 1px solid $font-white;
-    padding: 15px 0;
-    width: 33%;
+
+.fundo-inner {
+  background-color: $color-primary;
+
+  &.padding-inner {
+    padding: 0px 0 15px;
+  }
+
+  &.border {
+    border-bottom: 1px solid $black;
+  }
+}
+
+
+.title-label {
+  text-transform: uppercase;
+  color: $black;
+  text-align: center;
+  border-top: 1px solid $font-white;
+  border-bottom: 1px solid $font-white;
+  padding: 15px 0;
+  width: 33%;
+}
+
+.inner-white {
+  background-color: $font-white;
+  position: absolute;
+  width:100%;
+  height: 100%;
+}
+
+
+
+.seta-top {
+  &:before {
+
+  }
+}
+
+.text {
+  color: $black;
+  margin: 15px auto;
+
+  &.ballom {
+    background-color: $black;
+    color: $font-white;
+    width: 50%;
+    padding: 15px;
+    margin: 15px auto 0;
+
+    &:after {
+      content:"";
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid $black;
+      display: block;
+      margin: 15px auto;
+      position: absolute;
+      left: 50%;
+    }
   }
 }
 
 //Login
 .wrapper-login{
-  .item{
-    border-left:none;
-    border-right:none;
-    border-top:none;
-    border-bottom: 1px solid $color-border;
-  }
-  .item-input input{
-    //border:1px solid $black;
+  margin-top: 15px;
+  //border: 1px solid $black;
+
+  label {
+    .item {
+      background-color: transparent;
+      border: 1px solid $black;
+    }
 
   }
+  .item-input {
+    border-color: transparent;
+    background-color: transparent;
+    padding: 0;
+    input{
+      border:1px solid $black;
+      height: 45px;
+      padding: 0 15px;
+      text-align: center;
+      &:focus{
+        background-color: $font-white;
+      }
+    }
+
+
+
+
+  }
+
   .button{
+    border-radius: 0;
+    border: 1px solid $black;
+    text-transform: uppercase;
+    font-weight: 800;
+
     &.button-positive{
       background-color: $black;
-      height:50%;
-      margin-top:5%;
+
     }
   }
 }
@@ -60,35 +166,116 @@ ion-content {
     left: -20px;
   }
 }
-
-
-
-
-
-
-.wrapper {
-  &.foto {
-    min-height: 60vh;
-    .img-responsive {
-      text-align: center;
-      width: 100%;
-      margin: 25% auto;
-    }
-
-  }
-  &.black{
-    background-color: rgba(0, 0, 0, 0.41);
-    //padding: $padding-container;
-  }
-
-  .box {
-    color: #fff;
-    border-radius: 20px;
-    &.blue {
-      background-color: $blue-color;
+.container-home {
+  .opcoes {
+    .grid-5 {
+      float: left;
+      width: 20%;
     }
   }
 }
+
+
+
+
+
+//Foto
+.name-top {
+  padding: 15px 0 60px;
+}
+.foto-wrapper {
+
+  .container-fluid{
+    padding: 0;
+  }
+  .container-foto {
+    background-color: $font-white;
+    .wrapper {
+
+      &.foto {
+        min-height: 40vh;
+
+        .img-responsive {
+          text-align: center;
+          border-radius: 50%;
+          margin-top: -40%;
+          width: 80%;
+          border: 7px solid $color-primary;
+        }
+
+        .button-foto {
+          background-color: $color-primary;
+          border-radius: 0;
+          border: 1px solid $black;
+          color: $black;
+          font-weight: 800;
+          margin: 30px auto;
+          &:before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid $black;
+            display: block;
+            margin: 15px auto;
+            position: absolute;
+            left: 50%;
+            top: -23px;
+          }
+        }
+
+      }
+      &.black {
+        margin: 30px auto;
+        border: $black 1px solid;
+        .col-sm-6 {
+          &:first-child{
+            padding-left: 0;
+          }
+
+          &:last-child{
+            padding-right:0 ;
+          }
+          .input-label {
+            max-width: 135px;
+            text-align: right;
+          }
+          .button {
+            border-radius: 0;
+            text-transform: uppercase;
+            font-weight: 800;
+            padding: 0;
+
+            &.save {
+              background-color: $color-primary;
+            }
+
+            &.cancel {
+              background-color: $gray;
+
+            }
+          }
+        }
+
+        .fields{
+          padding: 30px 0;
+          .item {
+            border-color: transparent;
+            span {
+              color: $color-primary;
+              font-weight: 800;
+            }
+            input {
+              border: 1px solid $color-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 
 
 .like-box {
@@ -110,44 +297,69 @@ ion-content {
   color: $black;
   background-color: #fff;
   text-align: center;
-
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
 }
 
 
 /*CHAT MESSAGES*/
+h1{
+  text-align: center;
+}
+hr {
+  border-color: $black;
+
+}
+
+//Conversation
+.chat-text {
+  position: fixed;
+  bottom: 0;
+
+}
 .chat-container{
-  background-color: $color-primary;
-  border-color: $color-primary;
+
+  padding: 0;
+
+
+  //Barra de Busca
   .search {
     margin: 0;
     .item {
-      background-color: $black;
+
       border-color: $black;
+      //background-color: $black;
       border-radius: 0;
 
       .placeholder-icon:last-child{
         margin-right:20px;
       }
-      input {
-        border-radius: 0;
-        color: $font-white;
+      .focus{
+        //text-align: left;
+
       }
+
+        input {
+          border-radius: 0;
+          color: $color-primary;
+          text-align: center;
+          width: auto;
+          text-align: center;
+          -webkit-transition: all .3s;
+          -moz-transition: all .3s;
+          -ms-transition: all .3s;
+          -o-transition: all .3s;
+          transition: all .3s;
+
+        }
 
     }
   }
-  h1{
-    text-align: center;
-  }
-  hr {
-    border-color: $black;
 
-  }
+
 
   .box {
     background-color: #fff;
-    border:1px solid $black;
+
     display: block;
     margin: auto;
     min-height:60vh;
@@ -158,6 +370,26 @@ ion-content {
       ul {
         li {
           padding: 5px;
+          //Conversas e mensagens
+          .item {
+            border-color: $black;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            min-height: 104px;
+            h2 {
+              font-weight: 500;
+              font-size: 4vw;
+              text-transform: uppercase;
+              letter-spacing: 5px;
+            }
+            img,h2 {
+              position: relative;
+            }
+            .img-responsive {
+              width: 60%;
+            }
+          }
         }
       }
     }
@@ -194,6 +426,35 @@ ion-content {
           display: block;
         }
       }
+    }
+  }
+
+  //Campo para digitar mensagem
+  .wrapper-text-msg{
+    //Pega o primeiro grid, o de texto
+    div[class^='col-sm']:first-child{
+      padding-right: 0;
+    }
+    //Pega o ultimo grid, q é o botão
+    div[class^='col-sm']:last-child{
+      padding: 0;
+    }
+      padding-right: 0;
+      .item {
+        border-color: transparent;
+        padding: 0;
+        textarea,input {
+          border: 1px solid $black;
+          padding: 11px;
+        }
+      }
+
+
+    .send-button {
+      margin: 0;
+      padding:0;
+      border-radius: 0;
+      background-color: $color-primary;
     }
   }
 

@@ -1,35 +1,56 @@
-<ion-view view-title="Home">
+<ion-view view-title="Inicio">
 
-  <ion-content class="padding">
+  <ion-content class="container-home">
+      <div class="container-fluid fundo-inner padding-inner border ">
+          <div class="row">
+              <div class="col-sm-12 title-label center">
+                  <h1>Bem Vindo</h1>
+                  <h4>{{user.name}}</h4>
+              </div>
+          </div>
+      </div>
+      <div class="container-fluid" >
 
-    <div class="container-fluid" >
-        <h2>Bem Vindo</h2>
-        <h3>{{user.name}}</h3>
 
         <!--Lista de Opções-->
         <div class="row">
-            <div class="list">
-                <div class="col-sm-6 col-xs-12" ng-repeat="opcao in opcoes">
-                    <div class="card">
-                        <a href="{{opcao.link}}">
-                            <div class="item item-avatar">
-                                <img class='full-image' src="{{opcao.icon}}"/>
-                                <h2>{{opcao.name}}</h2>
-                            </div>
+            <div class="opcoes">
+                <div class="grid-5" ng-repeat="opcao in opcoesFirst">
 
-                        </a>
-                    </div>
+                    <a href="{{opcao.link}}">
+                        <div class="">
+                            <img class='img-responsive' src="{{opcao.icon}}"/>
+                            <!--<h2>{{opcao.name}}</h2>-->
+                        </div>
 
-                </div>
-
-
+                    </a>
 
                 </div>
+
             </div>
+
         </div>
+          <div class="row">
+              <div class="opcoes">
+                  <div class="grid-5" ng-repeat="opcao in opcoesSecond">
 
+                      <a href="{{opcao.link}}">
+                          <div class="">
+                              <img class='img-responsive' src="{{opcao.icon}}"/>
+                              <!--<h2>{{opcao.name}}</h2>-->
+                          </div>
 
+                      </a>
+
+                  </div>
+
+              </div>
+
+          </div>
     </div>
+
+
+
 
   </ion-content>
 </ion-view>

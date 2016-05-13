@@ -4,6 +4,7 @@ window.app.controller('FotoCtrl',
         $scope.user = $rootScope.user == undefined ? {} : $rootScope.user;
 
         $scope.user.photo = $scope.user.photo == undefined ? '../img/ionic.png' : $scope.user.photo;
+        $scope.user.name = $scope.user.name == undefined ? 'User' : $scope.user.name;
 
 
 
@@ -39,13 +40,6 @@ window.app.controller('FotoCtrl',
                     $rootScope.user = $scope.user;
 
 
-
-
-
-
-
-
-
                 }, function(err) {
                     console.log(err);
                 }).catch(function(err){
@@ -65,6 +59,10 @@ window.app.controller('FotoCtrl',
                 $rootScope.user.lastname = this.userCadastro.lastname;
                 $rootScope.user.email = this.userCadastro.email;
 
+                console.log($rootScope.user);
+
+
+
 
                 $cookies.putObject("user",true);
                  $cookies.putObject("userData",$rootScope.user.toJSON());
@@ -78,11 +76,18 @@ window.app.controller('FotoCtrl',
                 PersonAPI.insert($rootScope.user)
                     .then(function (d) {
                         $scope.hide();
-                        $state.transitionTo("app.home");
+
+                        //Verifica se o user ja foi cadastrado
+                        $state.transitionTo("app.home"); //Manda pra home
+
+                        //se não, manda pra foto
+
                     }).catch(function (err) {
                     $scope.hide();
                     console.log(err);
                 });
+
+
 
             }catch(e){
                 $scope.hide();

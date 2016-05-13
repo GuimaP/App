@@ -8,7 +8,7 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
     "websocket": "http://192.168.0.149:3000",
     "url": "http://192.168.0.136:8000"
     //"url": "http://localhost:8100"
-    //"url": "http://localhost:8080"
+    //"url": "http://localhost:8000"
 })
 .run(function($ionicPlatform,$http) {
     //$http.defaults.headers.common.ContentType = "application/json";
@@ -68,10 +68,15 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
               }
           }
       })
-      .state("foto",{
+      .state("app.foto",{
           url : "/foto",
-          templateUrl: "templates/foto.html",
-          controller: "FotoCtrl"
+          views : {
+              "mainContent" : {
+                  templateUrl: "templates/foto.html",
+                  controller: "FotoCtrl"
+              }
+          }
+
       })
       .state("app.quiz",{
           url : "/quiz",

@@ -1,18 +1,48 @@
 /* import */
+/*.overflow-scroll {
+  padding-top: 13%;
+}
+ion-header-bar.bar.bar-positive.custom-color.bar-header {
+  height: 190px;
+
+  .title {
+    position: relative;
+    margin: auto;
+    display: block;
+    padding: 0;
+    height: auto;
+    padding: 20px;
+    font-size: 36px;
+    color: $black;
+  }
+}*/
 .custom-color {
-  background-color: #FFA000; }
+  background-color: #facd00; }
   .custom-color.bar.bar-positive {
-    background-color: #FFA000; }
+    background-color: #facd00;
+    border-color: #facd00; }
 
 /* CSS */
+.no-padding {
+  padding: 0; }
+
 .center {
   margin: auto;
-  display: block; }
+  display: block;
+  text-align: center; }
 
 ion-content {
-  background-color: #FFA000; }
+  background-color: #fff;
+  padding: 0; }
 
-.wrapper .title {
+.fundo-inner {
+  background-color: #facd00; }
+  .fundo-inner.padding-inner {
+    padding: 0px 0 15px; }
+  .fundo-inner.border {
+    border-bottom: 1px solid #000000; }
+
+.title-label {
   text-transform: uppercase;
   color: #000000;
   text-align: center;
@@ -21,33 +51,127 @@ ion-content {
   padding: 15px 0;
   width: 33%; }
 
-.wrapper-login .item {
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 1px solid #ddd; }
-.wrapper-login .button.button-positive {
-  background-color: #000000;
-  height: 50%;
-  margin-top: 5%; }
+.inner-white {
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  height: 100%; }
+
+.text {
+  color: #000000;
+  margin: 15px auto; }
+  .text.ballom {
+    background-color: #000000;
+    color: #fff;
+    width: 50%;
+    padding: 15px;
+    margin: 15px auto 0; }
+    .text.ballom:after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid #000000;
+      display: block;
+      margin: 15px auto;
+      position: absolute;
+      left: 50%; }
+
+.wrapper-login {
+  margin-top: 15px; }
+  .wrapper-login label .item {
+    background-color: transparent;
+    border: 1px solid #000000; }
+  .wrapper-login .item-input {
+    border-color: transparent;
+    background-color: transparent;
+    padding: 0; }
+    .wrapper-login .item-input input {
+      border: 1px solid #000000;
+      height: 45px;
+      padding: 0 15px;
+      text-align: center; }
+      .wrapper-login .item-input input:focus {
+        background-color: #fff; }
+  .wrapper-login .button {
+    border-radius: 0;
+    border: 1px solid #000000;
+    text-transform: uppercase;
+    font-weight: 800; }
+    .wrapper-login .button.button-positive {
+      background-color: #000000; }
 
 .topo-menu .badge.badge-assertive {
   margin-top: -20px;
   left: -20px; }
 
-.wrapper.foto {
-  min-height: 60vh; }
-  .wrapper.foto .img-responsive {
-    text-align: center;
-    width: 100%;
-    margin: 25% auto; }
-.wrapper.black {
-  background-color: rgba(0, 0, 0, 0.41); }
-.wrapper .box {
-  color: #fff;
-  border-radius: 20px; }
-  .wrapper .box.blue {
-    background-color: #0c60ee; }
+.container-home .opcoes .grid-5 {
+  float: left;
+  width: 20%; }
+
+.name-top {
+  padding: 15px 0 60px; }
+
+.foto-wrapper .container-fluid {
+  padding: 0; }
+.foto-wrapper .container-foto {
+  background-color: #fff; }
+  .foto-wrapper .container-foto .wrapper.foto {
+    min-height: 40vh; }
+    .foto-wrapper .container-foto .wrapper.foto .img-responsive {
+      text-align: center;
+      border-radius: 50%;
+      margin-top: -40%;
+      width: 80%;
+      border: 7px solid #facd00; }
+    .foto-wrapper .container-foto .wrapper.foto .button-foto {
+      background-color: #facd00;
+      border-radius: 0;
+      border: 1px solid #000000;
+      color: #000000;
+      font-weight: 800;
+      margin: 30px auto; }
+      .foto-wrapper .container-foto .wrapper.foto .button-foto:before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid #000000;
+        display: block;
+        margin: 15px auto;
+        position: absolute;
+        left: 50%;
+        top: -23px; }
+  .foto-wrapper .container-foto .wrapper.black {
+    margin: 30px auto;
+    border: #000000 1px solid; }
+    .foto-wrapper .container-foto .wrapper.black .col-sm-6:first-child {
+      padding-left: 0; }
+    .foto-wrapper .container-foto .wrapper.black .col-sm-6:last-child {
+      padding-right: 0; }
+    .foto-wrapper .container-foto .wrapper.black .col-sm-6 .input-label {
+      max-width: 135px;
+      text-align: right; }
+    .foto-wrapper .container-foto .wrapper.black .col-sm-6 .button {
+      border-radius: 0;
+      text-transform: uppercase;
+      font-weight: 800;
+      padding: 0; }
+      .foto-wrapper .container-foto .wrapper.black .col-sm-6 .button.save {
+        background-color: #facd00; }
+      .foto-wrapper .container-foto .wrapper.black .col-sm-6 .button.cancel {
+        background-color: #656565; }
+    .foto-wrapper .container-foto .wrapper.black .fields {
+      padding: 30px 0; }
+      .foto-wrapper .container-foto .wrapper.black .fields .item {
+        border-color: transparent; }
+        .foto-wrapper .container-foto .wrapper.black .fields .item span {
+          color: #facd00;
+          font-weight: 800; }
+        .foto-wrapper .container-foto .wrapper.black .fields .item input {
+          border: 1px solid #facd00; }
 
 .like-box {
   background-color: #0c60ee; }
@@ -64,31 +188,41 @@ ion-content {
   color: #000000;
   background-color: #fff;
   text-align: center;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300; }
 
 /*CHAT MESSAGES*/
+h1 {
+  text-align: center; }
+
+hr {
+  border-color: #000000; }
+
+.chat-text {
+  position: fixed;
+  bottom: 0; }
+
 .chat-container {
-  background-color: #FFA000;
-  border-color: #FFA000; }
+  padding: 0; }
   .chat-container .search {
     margin: 0; }
     .chat-container .search .item {
-      background-color: #000000;
       border-color: #000000;
       border-radius: 0; }
       .chat-container .search .item .placeholder-icon:last-child {
         margin-right: 20px; }
       .chat-container .search .item input {
         border-radius: 0;
-        color: #fff; }
-  .chat-container h1 {
-    text-align: center; }
-  .chat-container hr {
-    border-color: #000000; }
+        color: #facd00;
+        text-align: center;
+        width: auto;
+        text-align: center;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -ms-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s; }
   .chat-container .box {
     background-color: #fff;
-    border: 1px solid #000000;
     display: block;
     margin: auto;
     min-height: 60vh;
@@ -96,6 +230,21 @@ ion-content {
     padding: 0; }
     .chat-container .box .chat ul li {
       padding: 5px; }
+      .chat-container .box .chat ul li .item {
+        border-color: #000000;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        min-height: 104px; }
+        .chat-container .box .chat ul li .item h2 {
+          font-weight: 500;
+          font-size: 4vw;
+          text-transform: uppercase;
+          letter-spacing: 5px; }
+        .chat-container .box .chat ul li .item img, .chat-container .box .chat ul li .item h2 {
+          position: relative; }
+        .chat-container .box .chat ul li .item .img-responsive {
+          width: 60%; }
   .chat-container .chat-messages .header {
     border-color: transparent; }
   .chat-container .chat-messages .messages li {
@@ -105,9 +254,9 @@ ion-content {
     width: 75%;
     clear: both; }
     .chat-container .chat-messages .messages li.mine {
-      border: 1px solid #FFA000;
-      background-color: #FFA000;
-      border-color: #FFA000;
+      border: 1px solid #facd00;
+      background-color: #facd00;
+      border-color: #facd00;
       text-align: left; }
     .chat-container .chat-messages .messages li.from {
       border: 1px solid #fff;
@@ -116,5 +265,22 @@ ion-content {
       text-align: right;
       float: right;
       display: block; }
+  .chat-container .wrapper-text-msg {
+    padding-right: 0; }
+    .chat-container .wrapper-text-msg div[class^='col-sm']:first-child {
+      padding-right: 0; }
+    .chat-container .wrapper-text-msg div[class^='col-sm']:last-child {
+      padding: 0; }
+    .chat-container .wrapper-text-msg .item {
+      border-color: transparent;
+      padding: 0; }
+      .chat-container .wrapper-text-msg .item textarea, .chat-container .wrapper-text-msg .item input {
+        border: 1px solid #000000;
+        padding: 11px; }
+    .chat-container .wrapper-text-msg .send-button {
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      background-color: #facd00; }
 
 /*# sourceMappingURL=style.css.map */

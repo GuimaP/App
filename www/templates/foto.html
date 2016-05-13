@@ -1,58 +1,90 @@
 
 <ion-view title="Tirar Foto">
 
-    <ion-nav-bar class='bar bar-positive'>
-        <ion-nav-back-button class="button-icon ion-arrow left-c"></ion-nav-back-button>
-    </ion-nav-bar>
 
-    <ion-content class='padding'>
+    <ion-content class='foto-wrapper'>
 
-        <div class="container-fluid">
-               <!--Floating Options-->
-                <div class="floating">
-                    Algo
-                </div>
-                <div class="floating">
-                    Algo
-                </div>
 
-                <div class="col-sm-4 col-xs-12 wrapper foto">
-                    <div class="col-md-12">
-                        <img  class="img-responsive center" ng-src="{{user.photo}}" style="text-align: center">
-                    </div>
-                    <div class="col-md-12">
-                        <button class="button button-block button-assertive" ng-click="picture()">
-                            Tirar uma Foto
-                        </button>
+        <div class="row-center">
+            <div class="container-fluid ">
+
+                <div class="col-sm-12 name-top fundo-inner">
+                    <div class="col-sm-12">
+                        <h1 class="title-label center">
+                            {{user.name}}
+                        </h1>
                     </div>
                 </div>
 
-                <div class="col-sm-8  col-xs-12 wrapper foto black">
-                    <div class="card ">
-                        <div class="list">
-                            <label class="item item-input">
-                                <span class="input-label">Nome</span>
-                                <input type="text" ng-model="userCadastro.name">
-                            </label>
-                            <label class="item item-input">
-                                <span class="input-label">Sobrenome</span>
-                                <input type="text" ng-model="userCadastro.lastname">
-                            </label>
-
-                            <label class="item item-input">
-                                <span class="input-label">Email</span>
-                                <input type="text" ng-model="userCadastro.email">
-                            </label>
+                <div class="col-sm-12 container-foto">
+                    <div class="col-sm-4 col-xs-12 wrapper foto">
+                        <div class="col-md-12">
+                            <img  class="img-responsive center" ng-src="{{user.photo}}" style="text-align: center">
+                        </div>
+                        <div class="col-md-12">
+                            <button class="button button-block button-assertive button-foto" ng-click="picture()">
+                                <i class="icon ion-camera"></i>
+                                Tirar Foto
+                            </button>
                         </div>
                     </div>
-                </div>
 
+                    <div class="col-sm-8  col-xs-12 wrapper foto black">
+                        <!--Dados Cadastrais-->
+                        <div class="col-sm-12">
+                            <div class=" ">
+
+                                <div class="list fields">
+                                    <label class="item item-input">
+                                        <span class="input-label">Nome</span>
+                                        <input type="text" ng-model="userCadastro.name">
+                                    </label>
+
+                                    <label class="item item-input">
+                                        <span class="input-label" >Sobrenome</span>
+                                        <input type="text" ng-model="userCadastro.lastname">
+                                    </label>
+
+                                    <label class="item item-input">
+                                        <span class="input-label" >Email</span>
+                                        <input type="text" ng-model="userCadastro.email">
+                                    </label>
+                                </div>
+
+
+                            </div>
+                        </div><!--Dados Cadastrais-->
+
+                        <!--Buttons-->
+                        <div class="col-sm-12">
+                            <div class="col-sm-6 col-sm-offset-6">
+                                <div class="col-sm-6">
+                                    <button class="button button-positive button-block cancel">Cancelar</button>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <button class="button button-positive button-block save " ng-click="nextState()">Salvar</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--Buttons-->
+                    </div>
+
+
+                </div>
 
 
         </div>
+        </div>
+
+        <!--Complemento do fundo branco-->
+        <div class="row-bottom inner-white">
+            <!--Empty-->
+        </div>
 
 
-        <button class="button button-positive button-block" ng-click="nextState()">Proximo</button>
+
     </ion-content>
 
 </ion-view>
