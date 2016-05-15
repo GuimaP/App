@@ -5,10 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
 .constant("host", {
-    "websocket": "http://192.168.0.149:3000",
-    "url": "http://192.168.0.136:8000"
-    //"url": "http://localhost:8100"
-    //"url": "http://localhost:8000"
+    //"websocket": "http://192.168.0.149:3000",
+    //"url": "http://192.168.0.136:8000"
+    "url": "http://localhost:8000",
+    "websocket": "http://192.168.0.26:3000"
 })
 .run(function($ionicPlatform,$http) {
     //$http.defaults.headers.common.ContentType = "application/json";
@@ -49,6 +49,11 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
             controller: "HomeCtrl"
           }
         }
+      })
+      .state("confirmacao",{
+          url : "/confirmacao",
+          templateUrl: "templates/confirmacao.html",
+          controller: "ConfirmationCtrl"
       })
       .state("app.perfil",{
           url : "/perfil",
@@ -120,6 +125,16 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
               "mainContent" : {
                   templateUrl: 'templates/nuvem.html',
                   controller: 'NuvemCtrl'
+              }
+          }
+
+      })
+      .state("app.participantes",{
+          url: '/participantes',
+          views : {
+              "mainContent" : {
+                  templateUrl: 'templates/participantes.html',
+                  controller: 'ParticipanteCtrl'
               }
           }
 

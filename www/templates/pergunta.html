@@ -2,24 +2,39 @@
 <ion-view title="Pergunta">
 
 
-    <ion-content class='padding'>
-        <H1>Pergunta</H1>
+    <ion-content class=''>
+        <div class="container-fluid fundo-inner padding-inner border ">
+            <div class="row">
+                <div class="col-sm-12 title-label center">
+                    <hr/>
+                    <h1>Bem Vindo</h1>
+                    <h4>{{user.name}}</h4>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid">
-            <button class="button center" ng-click="doAsk()">
-                Adicionar
-            </button>
+            <div class="">
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-8">
+                        <button class="button" ng-click="doAsk()">
+                            Adicionar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2>Perguntas Enviadas</h2>
+                    </div>
+                </div>
 
 
-            <div class="row wrapper black foto ">
                 <div class="col-sm-12">
-                    <div class="col-sm-1 box blue like-box">
-                        Like
-                    </div>
-                    <div class="col-sm-1 box blue">
-                        Voto
-                    </div>
-                    <div class="col-sm-10 box blue">
-                        Texto
+                    <div class="row" ng-repeat="pergunta in myPerguntas">
+                        {{pergunta.desc}}
+                        <hr/>
                     </div>
                 </div>
             </div>

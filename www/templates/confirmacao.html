@@ -1,0 +1,43 @@
+<ion-view view-title="">
+    <ion-nav-bar class='bar bar-positive custom-color' >
+        <ion-nav-back-button class="button-icon ion-arrow left-c"></ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="container-confirmacao">
+        <div class="container-fluid fundo-inner padding-inner border ">
+            <div class="row">
+                <div class="col-sm-12 title-secundary center">
+                    <h1>Conectado ao Servidor</h1>
+                    <hr/>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 wrapper-label">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="label-confirmacao">O seu nome é {{user.user_initial_information}} ?</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <div class="col-sm-6" ng-click="cancel()">
+                                <button class="button button-full cancel">NÃO</button>
+                            </div>
+                            <div class="col-sm-6" ng-click="nextState()">
+                                <button class="button button-full save">SIM</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </ion-content>
+
+</ion-view>

@@ -14,13 +14,13 @@
 
         <!--Lista de Opções-->
         <div class="row">
-            <div class="opcoes">
-                <div class="grid-5" ng-repeat="opcao in opcoesFirst">
+            <div class="opcoes row">
+                <div class="col-sm-15" ng-repeat="opcao in opcoesFirst">
 
                     <a href="{{opcao.link}}">
                         <div class="">
                             <img class='img-responsive' src="{{opcao.icon}}"/>
-                            <!--<h2>{{opcao.name}}</h2>-->
+                            <h4>{{opcao.name}}</h4>
                         </div>
 
                     </a>
@@ -31,13 +31,13 @@
 
         </div>
           <div class="row">
-              <div class="opcoes">
-                  <div class="grid-5" ng-repeat="opcao in opcoesSecond">
+              <div class="opcoes second row">
+                  <div class="col-sm-15" ng-repeat="opcao in opcoesSecond">
 
                       <a href="{{opcao.link}}">
                           <div class="">
                               <img class='img-responsive' src="{{opcao.icon}}"/>
-                              <!--<h2>{{opcao.name}}</h2>-->
+                              <h4>{{opcao.name}}</h4>
                           </div>
 
                       </a>

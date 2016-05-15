@@ -57,9 +57,9 @@ window.app.controller('LoginCtrl',
                   $rootScope.user.setUserId(userRemote.user_id);
 
                   //Define default image
-                  $rootScope.user.setPhoto("../img/ionic.png");
+                  $rootScope.user.setPhoto("img/ionic.png");
 
-                  $state.go("app.foto");
+                  $state.go("confirmcao");
               })
               .catch(function(err){
                   $scope.hide();

@@ -20,15 +20,20 @@
 
             </ion-nav-bar>
 
-                <ion-nav-view name="mainContent" animation="slide-left-right"></ion-nav-view>
+            <ion-nav-view name="mainContent" animation="slide-left-right"></ion-nav-view>
+
+            <ion-footer-bar class="bar-stable footer">
+                <!--<ion-item nav-clear menu-close href="#" style="left:0;right:0;margin:0; width: 100%;;">Logout</ion-item>-->
+                :)
+            </ion-footer-bar>
 
 
         </ion-side-menu-content>
 
 
-        <ion-side-menu  side="right" >
+        <ion-side-menu class="container-side-menu" side="right" >
 
-            <ion-header-bar class="bar-assertive">
+            <ion-header-bar class="bar-assertive background-white">
                 <h1 class="title">Menu</h1>
             </ion-header-bar>
 
@@ -40,11 +45,13 @@
                     </div>
 
                     <a class="item" ui-sref="app.chat">
+                        <i class="icon ion-compose"></i>
                         <label>Notas de Perfil</label>
                     </a>
 
                     <a class="item" ui-sref="app.chat">
-                        <label>Conversa</label>
+                        <i class="icon ion-email"></i>
+                        <label>Mensagens</label>
                         <span class="badge badge-assertive">{{messages.length}}</span>
                     </a>
 
@@ -56,6 +63,10 @@
 
                 </div>
             </ion-content>
+            <ion-footer-bar class="bar-stable footer">
+                <!--<ion-item nav-clear menu-close href="#" style="left:0;right:0;margin:0; width: 100%;;">Logout</ion-item>-->
+                :)
+            </ion-footer-bar>
 
         </ion-side-menu>
 

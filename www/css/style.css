@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* import */
 /*.overflow-scroll {
   padding-top: 13%;
@@ -23,6 +24,31 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
     border-color: #facd00; }
 
 /* CSS */
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px; }
+
+.col-xs-15 {
+  width: 20%;
+  float: left; }
+
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    float: left; } }
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: left; } }
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: left; } }
 .no-padding {
   padding: 0; }
 
@@ -30,6 +56,10 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
   margin: auto;
   display: block;
   text-align: center; }
+
+.bar.background-white {
+  background-color: #fff;
+  color: #facd00; }
 
 ion-content {
   background-color: #fff;
@@ -46,10 +76,38 @@ ion-content {
   text-transform: uppercase;
   color: #000000;
   text-align: center;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
+  padding: 0 0 10px; }
+  .title-label hr {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    width: 25%; }
+    .title-label hr:first-of-type {
+      margin-top: 0; }
+
+.title-secundary {
+  text-transform: uppercase;
+  color: #000000;
+  text-align: center;
   padding: 15px 0;
-  width: 33%; }
+  width: 50%; }
+  .title-secundary hr {
+    border-bottom: 1px solid #000000;
+    width: 75%; }
+    .title-secundary hr:after {
+      content: "⚫ ⚫ ⚫";
+      color: #000000;
+      background-color: #facd00;
+      top: -10px;
+      position: relative;
+      padding: 15px; }
+
+.button.save {
+  background-color: #facd00;
+  color: #fff; }
+
+.button.cancel {
+  background-color: #656565;
+  color: #fff; }
 
 .inner-white {
   background-color: #fff;
@@ -78,37 +136,69 @@ ion-content {
       position: absolute;
       left: 50%; }
 
-.wrapper-login {
+.container-side-menu a.item {
+  color: #000000;
+  border-color: #facd00;
+  border: none;
+  border-bottom: 2px solid #facd00; }
+  .container-side-menu a.item label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #656565; }
+  .container-side-menu a.item:first-of-type {
+    border-top: 1px solid #facd00; }
+  .container-side-menu a.item i.icon {
+    color: #facd00;
+    font-weight: 800;
+    font-size: 24px;
+    padding-right: 10px; }
+  .container-side-menu a.item:hover {
+    background-color: #facd00; }
+    .container-side-menu a.item:hover i.icon {
+      color: #fff; }
+    .container-side-menu a.item:hover label {
+      color: #fff; }
+
+.container-login .title-label {
+  font-size: 83px; }
+  .container-login .title-label hr {
+    width: 100%; }
+.container-login .wrapper-login {
   margin-top: 15px; }
-  .wrapper-login label .item {
+  .container-login .wrapper-login label .item {
     background-color: transparent;
     border: 1px solid #000000; }
-  .wrapper-login .item-input {
+  .container-login .wrapper-login .item-input {
     border-color: transparent;
     background-color: transparent;
     padding: 0; }
-    .wrapper-login .item-input input {
+    .container-login .wrapper-login .item-input input {
       border: 1px solid #000000;
       height: 45px;
       padding: 0 15px;
       text-align: center; }
-      .wrapper-login .item-input input:focus {
+      .container-login .wrapper-login .item-input input:focus {
         background-color: #fff; }
-  .wrapper-login .button {
+  .container-login .wrapper-login .button {
     border-radius: 0;
     border: 1px solid #000000;
     text-transform: uppercase;
     font-weight: 800; }
-    .wrapper-login .button.button-positive {
+    .container-login .wrapper-login .button.button-positive {
       background-color: #000000; }
+
+.bar-footer.footer {
+  background-color: #000000;
+  color: #fff; }
 
 .topo-menu .badge.badge-assertive {
   margin-top: -20px;
   left: -20px; }
+.topo-menu.button-icon.ion-navicon {
+  color: #000000; }
 
-.container-home .opcoes .grid-5 {
-  float: left;
-  width: 20%; }
+.container-home .opcoes.second .col-sm-15:first-of-type {
+  margin-left: 10%; }
 
 .name-top {
   padding: 15px 0 60px; }
@@ -159,10 +249,6 @@ ion-content {
       text-transform: uppercase;
       font-weight: 800;
       padding: 0; }
-      .foto-wrapper .container-foto .wrapper.black .col-sm-6 .button.save {
-        background-color: #facd00; }
-      .foto-wrapper .container-foto .wrapper.black .col-sm-6 .button.cancel {
-        background-color: #656565; }
     .foto-wrapper .container-foto .wrapper.black .fields {
       padding: 30px 0; }
       .foto-wrapper .container-foto .wrapper.black .fields .item {
@@ -282,5 +368,43 @@ hr {
       padding: 0;
       border-radius: 0;
       background-color: #facd00; }
+
+.container-confirmacao .wrapper-label {
+  margin: 80px auto 0; }
+  .container-confirmacao .wrapper-label .label-confirmacao {
+    border-bottom: 2px solid #000000;
+    text-align: center;
+    padding: 15px; }
+    .container-confirmacao .wrapper-label .label-confirmacao:after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid #000000;
+      display: block;
+      margin: 15px auto;
+      position: absolute;
+      left: 49%;
+      top: 50px; }
+.container-confirmacao .button {
+  padding: 5px 15px; }
+
+.container-participantes .button {
+  background-color: #fff;
+  border: 1px solid #000000; }
+.container-participantes .selected {
+  background-color: #000000; }
+  .container-participantes .selected i {
+    color: #fff; }
+.container-participantes input {
+  background-color: #facd00;
+  color: #000000;
+  margin: 10px auto;
+  border-radius: 0px;
+  padding: 22px 5px;
+  border-color: #facd00; }
+.container-participantes .person {
+  border: 1px solid #000000; }
 
 /*# sourceMappingURL=style.css.map */

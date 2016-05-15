@@ -37,6 +37,42 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 
 
 /* CSS */
+
+//Classes Genericas
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.col-xs-15 {
+  width: 20%;
+  float: left;
+}
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: left;
+  }
+}
+
+
+
 .no-padding {
   padding: 0;
 }
@@ -44,6 +80,10 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
   margin: auto;
   display: block;
   text-align: center;
+}
+.bar.background-white {
+  background-color: $font-white;
+  color: $color-primary;
 }
 ion-content {
   background-color: $font-white;
@@ -64,13 +104,51 @@ ion-content {
 
 
 .title-label {
+
   text-transform: uppercase;
   color: $black;
   text-align: center;
-  border-top: 1px solid $font-white;
-  border-bottom: 1px solid $font-white;
+  padding: 0 0 10px;
+  hr {
+    border-top: 1px solid $font-white;
+    border-bottom: 1px solid $font-white;
+    width: 25%;
+    
+    &:first-of-type{
+      margin-top: 0;;
+    }
+  }
+}
+
+.title-secundary {
+  text-transform: uppercase;
+  color: $black;
+  text-align: center;
   padding: 15px 0;
-  width: 33%;
+  width: 50%;
+  hr {
+    border-bottom: 1px solid $black;
+    width: 75%;
+    &:after {
+      content: "⚫ ⚫ ⚫";
+      color: $black;
+      background-color: $color-primary;
+      top: -10px;
+      position: relative;
+      padding: 15px;
+    }
+  }
+}
+
+.button.save {
+  background-color: $color-primary;
+  color: $font-white;
+}
+
+.button.cancel {
+  background-color: $gray;
+  color: $font-white;
+
 }
 
 .inner-white {
@@ -114,48 +192,96 @@ ion-content {
   }
 }
 
-//Login
-.wrapper-login{
-  margin-top: 15px;
-  //border: 1px solid $black;
-
-  label {
-    .item {
-      background-color: transparent;
-      border: 1px solid $black;
+//Side Menu
+.container-side-menu {
+  a.item {
+    color: $black;
+    border-color: $color-primary;
+    border: none;
+    border-bottom: 2px solid $color-primary;
+    label {
+      font-size: 16px;
+      font-weight: 500;
+      color: $gray;
+    }
+    &:first-of-type {
+      border-top: 1px solid $color-primary;
     }
 
-  }
-  .item-input {
-    border-color: transparent;
-    background-color: transparent;
-    padding: 0;
-    input{
-      border:1px solid $black;
-      height: 45px;
-      padding: 0 15px;
-      text-align: center;
-      &:focus{
-        background-color: $font-white;
+    i.icon{
+      color: $color-primary;
+      font-weight: 800;
+      font-size: 24px;
+      padding-right: 10px;
+
+    }
+
+    &:hover {
+      background-color: $color-primary;
+      i.icon{
+        color: $font-white;
+      }
+      label {
+        color: $font-white;
       }
     }
 
 
-
-
   }
+}
 
-  .button{
-    border-radius: 0;
-    border: 1px solid $black;
-    text-transform: uppercase;
-    font-weight: 800;
-
-    &.button-positive{
-      background-color: $black;
-
+//Login
+.container-login {
+  .title-label {
+    font-size: 83px;
+    hr {
+      width: 100%;
     }
   }
+  .wrapper-login {
+    margin-top: 15px;
+    //border: 1px solid $black;
+
+    label {
+      .item {
+        background-color: transparent;
+        border: 1px solid $black;
+      }
+
+    }
+    .item-input {
+      border-color: transparent;
+      background-color: transparent;
+      padding: 0;
+      input {
+        border: 1px solid $black;
+        height: 45px;
+        padding: 0 15px;
+        text-align: center;
+        &:focus {
+          background-color: $font-white;
+        }
+      }
+
+    }
+
+    .button {
+      border-radius: 0;
+      border: 1px solid $black;
+      text-transform: uppercase;
+      font-weight: 800;
+
+      &.button-positive {
+        background-color: $black;
+
+      }
+    }
+  }
+}
+
+.bar-footer.footer{
+  background-color: $black;
+  color: $font-white;
 }
 
 
@@ -165,12 +291,16 @@ ion-content {
     margin-top: -20px;
     left: -20px;
   }
+  &.button-icon.ion-navicon{
+    color: $black;
+  }
 }
 .container-home {
   .opcoes {
-    .grid-5 {
-      float: left;
-      width: 20%;
+    &.second {
+      .col-sm-15:first-of-type{
+        margin-left: 10%;
+      }
     }
   }
 }
@@ -247,14 +377,7 @@ ion-content {
             font-weight: 800;
             padding: 0;
 
-            &.save {
-              background-color: $color-primary;
-            }
 
-            &.cancel {
-              background-color: $gray;
-
-            }
           }
         }
 
@@ -457,5 +580,65 @@ hr {
       background-color: $color-primary;
     }
   }
+}
 
+//Container Confirmação
+.container-confirmacao {
+  .wrapper-label {
+    margin: 80px auto 0;
+    .label-confirmacao {
+      border-bottom: 2px solid $black;
+      text-align: center;
+      padding: 15px;
+      &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid $black;
+        display: block;
+        margin: 15px auto;
+        position: absolute;
+        left: 49%;
+        top: 50px;
+      }
+    }
+  }
+
+  .button {
+    padding: 5px 15px;
+  }
+}
+
+//Participantes
+.container-participantes {
+
+  .button {
+    background-color: $font-white;
+    border: 1px solid $black;
+  }
+  .selected {
+    background-color: $black;
+    i {
+      color: $font-white;
+    }
+  }
+
+  input {
+    background-color: $color-primary;
+    color: $black;
+    margin: 10px auto;
+    border-radius: 0px;
+    padding: 22px 5px;
+    border-color: $color-primary;
+  }
+
+
+  .person {
+    border: 1px solid $black;
+  }
+  .grid {
+
+  }
 }

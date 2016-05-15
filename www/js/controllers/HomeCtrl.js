@@ -11,7 +11,7 @@ window.app.controller('HomeCtrl',['$scope','$rootScope','Person','PersonDB',func
 
   $scope.opcoesFirst = [
     {name:"Meu Perfil",link:"#/app/perfil",icon: "img/ionic.png"},
-    {name:"Participantes",link:"", icon: "img/ionic.png"},
+    {name:"Participantes",link:"#/app/participantes", icon: "img/ionic.png"},
     {name:"Agenda",link:"", icon: "img/ionic.png"},
     {name:"Apresentação",link:"#/app/apresentacao",icon: "img/ionic.png"},
     {name:"Palestrantes",link:"",icon:"img/ionic.png"},
