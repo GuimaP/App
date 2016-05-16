@@ -1,9 +1,11 @@
 
-<ion-view title="">
+<ion-view view-title="foto">
+    <ion-nav-title class="title-label">
 
+
+    </ion-nav-title>
 
     <ion-content class='foto-wrapper collapse-content'>
-
 
         <div class="row-center">
             <div class="container-fluid ">
@@ -12,7 +14,7 @@
                     <div class="col-sm-12 title-label center">
                         <hr/>
                         <h1 class="">
-                            {{user.name}}
+                            <h1>{{user.name}} {{user.lastname}}</h1>
                         </h1>
                         <hr/>
                     </div>
@@ -61,7 +63,7 @@
                         <div class="col-sm-12">
                             <div class="col-sm-6 col-sm-offset-6">
                                 <div class="col-sm-6">
-                                    <button class="button button-positive button-block cancel">Cancelar</button>
+                                    <button class="button button-positive button-block cancel" ng-click="logoff()">Cancelar</button>
                                 </div>
 
                                 <div class="col-sm-6">

@@ -11,16 +11,21 @@ window.app.factory('PersonDB',function($rootScope){
         insert: function(person){
             return new Promise(function(resolve,reject){
                 console.log(person.toJSON());
+                console.log(person);
                 if(person instanceof Person){
+
                     var object = {
-                        type            : type.name,
-                        access_token    : person.access_token,
-                        photo           : person.photo,
-                        user_id         :person.user_id,
-                        login           :person.login,
-                        email           :person.email,
-                        name            :person.name,
-                        password        :person.password,
+                        type                        : type.name,
+                        access_token                : person.access_token,
+                        photo                       : person.photo,
+                        user_id                     : person.user_id,
+                        login                       : person.login,
+                        email                       : person.email,
+                        name                        : person.name,
+                        password                    : person.password,
+                        lastname                    : person.lastname,
+                        user_initial_information    : person.user_initial_information,
+                        photoPath                   : person.photoPath,
                         role            :{
                             name            : person.role.name,
                             id              : person.role.id
@@ -29,7 +34,9 @@ window.app.factory('PersonDB',function($rootScope){
 
 
 
-                    console.log(object);
+
+
+                    console.log(object,true);
 
                     $rootScope.pdb.post(object,function(err,result){
                         if(!err){
@@ -87,17 +94,20 @@ window.app.factory('PersonDB',function($rootScope){
                             person.type.match(regex)
                         ) {
                             emit(person._id, { //O primeiro argumento informa o ID do objeto, e o segundo, é como ele deve ser mostrado
-                                _id: person._doc_id_rev,
-                                _rev: person._rev,
-                                user_id: person.user_id,
-                                access_token  : person.access_token,
-                                login: person.login,
-                                photo: person.photo,
-                                email: person.email,
-                                name: person.name,
-                                password: person.password,
-                                type: person.type,
-                                role: person.role
+                                _id                         : person._doc_id_rev,
+                                _rev                        : person._rev,
+                                user_id                     : person.user_id,
+                                access_token                : person.access_token,
+                                login                       : person.login,
+                                photo                       : person.photo,
+                                email                       : person.email,
+                                name                        : person.name,
+                                password                    : person.password,
+                                type                        : person.type,
+                                role                        : person.role,
+                                lastname                    : person.lastname,
+                                user_initial_information    : person.user_initial_information,
+                                photoPath                   : person.photoPath,
                             });
                         }
                     }

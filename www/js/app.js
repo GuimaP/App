@@ -5,10 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
 .constant("host", {
-    //"websocket": "http://192.168.0.149:3000",
-    //"url": "http://192.168.0.136:8000"
-    "url": "http://localhost:8000",
-    "websocket": "http://192.168.0.26:3000"
+    "websocket": "http://192.168.0.149:3000",
+    "url": "http://192.168.0.136:8000"
+    //"url": "http://localhost:8000",
+    //"websocket": "http://192.168.0.26:3000"
 })
 .run(function($ionicPlatform,$http) {
     //$http.defaults.headers.common.ContentType = "application/json";
@@ -59,8 +59,8 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
           url : "/perfil",
           views : {
               "mainContent" : {
-                  templateUrl: "templates/perfil.html",
-                  controller: "PerfilCtrl"
+                  templateUrl: "templates/foto.html",
+                  controller: "FotoCtrl"
               }
           }
       })
@@ -73,10 +73,17 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
               }
           }
       })
-      .state("app.foto",{
+      .state("base",{
+          url : "/base",
+          abstract:true,
+          controller: 'BaseFotoCtrl',
+          templateUrl: 'templates/base-foto.html',
+
+      })
+      .state("base.foto",{
           url : "/foto",
           views : {
-              "mainContent" : {
+              "foto" : {
                   templateUrl: "templates/foto.html",
                   controller: "FotoCtrl"
               }

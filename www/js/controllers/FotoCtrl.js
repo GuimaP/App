@@ -1,23 +1,49 @@
 window.app.controller('FotoCtrl',
     ['$scope','$rootScope','$cordovaCamera','Person','$cookies','$state','PersonAPI',
     function($scope,$rootScope,$cordovaCamera,Person,$cookies,$state,PersonAPI){
-        $scope.user = $rootScope.user == undefined ? {} : $rootScope.user;
+        $scope.userCadastro = {
+            name: "",
+            lastname: "",
+            email: ""
+        }
 
-        $scope.user.photo = $scope.user.photo == undefined ? '../img/ionic.png' : $scope.user.photo;
-        $scope.user.name = $scope.user.name == undefined ? 'User' : $scope.user.name;
 
         $scope.$on("$ionicView.beforeEnter", function(event, data){
-            $rootScope.classMenuTopo = "collapse-menu";
+            $scope.user = $rootScope.user == undefined ? {} : $rootScope.user;
+            $scope.user.photo = $scope.user.photo == undefined ? 'img/ionic.png' : $scope.user.photo;
+            $scope.user.photoPath = $scope.user.photo;
+            $scope.user.name = $scope.user.name == "" ? $scope.user.user_initial_information : $scope.user.name;
 
+
+            console.log($rootScope.user);
+            console.log($scope.user);
+            console.log($scope.hasLogged);
+
+
+            if($rootScope.hasLogged){
+
+                console.log($rootScope.user.name);
+                console.log($rootScope.user.email);
+                console.log($rootScope.user.lastname);
+
+                $scope.imgURI = $rootScope.photoPath;
+                $scope.userCadastro.name = $rootScope.user.name;
+                $scope.userCadastro.email = $rootScope.user.email;
+                $scope.userCadastro.lastname = $rootScope.user.lastname;
+            }
         });
+
+
+        console.log($scope.user);
+
 
 
         $scope.picture = function(){
             //document.addEventListener("deviceready", function () {
                 var options = {
                     quality: 100,
-                    //destinationType: Camera.DestinationType.FILE_URI,
-                    destinationType: Camera.DestinationType.DATA_URL,
+                    destinationType: Camera.DestinationType.FILE_URI,
+                    //destinationType: Camera.DestinationType.DATA_URL,
                     sourceType: Camera.PictureSourceType.CAMERA,
                     encodingType: Camera.EncodingType.JPEG,
                     allowEdit: true,
@@ -38,7 +64,13 @@ window.app.controller('FotoCtrl',
                     console.log(imageData);
                     $scope.imgURI = "data:image/jpeg;base64,"+ imageData;
 
-                    $scope.user.setPhoto($scope.imgURI);
+                    $scope.user.photoPath = $scope.imgURI;
+
+                    $rootScope.toDataUrl($scope.imgURI,function(url){
+                        $scope.user.photo = url;
+                    });
+
+
 
                     $rootScope.user = $scope.user;
 
@@ -49,6 +81,11 @@ window.app.controller('FotoCtrl',
                     console.log(err);
                 });
             //}, false);
+        }
+
+        $scope.cancel = function(){
+            alert("ae");
+            //$rootScope.logoff();
         }
 
         $scope.nextState = function(){
@@ -82,6 +119,7 @@ window.app.controller('FotoCtrl',
 
                         //Verifica se o user ja foi cadastrado
                         $state.transitionTo("app.home"); //Manda pra home
+                        $rootScope.hasLogged = true;
 
                         //se não, manda pra foto
 
@@ -97,9 +135,9 @@ window.app.controller('FotoCtrl',
                 console.error((e));
             }
 
-            /*$rootScope.toDataUrl($rootScope.user.photo, function(url){
+            $rootScope.toDataUrl($rootScope.user.photo, function(url){
                 //$rootScope.user.setPhoto(url);
-            });*/
+            });
 
         }
 

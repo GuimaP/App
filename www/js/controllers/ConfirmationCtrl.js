@@ -10,15 +10,17 @@ window.app.controller('ConfirmationCtrl',
 
             $scope.user = $rootScope.user;
 
-            $scope.user= {
-                user_initial_information : "Lorem Ipsum"
-            };
+            $scope.user.user_initial_information = $scope.user.user_initial_information == undefined ? "Lorem Ipsum!" : $scope.user.user_initial_information;
+            $scope.user.name = $scope.user.name;
+
+
 
             $scope.nextState = function(){
-                $state.transitionTo('app.foto');
+                $rootScope.user = $scope.user;
+                $state.transitionTo('base.foto');
             }
 
-            $scope.cancel = function(){
+            $scope.cancelar = function(){
                 $state.transitionTo('login');
             }
 

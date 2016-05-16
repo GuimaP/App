@@ -1,7 +1,14 @@
 /* import */
 @import "utilities/__variables";
+@import "../fonts/stylesheet.css";
 
-
+h1,h2,h3,h4,h5,h6,
+span {
+  font-family: $font;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight: 500;
+}
 //Ionic Header
 /*.overflow-scroll {
   padding-top: 13%;
@@ -26,6 +33,8 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 .mynavbar {
 
   height: 180px;
+  border-bottom: 1px solid #000 !important;
+
 
   .title-label{
     &.big {
@@ -46,7 +55,13 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
   top: 180px;
 }
 
+.has-footer {
+  .scroll {
+    padding-bottom: 80px;
+  }
 
+
+}
 
 .custom-color {
   &.bar.bar-positive{
@@ -61,6 +76,10 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 /* CSS */
 
 //Classes Genericas
+input {
+  border: 1px solid $color-primary;
+  padding: 5px 10px;
+}
 .col-xs-15,
 .col-sm-15,
 .col-md-15,
@@ -94,6 +113,14 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 }
 
 
+.container-confirmacao,
+.container-foto,
+.container-home,
+.container-login,
+.container-participantes,
+.container-side-menu {
+  font-family: $font;
+}
 
 .no-padding {
   padding: 0;
@@ -106,6 +133,8 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 .bar.background-white {
   background-color: $font-white;
   color: $color-primary;
+  border-color: $color-primary;
+  background-image: linear-gradient(0deg, $color-primary, $color-primary 50%, transparent 50%);
 }
 ion-content {
   background-color: $font-white;
@@ -135,10 +164,16 @@ ion-content {
     border-top: 1px solid $font-white;
     border-bottom: 1px solid $font-white;
     width: 25%;
+    margin: 12px auto;
     
     &:first-of-type{
       margin-top: 0;;
     }
+  }
+  h4{
+    text-transform: capitalize;
+    font-size: 24px;
+    margin: 0;
   }
 }
 
@@ -192,12 +227,15 @@ ion-content {
   color: $black;
   margin: 15px auto;
 
+
+
   &.ballom {
     background-color: $black;
     color: $font-white;
     width: 50%;
     padding: 15px;
     margin: 15px auto 0;
+    font-family: $font;
 
     &:after {
       content:"";
@@ -219,6 +257,61 @@ ion-side-menu{
   .has-header{
     top:44px;
   }
+}
+.nota-Perfil {
+  .popup{
+    width: 100%;
+    top:0;
+    left: 0;
+    position: absolute;
+    background: transparent;
+
+    .popup-head {
+      background-color:$color-primary;
+      color: $black;
+      border-bottom: 1px solid $black;
+      height: 90px;
+      h3{
+        font-size: 36px;
+        font-family: $font;
+        text-transform: uppercase;
+        letter-spacing: 6px;
+        margin: 10px auto;
+
+      }
+
+    }
+
+    .popup-body {
+      margin-top:0;
+      padding: 20px 60px;
+      textarea{
+        min-height: 200px;
+        border-radius: 0;
+        border: 1px solid $black;
+      }
+    }
+    button.cancel {
+      top: 20px;
+      position: absolute;
+      background-color: transparent;
+      color: $black;
+
+      &:before{
+        font-size: 41px;
+      }
+
+    }
+
+    button.save {
+      width: 25%;
+      position: absolute;
+      right: 60px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+  }
+
 }
 .container-side-menu {
   a.item {
@@ -258,7 +351,14 @@ ion-side-menu{
 }
 
 //Login
+.no-border {
+  border: none !important;
+  .title.title-center.header-item{
+    border: none !important;
+  }
+}
 .container-login {
+  background-image: url('../img/background-login.jpg');
   .title-label {
     font-size: 83px;
     hr {
@@ -306,9 +406,14 @@ ion-side-menu{
   }
 }
 
-.bar-footer.footer{
-  background-color: $black;
+.bar.bar-stable.bar-footer.footer{
+  background-color: transparent;
+  background-image: none;
+  border: none;
   color: $font-white;
+  height: 100px;
+  padding: 0;
+
 }
 
 
@@ -323,6 +428,13 @@ ion-side-menu{
   }
 }
 .container-home {
+  background-image: url('../img/background-home.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  .container-fluid {
+    padding-left:5%;
+  }
   .opcoes {
     &.second {
       .col-sm-15:first-of-type{
@@ -338,14 +450,16 @@ ion-side-menu{
 
 //Foto
 .name-top {
-  padding: 15px 0 60px;
+  padding: 15px 0 20px;
 }
 
 .collapse-menu{
   height: 44px;
+  border: none !important;
   .mynavbar,
   .title.title-center.header-item {
     height: 44px;
+    border: none !important;
   }
 }
 .collapse-content{
@@ -377,8 +491,9 @@ ion-side-menu{
           border-radius: 0;
           border: 1px solid $black;
           color: $black;
-          font-weight: 800;
+          font-weight: 500;
           margin: 30px auto;
+          font-size: 20px;
           &:before {
             content: "";
             width: 0;
@@ -406,14 +521,11 @@ ion-side-menu{
           &:last-child{
             padding-right:0 ;
           }
-          .input-label {
-            max-width: 135px;
-            text-align: right;
-          }
+
           .button {
             border-radius: 0;
             text-transform: uppercase;
-            font-weight: 800;
+            font-weight: 500;
             padding: 0;
 
 
@@ -427,9 +539,13 @@ ion-side-menu{
             span {
               color: $color-primary;
               font-weight: 800;
+              max-width: 95px;
+              text-align: right;
             }
             input {
               border: 1px solid $color-primary;
+              padding: 5px 10px;
+              font-weight: 500;
             }
           }
         }
@@ -476,6 +592,16 @@ hr {
 .chat-text {
   position: fixed;
   bottom: 0;
+
+  ion-footer-bar.bar.bar-stable.bar-footer {
+    background: transparent;
+    background-color: transparent;
+    background-image: linear-gradient(top,transparent,transparent);
+    padding: 25px;
+    div{
+      background: none;
+    }
+  }
 
 }
 .chat-container{
@@ -559,6 +685,21 @@ hr {
   }
 
   //Chat Messages
+  .chat-menu {
+    .chat-topo {
+      .item.item-avatar{
+        border: transparent;
+      }
+    }
+    .bar-subheader{
+      height: auto !important;
+      padding:0 !important;
+    }
+
+    .item.item-avatar {
+      border: none !important;
+    }
+  }
   .chat-messages{
     .header {
       border-color: transparent;
@@ -569,7 +710,7 @@ hr {
         padding: 8px;
         border-radius: 9px;
         margin-top: 10px;
-        width: 75%;
+        max-width: 75%;
         clear: both;
 
         &.mine {
@@ -577,6 +718,7 @@ hr {
           background-color: $chat-balom-color;
           border-color: $chat-balom-border-color;
           text-align: left;
+          float: right;
 
         }
 
@@ -585,7 +727,8 @@ hr {
           background-color: $chat-balom-from-color;
           border-color: $chat-balom-from-border-color;
           text-align: right;
-          float: right;
+          float: left;
+          margin-left: 20px ;
           display: block;
         }
       }
@@ -607,6 +750,7 @@ hr {
         border-color: transparent;
         padding: 0;
         textarea,input {
+          font-family: $font;
           border: 1px solid $black;
           padding: 11px;
         }
@@ -615,7 +759,7 @@ hr {
 
     .send-button {
       margin: 0;
-      padding:0;
+      padding: 6px;
       border-radius: 0;
       background-color: $color-primary;
     }
@@ -630,6 +774,7 @@ hr {
       border-bottom: 2px solid $black;
       text-align: center;
       padding: 15px;
+      color: $black;
       &:after {
         content: "";
         width: 0;
@@ -665,22 +810,86 @@ hr {
     }
   }
 
-  input {
+  .search {
     background-color: $color-primary;
-    color: $black;
+    height: 47px;
     margin: 10px auto;
-    border-radius: 0px;
-    padding: 22px 5px;
-    border-color: $color-primary;
+    border-radius: 0;
+    i{
+      &:before{
+        color: $black;
+        font-size:25px;
+      }
+    }
+    input {
+      background-color: $color-primary;
+      color: $black;
+      margin: 10px auto;
+      border-radius: 0px;
+      padding: 22px 5px;
+      border-color: $color-primary;
+      box-shadow: none;
+    }
   }
 
+
+  .list {
+
+
+    .person {
+      border-left: 1px solid transparent;
+      &:nth-child(2n){
+        border-left: 1px solid $black;
+      }
+      .line{
+        border-bottom: 1px solid $black;
+        padding: 15px 0px;
+        min-height: 120px;
+
+        img {
+          border-radius: 50%;
+          border: 5px solid $color-primary;
+          padding: 5px;
+
+        }
+      }
+    }
+  }
 
   .person {
-    border: 1px solid $black;
-  }
-  .grid {
+    position: relative;
 
+    .float-second{
+      display: none;
+    }
+
+    .float{
+      border-left: 1px solid $black;
+      border-right: 1px solid $black;
+      position: absolute;
+      top: 15px;
+      height: 85%;
+      display: block;
+      margin: auto;
+      margin-left: -15px;
+
+    }
+
+    .grid-item {
+      border-bottom: 1px solid $black;
+    }
+    &.person:last-of-type,
+    &.person:nth-child(4n){
+
+      .float-second{
+        display: block;
+        right: 0;
+
+      }
+    }
   }
+
+
 }
 
 //Nuvem de Palabras

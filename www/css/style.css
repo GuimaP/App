@@ -1,5 +1,13 @@
 @charset "UTF-8";
 /* import */
+@import url(../fonts/stylesheet.css);
+h1, h2, h3, h4, h5, h6,
+span {
+  font-family: "webfontregular"; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500; }
+
 /*.overflow-scroll {
   padding-top: 13%;
 }
@@ -19,7 +27,8 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 }*/
 .title.title-center.header-item,
 .mynavbar {
-  height: 180px; }
+  height: 180px;
+  border-bottom: 1px solid #000 !important; }
   .title.title-center.header-item .title-label,
   .mynavbar .title-label {
     margin: 5px; }
@@ -33,6 +42,9 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 .has-header {
   top: 180px; }
 
+.has-footer .scroll {
+  padding-bottom: 80px; }
+
 .custom-color {
   background-color: #facd00; }
   .custom-color.bar.bar-positive {
@@ -40,6 +52,10 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
     border-color: #facd00; }
 
 /* CSS */
+input {
+  border: 1px solid #facd00;
+  padding: 5px 10px; }
+
 .col-xs-15,
 .col-sm-15,
 .col-md-15,
@@ -65,6 +81,14 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
   .col-lg-15 {
     width: 20%;
     float: left; } }
+.container-confirmacao,
+.container-foto,
+.container-home,
+.container-login,
+.container-participantes,
+.container-side-menu {
+  font-family: "webfontregular"; }
+
 .no-padding {
   padding: 0; }
 
@@ -75,7 +99,9 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 
 .bar.background-white {
   background-color: #fff;
-  color: #facd00; }
+  color: #facd00;
+  border-color: #facd00;
+  background-image: linear-gradient(0deg, #facd00, #facd00 50%, transparent 50%); }
 
 ion-content {
   background-color: #fff;
@@ -96,9 +122,14 @@ ion-content {
   .title-label hr {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
-    width: 25%; }
+    width: 25%;
+    margin: 12px auto; }
     .title-label hr:first-of-type {
       margin-top: 0; }
+  .title-label h4 {
+    text-transform: capitalize;
+    font-size: 24px;
+    margin: 0; }
 
 .title-secundary {
   text-transform: uppercase;
@@ -139,7 +170,8 @@ ion-content {
     color: #fff;
     width: 50%;
     padding: 15px;
-    margin: 15px auto 0; }
+    margin: 15px auto 0;
+    font-family: "webfontregular"; }
     .text.ballom:after {
       content: "";
       width: 0;
@@ -154,6 +186,44 @@ ion-content {
 
 ion-side-menu .has-header {
   top: 44px; }
+
+.nota-Perfil .popup {
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: transparent; }
+  .nota-Perfil .popup .popup-head {
+    background-color: #facd00;
+    color: #000000;
+    border-bottom: 1px solid #000000;
+    height: 90px; }
+    .nota-Perfil .popup .popup-head h3 {
+      font-size: 36px;
+      font-family: "webfontregular";
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      margin: 10px auto; }
+  .nota-Perfil .popup .popup-body {
+    margin-top: 0;
+    padding: 20px 60px; }
+    .nota-Perfil .popup .popup-body textarea {
+      min-height: 200px;
+      border-radius: 0;
+      border: 1px solid #000000; }
+  .nota-Perfil .popup button.cancel {
+    top: 20px;
+    position: absolute;
+    background-color: transparent;
+    color: #000000; }
+    .nota-Perfil .popup button.cancel:before {
+      font-size: 41px; }
+  .nota-Perfil .popup button.save {
+    width: 25%;
+    position: absolute;
+    right: 60px;
+    text-transform: uppercase;
+    font-weight: 500; }
 
 .container-side-menu a.item {
   color: #000000;
@@ -178,37 +248,48 @@ ion-side-menu .has-header {
     .container-side-menu a.item:hover label {
       color: #fff; }
 
-.container-login .title-label {
-  font-size: 83px; }
-  .container-login .title-label hr {
-    width: 100%; }
-.container-login .wrapper-login {
-  margin-top: 15px; }
-  .container-login .wrapper-login label .item {
-    background-color: transparent;
-    border: 1px solid #000000; }
-  .container-login .wrapper-login .item-input {
-    border-color: transparent;
-    background-color: transparent;
-    padding: 0; }
-    .container-login .wrapper-login .item-input input {
-      border: 1px solid #000000;
-      height: 45px;
-      padding: 0 15px;
-      text-align: center; }
-      .container-login .wrapper-login .item-input input:focus {
-        background-color: #fff; }
-  .container-login .wrapper-login .button {
-    border-radius: 0;
-    border: 1px solid #000000;
-    text-transform: uppercase;
-    font-weight: 800; }
-    .container-login .wrapper-login .button.button-positive {
-      background-color: #000000; }
+.no-border {
+  border: none !important; }
+  .no-border .title.title-center.header-item {
+    border: none !important; }
 
-.bar-footer.footer {
-  background-color: #000000;
-  color: #fff; }
+.container-login {
+  background-image: url("../img/background-login.jpg"); }
+  .container-login .title-label {
+    font-size: 83px; }
+    .container-login .title-label hr {
+      width: 100%; }
+  .container-login .wrapper-login {
+    margin-top: 15px; }
+    .container-login .wrapper-login label .item {
+      background-color: transparent;
+      border: 1px solid #000000; }
+    .container-login .wrapper-login .item-input {
+      border-color: transparent;
+      background-color: transparent;
+      padding: 0; }
+      .container-login .wrapper-login .item-input input {
+        border: 1px solid #000000;
+        height: 45px;
+        padding: 0 15px;
+        text-align: center; }
+        .container-login .wrapper-login .item-input input:focus {
+          background-color: #fff; }
+    .container-login .wrapper-login .button {
+      border-radius: 0;
+      border: 1px solid #000000;
+      text-transform: uppercase;
+      font-weight: 800; }
+      .container-login .wrapper-login .button.button-positive {
+        background-color: #000000; }
+
+.bar.bar-stable.bar-footer.footer {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  color: #fff;
+  height: 100px;
+  padding: 0; }
 
 .topo-menu .badge.badge-assertive {
   margin-top: -20px;
@@ -216,17 +297,26 @@ ion-side-menu .has-header {
 .topo-menu.button-icon.ion-navicon {
   color: #000000; }
 
-.container-home .opcoes.second .col-sm-15:first-of-type {
-  margin-left: 10%; }
+.container-home {
+  background-image: url("../img/background-home.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top center; }
+  .container-home .container-fluid {
+    padding-left: 5%; }
+  .container-home .opcoes.second .col-sm-15:first-of-type {
+    margin-left: 10%; }
 
 .name-top {
-  padding: 15px 0 60px; }
+  padding: 15px 0 20px; }
 
 .collapse-menu {
-  height: 44px; }
+  height: 44px;
+  border: none !important; }
   .collapse-menu .mynavbar,
   .collapse-menu .title.title-center.header-item {
-    height: 44px; }
+    height: 44px;
+    border: none !important; }
 
 .collapse-content {
   top: 44px !important; }
@@ -248,8 +338,9 @@ ion-side-menu .has-header {
       border-radius: 0;
       border: 1px solid #000000;
       color: #000000;
-      font-weight: 800;
-      margin: 30px auto; }
+      font-weight: 500;
+      margin: 30px auto;
+      font-size: 20px; }
       .foto-wrapper .container-foto .wrapper.foto .button-foto:before {
         content: "";
         width: 0;
@@ -269,13 +360,10 @@ ion-side-menu .has-header {
       padding-left: 0; }
     .foto-wrapper .container-foto .wrapper.black .col-sm-6:last-child {
       padding-right: 0; }
-    .foto-wrapper .container-foto .wrapper.black .col-sm-6 .input-label {
-      max-width: 135px;
-      text-align: right; }
     .foto-wrapper .container-foto .wrapper.black .col-sm-6 .button {
       border-radius: 0;
       text-transform: uppercase;
-      font-weight: 800;
+      font-weight: 500;
       padding: 0; }
     .foto-wrapper .container-foto .wrapper.black .fields {
       padding: 30px 0; }
@@ -283,9 +371,13 @@ ion-side-menu .has-header {
         border-color: transparent; }
         .foto-wrapper .container-foto .wrapper.black .fields .item span {
           color: #facd00;
-          font-weight: 800; }
+          font-weight: 800;
+          max-width: 95px;
+          text-align: right; }
         .foto-wrapper .container-foto .wrapper.black .fields .item input {
-          border: 1px solid #facd00; }
+          border: 1px solid #facd00;
+          padding: 5px 10px;
+          font-weight: 500; }
 
 .like-box {
   background-color: #0c60ee; }
@@ -314,6 +406,13 @@ hr {
 .chat-text {
   position: fixed;
   bottom: 0; }
+  .chat-text ion-footer-bar.bar.bar-stable.bar-footer {
+    background: transparent;
+    background-color: transparent;
+    background-image: linear-gradient(top, transparent, transparent);
+    padding: 25px; }
+    .chat-text ion-footer-bar.bar.bar-stable.bar-footer div {
+      background: none; }
 
 .chat-container {
   padding: 0; }
@@ -360,25 +459,34 @@ hr {
           position: relative; }
         .chat-container .box .chat ul li .item .img-responsive {
           width: 60%; }
+  .chat-container .chat-menu .chat-topo .item.item-avatar {
+    border: transparent; }
+  .chat-container .chat-menu .bar-subheader {
+    height: auto !important;
+    padding: 0 !important; }
+  .chat-container .chat-menu .item.item-avatar {
+    border: none !important; }
   .chat-container .chat-messages .header {
     border-color: transparent; }
   .chat-container .chat-messages .messages li {
     padding: 8px;
     border-radius: 9px;
     margin-top: 10px;
-    width: 75%;
+    max-width: 75%;
     clear: both; }
     .chat-container .chat-messages .messages li.mine {
       border: 1px solid #facd00;
       background-color: #facd00;
       border-color: #facd00;
-      text-align: left; }
+      text-align: left;
+      float: right; }
     .chat-container .chat-messages .messages li.from {
       border: 1px solid #fff;
       background-color: #fff;
       border-color: #e7e7e7;
       text-align: right;
-      float: right;
+      float: left;
+      margin-left: 20px;
       display: block; }
   .chat-container .wrapper-text-msg {
     padding-right: 0; }
@@ -390,11 +498,12 @@ hr {
       border-color: transparent;
       padding: 0; }
       .chat-container .wrapper-text-msg .item textarea, .chat-container .wrapper-text-msg .item input {
+        font-family: "webfontregular";
         border: 1px solid #000000;
         padding: 11px; }
     .chat-container .wrapper-text-msg .send-button {
       margin: 0;
-      padding: 0;
+      padding: 6px;
       border-radius: 0;
       background-color: #facd00; }
 
@@ -403,7 +512,8 @@ hr {
   .container-confirmacao .wrapper-label .label-confirmacao {
     border-bottom: 2px solid #000000;
     text-align: center;
-    padding: 15px; }
+    padding: 15px;
+    color: #000000; }
     .container-confirmacao .wrapper-label .label-confirmacao:after {
       content: "";
       width: 0;
@@ -426,15 +536,52 @@ hr {
   background-color: #000000; }
   .container-participantes .selected i {
     color: #fff; }
-.container-participantes input {
+.container-participantes .search {
   background-color: #facd00;
-  color: #000000;
+  height: 47px;
   margin: 10px auto;
-  border-radius: 0px;
-  padding: 22px 5px;
-  border-color: #facd00; }
+  border-radius: 0; }
+  .container-participantes .search i:before {
+    color: #000000;
+    font-size: 25px; }
+  .container-participantes .search input {
+    background-color: #facd00;
+    color: #000000;
+    margin: 10px auto;
+    border-radius: 0px;
+    padding: 22px 5px;
+    border-color: #facd00;
+    box-shadow: none; }
+.container-participantes .list .person {
+  border-left: 1px solid transparent; }
+  .container-participantes .list .person:nth-child(2n) {
+    border-left: 1px solid #000000; }
+  .container-participantes .list .person .line {
+    border-bottom: 1px solid #000000;
+    padding: 15px 0px;
+    min-height: 120px; }
+    .container-participantes .list .person .line img {
+      border-radius: 50%;
+      border: 5px solid #facd00;
+      padding: 5px; }
 .container-participantes .person {
-  border: 1px solid #000000; }
+  position: relative; }
+  .container-participantes .person .float-second {
+    display: none; }
+  .container-participantes .person .float {
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    position: absolute;
+    top: 15px;
+    height: 85%;
+    display: block;
+    margin: auto;
+    margin-left: -15px; }
+  .container-participantes .person .grid-item {
+    border-bottom: 1px solid #000000; }
+  .container-participantes .person.person:last-of-type .float-second, .container-participantes .person.person:nth-child(4n) .float-second {
+    display: block;
+    right: 0; }
 
 .nuvem-container .wrapper-nuvem {
   min-height: 30vh;

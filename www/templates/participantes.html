@@ -1,6 +1,7 @@
-<ion-view title="">
+<ion-view title="Participantes">
 
     <ion-nav-title class="title-label">
+
         <div class="center">
             <hr/>
             <h1>Quem é Quem ?</h1>
@@ -9,53 +10,60 @@
 
     </ion-nav-title>
 
-    <ion-content class="container-participantes">
-       <!-- <div class="container-fluid fundo-inner padding-inner border ">
-            <div class="row">
-                <div class="col-sm-12 title-label center">
-                    <hr/>
-                    <h1>Quem é Quem ?</h1>
-                    <hr/>
+    <ion-content class="container-participantes has-footer">
 
-                </div>
-            </div>
-        </div>-->
 
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-sm-10 col-sm-offset-1">
                     <div class="col-sm-12">
-                        <div class="col-sm-2 no-padding">
+                        <div class="col-sm-3 no-padding">
                             <button class="button button-full" ng-click="list()" ng-class="{'selected': !gridSelected}">
                                 <i class="ion-navicon-round"></i>
                             </button>
                         </div>
 
-                        <div class="col-sm-2 no-padding">
+                        <div class="col-sm-3 no-padding">
                             <button class="button button-full" ng-click="grid()" ng-class="{'selected': gridSelected}">
                                 <i class="ion-grid"></i>
                             </button>
                         </div>
 
-                        <div class="col-sm-8 no-padding">
-                            <input class="form-control search" placeholder="Procurar" ng-model="search"/>
+                        <div class="col-sm-6 no-padding">
+                            <label class="item-input-wrapper search">
+                                <input class="form-control" type="search" placeholder="Procurar" ng-model="search">
+                                <i class="icon ion-ios-search placeholder-icon"></i>
+                            </label>
+
                         </div>
 
                     </div>
                     <div class="col-sm-12 grid" ng-show="gridSelected">
                         <div class="col-sm-3 person" ng-repeat="participante in participantes | filter:search">
-                            <img ng-src="{{participante.photo}}" class="img-responsive">
-                            <h3>{{participante.name}}</h3>
+                                <div class="float"></div>
+                                <div class="grid-item">
+                                    <img ng-src="{{participante.photo}}" class="img-responsive">
+                                    <h3>{{participante.name}}</h3>
+                                </div>
+                                <div class="float float-second"></div>
+
 
                         </div>
 
                     </div>
 
                     <div class="col-sm-12 list" ng-hide="gridSelected">
+
                         <div class="col-sm-6 person" ng-repeat="participante in participantes | filter:search">
-                            <img ng-src="{{participante.photo}}" class="img-responsive">
-                            <h3>{{participante.name}}</h3>
+                            <div class="col-sm-12 line">
+                                <div class="col-sm-4">
+                                    <img ng-src="{{participante.photo}}" class="img-responsive">
+                                </div>
+                                <div class="col-sm-8">
+                                    <h3>{{participante.name}}</h3>
+                                </div>
+                            </div>
 
                         </div>
 

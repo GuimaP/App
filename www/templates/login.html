@@ -1,21 +1,28 @@
 <ion-view title="" >
 
-    <ion-nav-bar class='bar bar-positive custom-color mynavbar' align-title="center">
-        <ion-nav-title class="title-label big custom-color">
-            <!-- <ion-nav-bar class='bar bar-positive custom-color' >
+    <ion-nav-bar class='bar bar-positive custom-color no-border' align-title="center" style="height: 0">
+        <!--<ion-nav-title class="title-label big custom-color no-border" >-->
+        <!--<ion-nav-title class="title-label big custom-color no-border">
+            &lt;!&ndash; <ion-nav-bar class='bar bar-positive custom-color' >
                 <ion-nav-back-button class="button-icon ion-arrow left-c"></ion-nav-back-button>
-            </ion-nav-bar>-->
+            </ion-nav-bar>&ndash;&gt;
             <div class="center">
                 <hr/>
                 <h1>Login</h1>
                 <hr/>
             </div>
 
-        </ion-nav-title>
+        </ion-nav-title>-->
     </ion-nav-bar>
 
-    <ion-content class='padding wrapper container-fluid fundo-inner container-login' >
-
+    <ion-content class='padding wrapper container-fluid fundo-inner container-login collapse-content' style="top:0">
+        <div class="row">
+            <h1 class="title-label center">
+                <hr/>
+                Login
+                <hr/>
+            </h1>
+        </div>
 
         <div class="row">
             <div class="col-sm-12">
@@ -25,12 +32,12 @@
         <div class="row">
             <div class="col-sm-12">
                 <label class="ballom text center">
-                    Verifique seu código de acesso impresso no seu crachá
+                    Informe o seu CRM
                 </label>
             </div>
         </div>
 
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
 
 
             <form ng-submit="signin()" class="row wrapper-login">

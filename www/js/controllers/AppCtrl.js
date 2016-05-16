@@ -1,8 +1,11 @@
 /**
  * Created by guilherme on 14/04/16.
  */
-window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope','PersonDB','Person','$cookies','$ionicHistory','PopupFactory','$state',
-        function($scope,$ionicSideMenuDelegate,$rootScope,PersonDB,Person,$cookies,$ionicHistory,PopupFactory,$state){
+window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope','PersonDB','Person','$cookies','$ionicHistory','PopupFactory','$state','$ionicPopup',
+        function($scope,$ionicSideMenuDelegate,$rootScope,PersonDB,Person,$cookies,$ionicHistory,PopupFactory,$state,$ionicPopup){
+
+
+
             //$rootScope.messages = [];
             $scope.classMenuTopo = "";
 
@@ -53,12 +56,7 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
             });
 
             $scope.$on('$ionicView.afterEnter',function(ev,data){
-                if(data.stateId == 'app.foto'){
-                    $scope.classMenuTopo = "collapse-menu";
 
-                }else {
-                    $scope.classMenuTopo = "";
-                }
             });
 
             $scope.$on("$ionicView.beforeEnter", function(event, data){
@@ -66,10 +64,21 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
                 console.log(data);
                 console.log(event);
 
+                $scope.currentView = data.stateId;
 
+                console.log($scope.currentView);
 
 
                 console.log(this.classMenuTopo);
+
+                if(data.stateId == 'app.perfil'){
+                    $scope.classMenuTopo = "collapse-menu";
+
+                }else {
+                    $scope.classMenuTopo = "";
+                }
+
+                console.log($scope.classMenuTopo,data.stateId )
 
                 if($ionicSideMenuDelegate.isOpen()){
                     $ionicSideMenuDelegate.toggleRight();
@@ -82,6 +91,7 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
                         if(data.length > 0){
                             $rootScope.user = data[0].doc;
                             $scope.myUser = $rootScope.user;
+                            $rootScope.hasLogged = true;
                             $scope.$apply();
                             console.log($rootScope.user);
                             $rootScope.$apply();
@@ -100,6 +110,40 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
                     });
             });
 
+
+
+            $scope.notaPerfil = function(){
+
+                var myPopup = $ionicPopup.show({
+                    templateUrl: '../templates/popup/nota-perfil.html',
+                    title: 'Notas de Perfil',
+                    cssClass: 'nota-Perfil',
+                    scope: $scope,
+                    buttons: [
+                        {
+                            text: '',
+                            type: 'icon ion-close-round cancel',
+
+                        },
+                        {
+                            text: 'Salvar',
+                            type: 'button-positive save',
+                            onTap: function(e) {
+                                if (!$scope.data.wifi) {
+                                    //don't allow the user to close unless he enters wifi password
+                                    e.preventDefault();
+                                } else {
+                                    return $scope.data.wifi;
+                                }
+                            }
+                        }
+                    ]
+                });
+
+                myPopup.then(function(res) {
+                    console.log('Tapped!', res);
+                });
+            }
 
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleRight();

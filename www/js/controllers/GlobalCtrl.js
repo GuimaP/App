@@ -8,6 +8,7 @@ window.app.controller('GlobalCtrl',
         $rootScope.listAsks = [];
         $rootScope.title = "";
         $rootScope.subtitle ="";
+        $rootScope.hasLogged = false;
 
         //Init Config Database
         DB.init();
@@ -23,7 +24,7 @@ window.app.controller('GlobalCtrl',
             //Remove Cookie
             $cookies.remove('user');
             $cookies.remove('userData');
-
+            $rootScope.hasLogged = false;
             //Remove todos os dados relacionados a Pessoa do banco de dados
             Person.search("Person")
                 .then(function(d){

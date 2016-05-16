@@ -25,9 +25,10 @@
 
             <ion-nav-view name="mainContent" animation="slide-left-right"></ion-nav-view>
 
+
             <ion-footer-bar class="bar-stable footer">
                 <!--<ion-item nav-clear menu-close href="#" style="left:0;right:0;margin:0; width: 100%;;">Logout</ion-item>-->
-                :)
+                <img class="img-responsive" src="img/rodape.png">
             </ion-footer-bar>
 
 
@@ -47,12 +48,12 @@
                         <h2>{{user.name}}</h2>
                     </div>
 
-                    <a class="item" ui-sref="app.chat">
+                    <a class="item" ui-sref="" ng-click="notaPerfil()">
                         <i class="icon ion-compose"></i>
                         <label>Notas de Perfil</label>
                     </a>
 
-                    <a class="item" ui-sref="app.chat">
+                    <a class="item" ui-sref="app.chat" ng-hide="currentView == 'app.foto'">
                         <i class="icon ion-email"></i>
                         <label>Mensagens</label>
                         <span class="badge badge-assertive">{{messages.length}}</span>
@@ -60,15 +61,15 @@
 
 
 
-                    <a class="item" menu-close ng-click="logoff()">
+                    <a class="item" menu-close ng-click="logoff()" ng-hide="currentView == 'app.foto'">
                         <label>Sair</label>
                     </a>
 
                 </div>
             </ion-content>
             <ion-footer-bar class="bar-stable footer">
-                <!--<ion-item nav-clear menu-close href="#" style="left:0;right:0;margin:0; width: 100%;;">Logout</ion-item>-->
                 :)
+                <!--<ion-item nav-clear menu-close href="#" style="left:0;right:0;margin:0; width: 100%;;">Logout</ion-item>-->
             </ion-footer-bar>
 
         </ion-side-menu>

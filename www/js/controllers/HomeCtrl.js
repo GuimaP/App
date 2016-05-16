@@ -1,7 +1,8 @@
 /**
  * Created by guilherme on 14/04/16.
  */
-window.app.controller('HomeCtrl',['$scope','$rootScope','Person','PersonDB',function($scope,$rootScope,Person,PersonDB){
+window.app.controller('HomeCtrl',['$scope','$rootScope','Person','PersonDB','$ionicHistory','$ionicViewService',function($scope,$rootScope,Person,PersonDB,$ionicHistory,$ionicViewService){
+
 
 
 

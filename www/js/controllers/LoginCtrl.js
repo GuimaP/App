@@ -22,7 +22,7 @@ window.app.controller('LoginCtrl',
             if(data.length > 0) {
                 $rootScope.user = data[0];
                 console.log($rootScope.user);
-
+                $rootScope.hasLogged = true;
                 $state.go('app.home');
             }
         })
@@ -59,11 +59,21 @@ window.app.controller('LoginCtrl',
                   //Define default image
                   $rootScope.user.setPhoto("img/ionic.png");
 
+
+                  var sobrenome = userRemote.user_initial_information.substring(userRemote.user_initial_information.indexOf(' ')+1);
+                  var nome = userRemote.user_initial_information.split(" ",1);
+                  nome = nome.toString();
+
+                  $rootScope.user.name = nome;
+                  $rootScope.user.lastname = sobrenome;
+
+
                   $state.go("confirmacao");
               })
               .catch(function(err){
                   $scope.hide();
                   console.log(err);
+                  console.error(err);
                   PopupFactory.error("Invalido","Verifique sua senha");
               });
 
