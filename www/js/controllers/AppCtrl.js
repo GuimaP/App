@@ -4,8 +4,7 @@
 window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope','PersonDB','Person','$cookies','$ionicHistory','PopupFactory','$state',
         function($scope,$ionicSideMenuDelegate,$rootScope,PersonDB,Person,$cookies,$ionicHistory,PopupFactory,$state){
             //$rootScope.messages = [];
-
-
+            $scope.classMenuTopo = "";
 
             $(window).unload(function() {
                 io.emit('disconnectUser',$rootScope.user);
@@ -53,13 +52,30 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
                 console.log(data);
             });
 
+            $scope.$on('$ionicView.afterEnter',function(ev,data){
+                if(data.stateId == 'app.foto'){
+                    $scope.classMenuTopo = "collapse-menu";
+
+                }else {
+                    $scope.classMenuTopo = "";
+                }
+            });
+
             $scope.$on("$ionicView.beforeEnter", function(event, data){
+
+                console.log(data);
+                console.log(event);
+
+
+
+
+                console.log(this.classMenuTopo);
 
                 if($ionicSideMenuDelegate.isOpen()){
                     $ionicSideMenuDelegate.toggleRight();
                 }
 
-                console.log("ae",$ionicSideMenuDelegate.isOpen());
+
 
                 PersonDB.search("Person")
                     .then(function(data){
@@ -73,6 +89,8 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
                             console.log("Load");
 
                             window.io.emit('connectUser',$rootScope.user);
+
+                            $rootScope.subtitle = $rootScope.user.name;
                         }
 
 

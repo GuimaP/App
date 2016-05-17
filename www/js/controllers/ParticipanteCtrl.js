@@ -1,6 +1,9 @@
 window.app.controller('ParticipanteCtrl',['$scope','$rootScope',function($scope,$rootScope){
     $scope.gridSelected = true;
 
+    $rootScope.title = "Quem é Quem?";
+
+
     $scope.participantes = [
         {name:"Part 1", photo: "img/ionic.png"},
         {name:"Part 2", photo: "img/ionic.png"},

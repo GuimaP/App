@@ -17,6 +17,22 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
     color: $black;
   }
 }*/
+.title.title-center.header-item,
+.mynavbar {
+  height: 180px; }
+  .title.title-center.header-item .title-label,
+  .mynavbar .title-label {
+    margin: 5px; }
+    .title.title-center.header-item .title-label.big h1,
+    .mynavbar .title-label.big h1 {
+      font-size: 83px; }
+  .title.title-center.header-item button.button.back-button.buttons.button-icon.ion-arrow-left-c.header-item,
+  .mynavbar button.button.back-button.buttons.button-icon.ion-arrow-left-c.header-item {
+    height: 10px; }
+
+.has-header {
+  top: 180px; }
+
 .custom-color {
   background-color: #facd00; }
   .custom-color.bar.bar-positive {
@@ -88,7 +104,7 @@ ion-content {
   text-transform: uppercase;
   color: #000000;
   text-align: center;
-  padding: 15px 0;
+  padding: 60px 0 15px;
   width: 50%; }
   .title-secundary hr {
     border-bottom: 1px solid #000000;
@@ -97,7 +113,7 @@ ion-content {
       content: "⚫ ⚫ ⚫";
       color: #000000;
       background-color: #facd00;
-      top: -10px;
+      top: -20px;
       position: relative;
       padding: 15px; }
 
@@ -135,6 +151,9 @@ ion-content {
       margin: 15px auto;
       position: absolute;
       left: 50%; }
+
+ion-side-menu .has-header {
+  top: 44px; }
 
 .container-side-menu a.item {
   color: #000000;
@@ -202,6 +221,15 @@ ion-content {
 
 .name-top {
   padding: 15px 0 60px; }
+
+.collapse-menu {
+  height: 44px; }
+  .collapse-menu .mynavbar,
+  .collapse-menu .title.title-center.header-item {
+    height: 44px; }
+
+.collapse-content {
+  top: 44px !important; }
 
 .foto-wrapper .container-fluid {
   padding: 0; }
@@ -290,7 +318,8 @@ hr {
 .chat-container {
   padding: 0; }
   .chat-container .search {
-    margin: 0; }
+    margin: 0;
+    border-color: #000000; }
     .chat-container .search .item {
       border-color: #000000;
       border-radius: 0; }
@@ -315,7 +344,7 @@ hr {
     position: relative;
     padding: 0; }
     .chat-container .box .chat ul li {
-      padding: 5px; }
+      padding: 5px  30px; }
       .chat-container .box .chat ul li .item {
         border-color: #000000;
         border-top: none;
@@ -406,5 +435,20 @@ hr {
   border-color: #facd00; }
 .container-participantes .person {
   border: 1px solid #000000; }
+
+.nuvem-container .wrapper-nuvem {
+  min-height: 30vh;
+  background-color: #facd00;
+  position: relative; }
+  .nuvem-container .wrapper-nuvem .form-control {
+    position: absolute;
+    border-radius: 0;
+    border: 1px solid #000000;
+    bottom: 10px;
+    left: 5%;
+    width: 90%;
+    box-sizing: border-box;
+    margin: auto;
+    display: block; }
 
 /*# sourceMappingURL=style.css.map */

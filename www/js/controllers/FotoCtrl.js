@@ -6,7 +6,10 @@ window.app.controller('FotoCtrl',
         $scope.user.photo = $scope.user.photo == undefined ? '../img/ionic.png' : $scope.user.photo;
         $scope.user.name = $scope.user.name == undefined ? 'User' : $scope.user.name;
 
+        $scope.$on("$ionicView.beforeEnter", function(event, data){
+            $rootScope.classMenuTopo = "collapse-menu";
 
+        });
 
 
         $scope.picture = function(){
@@ -91,6 +94,7 @@ window.app.controller('FotoCtrl',
 
             }catch(e){
                 $scope.hide();
+                console.error((e));
             }
 
             /*$rootScope.toDataUrl($rootScope.user.photo, function(url){

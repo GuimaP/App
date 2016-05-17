@@ -6,6 +6,8 @@ window.app.controller('GlobalCtrl',
         $rootScope.messages = [];
         $rootScope.canDrag = true;
         $rootScope.listAsks = [];
+        $rootScope.title = "";
+        $rootScope.subtitle ="";
 
         //Init Config Database
         DB.init();

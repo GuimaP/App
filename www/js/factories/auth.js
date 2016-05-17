@@ -8,9 +8,9 @@ window.app.factory('Auth',['host','$http',function(host,$http){
                     url: host.url+"/auth",
                     method: "POST",
                     data: JSON.stringify(user),
-                    headers: {
+                    /*headers: {
                         'Content-Type' : 'application/json'
-                    }
+                    }*/
 
                 }).success(function(data){
                     console.log(data);

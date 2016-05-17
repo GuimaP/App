@@ -1,20 +1,31 @@
-<ion-view title="Nuvem">
-    <ion-content class="padding">
+<ion-view title="">
+    <ion-nav-title class="title-label">
+        <div class="title-label center">
+            <hr/>
+            <h1>Bem Vindo</h1>
+            <h4>{{user.name}}</h4>
+            <hr/>
+        </div>
 
-        <h1>Envie sua pergunta</h1>
-        <form ng-submit="sendAsk()">
-            <div class="list wrapper-login">
+    </ion-nav-title>
+    <ion-content class="nuvem-container container-fluid">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-sm-12">
+                    <h2>Envie suas expressões</h2>
+                    <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </p>
+                </div>
 
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Pergunta</span>
-                    <textarea ng-model="pergunta"></textarea>
-                </label>
-
-
+                <div class="col-sm-12">
+                    <div class="wrapper-nuvem">
+                        <input type="text" class="form-control" ng-model="palavra"/>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <button class="button-block button button-assertive" type="submit">Enviar</button>
-        </form>
+
+
 
     </ion-content>
 

@@ -22,7 +22,29 @@ ion-header-bar.bar.bar-positive.custom-color.bar-header {
 }*/
 
 
+.title.title-center.header-item,
+.mynavbar {
 
+  height: 180px;
+
+  .title-label{
+    &.big {
+      h1 {
+        font-size: 83px;
+      }
+    }
+    margin: 5px;
+  }
+
+  button.button.back-button.buttons.button-icon.ion-arrow-left-c.header-item{
+    height: 10px;
+  }
+
+}
+
+.has-header{
+  top: 180px;
+}
 
 
 
@@ -124,7 +146,7 @@ ion-content {
   text-transform: uppercase;
   color: $black;
   text-align: center;
-  padding: 15px 0;
+  padding: 60px 0 15px;
   width: 50%;
   hr {
     border-bottom: 1px solid $black;
@@ -133,7 +155,7 @@ ion-content {
       content: "⚫ ⚫ ⚫";
       color: $black;
       background-color: $color-primary;
-      top: -10px;
+      top: -20px;
       position: relative;
       padding: 15px;
     }
@@ -193,6 +215,11 @@ ion-content {
 }
 
 //Side Menu
+ion-side-menu{
+  .has-header{
+    top:44px;
+  }
+}
 .container-side-menu {
   a.item {
     color: $black;
@@ -313,6 +340,18 @@ ion-content {
 .name-top {
   padding: 15px 0 60px;
 }
+
+.collapse-menu{
+  height: 44px;
+  .mynavbar,
+  .title.title-center.header-item {
+    height: 44px;
+  }
+}
+.collapse-content{
+  top:44px !important;
+}
+
 .foto-wrapper {
 
   .container-fluid{
@@ -447,6 +486,7 @@ hr {
   //Barra de Busca
   .search {
     margin: 0;
+    border-color: $black;
     .item {
 
       border-color: $black;
@@ -492,7 +532,7 @@ hr {
     .chat {
       ul {
         li {
-          padding: 5px;
+          padding: 5px  30px;
           //Conversas e mensagens
           .item {
             border-color: $black;
@@ -640,5 +680,25 @@ hr {
   }
   .grid {
 
+  }
+}
+
+//Nuvem de Palabras
+.nuvem-container {
+  .wrapper-nuvem {
+    min-height: 30vh;
+    background-color: $color-primary;
+    position: relative;
+    .form-control {
+      position: absolute;
+      border-radius: 0;
+      border: 1px solid $black;
+      bottom: 10px;
+      left: 5%;
+      width: 90%;
+      box-sizing: border-box;
+      margin: auto;
+      display: block;
+    }
   }
 }
