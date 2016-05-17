@@ -18,27 +18,45 @@
           </div>
       </div>-->
       <div class="container-fluid" >
+        <div class="col-sm-10 col-sm-offset-1">
 
+            <!--Lista de Opções-->
+            <div class="row">
 
-        <!--Lista de Opções-->
-        <div class="row">
-            <div class="opcoes row">
-                <div class="col-sm-15" ng-repeat="opcao in opcoesFirst">
+                <div class="opcoes row" ng-show="isModerator">
 
-                    <a href="{{opcao.link}}">
-                        <div class="">
-                            <img class='img-responsive' src="{{opcao.icon}}"/>
-                            <h4>{{opcao.name}}</h4>
-                        </div>
+                    <div class="col-sm-4" ng-repeat="opcao in opcoesModerator">
 
-                    </a>
+                        <a href="{{opcao.link}}">
+                            <div class="circle">
+                                <img class='img-responsive' src="{{opcao.icon}}"/>
+                                <h4>{{opcao.name}}</h4>
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="opcoes row" ng-show="isDefault">
+                    <div class="col-sm-15" ng-repeat="opcao in opcoesFirst">
+
+                        <a href="{{opcao.link}}">
+                            <div class="circle">
+                                <img class='img-responsive' src="{{opcao.icon}}"/>
+                                <h4>{{opcao.name}}</h4>
+                            </div>
+
+                        </a>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
-          <div class="row">
+            <div class="row" ng-show="isDefault">
               <div class="opcoes second row">
                   <div class="col-sm-15" ng-repeat="opcao in opcoesSecond">
 
@@ -55,6 +73,9 @@
               </div>
 
           </div>
+
+        </div>
+
     </div>
   </ion-content>
 </ion-view>

@@ -1,19 +1,25 @@
 <ion-view view-title="Quiz">
+    <ion-nav-title class="title-label">
+        <div class="title-label center">
+            <hr/>
+            <h1>Quiz</h1>
+            <hr/>
+        </div>
 
-
-        <ion-slide-box on-slide-changed="slideHasChanged($index)">
-            <ion-slide ng-repeat="quiz in quizies" on-finish-render-slider="ngRepeatFinishedSlider">
-                <div class="quiz">
-                    <h1>{{quiz.quiz_name}}</h1>
+    </ion-nav-title>
+    <ion-content>
+        <!--ng-hide="user.role.name != 'presenter' "-->
+        <div class="container-fluid" >
+                <div class="col-sm-12" ng-repeat="quiz in quizies " ng-click="select($index)">
+                    {{quiz.quiz_name}}
+                    <span class="badge" ng-show="hasAlredyAnswered(quiz.quiz_id)">
+                        Answered
+                    </span>
                 </div>
-            </ion-slide>
-            <!--<ion-slide>
-                <div class="quiz">
-                    <h1>{{quiz.quiz_name}}</h1>
-                </div>
-            </ion-slide>-->
 
-        </ion-slide-box>
+        </div>
+    </ion-content>
+
 
 
 </ion-view>

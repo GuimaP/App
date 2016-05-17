@@ -13,27 +13,23 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
                 io.emit('disconnectUser',$rootScope.user);
             });
 
-
             window.io.on('newUser',function(data){
                 $rootScope.conversas = data;
                 console.log($rootScope.conversas);
                 $rootScope.$apply();
             });
-
             window.io.on('receiveUsers',function(data){
                 $rootScope.conversas = data;
                 console.log($rootScope.conversas);
                 $rootScope.$apply();
             });
-
-            io.on('questionPresenter', function(data){
+            window.io.on('questionPresenter', function(data){
                 console.log(data);
                 if($rootScope.user.role.name == 'presenter'){
                     alert("Question de " + data.from.name + " - " + data.question);
                 }
             });
-
-            io.on('pergunta',function(data){
+            window.io.on('pergunta',function(data){
 
                 if($rootScope.user.role.name == 'moderator'){
                     $scope.ask = data;
@@ -51,8 +47,13 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
 
                 }
             });
-            io.on('note',function(data){
+            window.io.on('note',function(data){
                 console.log(data);
+            });
+            window.io.on('sendLiveVoting',function(answer){
+                answer.quiz_id = answer.quiz.quiz_id;
+                $rootScope.liveVotes.push(answer);
+                console.log($rootScope.liveVotes);
             });
 
             $scope.$on('$ionicView.afterEnter',function(ev,data){
@@ -61,24 +62,14 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
 
             $scope.$on("$ionicView.beforeEnter", function(event, data){
 
-                console.log(data);
-                console.log(event);
-
                 $scope.currentView = data.stateId;
 
-                console.log($scope.currentView);
-
-
-                console.log(this.classMenuTopo);
-
-                if(data.stateId == 'app.perfil'){
+                if(data.stateName == 'app.perfil' || data.stateName == 'app.converstation'){
                     $scope.classMenuTopo = "collapse-menu";
 
                 }else {
-                    $scope.classMenuTopo = "";
+                    $scope.classMenuTopo = ".";
                 }
-
-                console.log($scope.classMenuTopo,data.stateId )
 
                 if($ionicSideMenuDelegate.isOpen()){
                     $ionicSideMenuDelegate.toggleRight();
@@ -87,27 +78,36 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
 
 
                 PersonDB.search("Person")
-                    .then(function(data){
-                        if(data.length > 0){
-                            $rootScope.user = data[0].doc;
-                            $scope.myUser = $rootScope.user;
-                            $rootScope.hasLogged = true;
-                            $scope.$apply();
-                            console.log($rootScope.user);
-                            $rootScope.$apply();
+                .then(function(data){
+                    if(data.length > 0){
+                        $rootScope.user = data[0].doc;
+                        $scope.myUser = $rootScope.user;
+                        $rootScope.hasLogged = true;
 
-                            console.log("Load");
+                        $scope.isModerator = $rootScope.user.role.name == 'moderator';
+                        $scope.isDefault = $rootScope.user.role.name == 'client' || $rootScope.user.role.name == 'presenter';
 
-                            window.io.emit('connectUser',$rootScope.user);
+                        $scope.$apply();
+                        console.log($rootScope.user);
+                        $rootScope.$apply();
 
-                            $rootScope.subtitle = $rootScope.user.name;
-                        }
+                        console.log("Load");
+
+                        window.io.emit('connectUser',$rootScope.user);
+
+                        $rootScope.subtitle = $rootScope.user.name;
+
+                        console.log($rootScope.user);
+
+                        console.log($scope.isModerator);
+                        console.log($scope.isDefault);
+                    }
 
 
-                    })
-                    .catch(function(err){
-                        console.log(err);
-                    });
+                })
+                .catch(function(err){
+                    console.log(err);
+                });
             });
 
 
@@ -145,9 +145,32 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
                 });
             }
 
-        $scope.toggleLeft = function() {
-            $ionicSideMenuDelegate.toggleRight();
-        };
+            $scope.toggleLeft = function() {
+                $ionicSideMenuDelegate.toggleRight();
+            };
+
+            $rootScope.getUser = function(){
+                return new Promise(function(resolve,reject){
+                    PersonDB.search("Person")
+                        .then(function(data){
+                            if(data.length > 0){
+                                $rootScope.user = data[0].doc;
+                                $scope.myUser = $rootScope.user;
+
+                                $scope.$apply();
+
+                                resolve($rootScope.user);
+                            }
+
+
+                        })
+                        .catch(function(err){
+                            console.log(err);
+                            reject(Error(err));
+                        });
+                });
+
+            }
 
 
 

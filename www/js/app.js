@@ -99,6 +99,15 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
               }
           }
       })
+      .state("app.question",{
+          url : "/question/:index",
+          views : {
+              "mainContent" : {
+                  templateUrl: "templates/question.html",
+                  controller: "QuestionCtrl"
+              }
+          }
+      })
       .state("app.chat",{
           url : "/chat",
           views : {
@@ -146,6 +155,18 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
           }
 
       })
+
+      .state("app.quizModerator",{
+          url: '/moderator',
+          views : {
+              "mainContent" : {
+                  templateUrl: 'templates/quiz-moderator.html',
+                  controller: 'QuizModeratorCtrl'
+              }
+          }
+
+      })
+
       .state("login",{
           url: '/login',
           templateUrl: 'templates/login.html',

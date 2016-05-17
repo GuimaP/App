@@ -1,34 +1,16 @@
 <ion-view view-title="@{{currentConversation.name}}">
-
-    <ion-nav-title class="custom-color collapase-menu" no-tap-scroll="false">
-
-            <div class="bar bar-header title-label center">
-                <h1 class="">@{{currentConversation.name}}</h1>
-            </div>
-            <div class="bar bar-subheader chat-menu">
-                <div class="chat-topo">
-                    <div class="custom-color row item item-avatar">
-                        <div class="col-sm-3">
-
-                                <img class='img-responsive ' ng-src="{{currentConversation.photo}}" />
-
-                        </div>
-                        <div class="col-sm-8">
-                            <label>{{currentConversation.name}}</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+    <ion-nav-title>
+        @{{currentConversation.name}}
     </ion-nav-title>
 
-    <ion-content class="collapase-content">
-        <div class="chat-container container-fluid">
+
+    <ion-content class="chat-container  collapse-content" has-bouncing="true" class="has-header has-footer"
+                 >
+        <div class="container-fluid no-padding">
 
 
             <div class="chat-messages">
-               <!-- <div class="row row-top">
+                <div class="row row-top">
                     <div class="col-sm-12">
                         <div class="list-card">
                             <div class="item item-avatar header">
@@ -37,7 +19,7 @@
                             </div>
                         </div>
                     </div>
-                </div>-->
+                </div>
 
                 <div class="row row-center">
                     <div class="col-sm-12">
@@ -45,7 +27,7 @@
                         <div class="chat-messages">
 
                             <ul class="messages">
-                                <ion-scroll zooming="false" direction="y" style="width: 100%; height: 320px;">
+                                <ion-scroll zooming="false" direction="y" style="width: 100%; height: 320px;" delegate-handle="userMessageScroll">
 
                                     <li ng-repeat="message in messages track by $index" ng-class="{ 'mine': user.user_id == message.doc.from.user_id,'from': user.user_id != message.doc.from.user_id}">
                                         <b>{{message.doc.from.name}}:</b>
@@ -64,30 +46,32 @@
 
             </div>
 
-
-            <div class="row row-bottom chat-text">
-                <form class="col-sm-12 wrapper-text-msg" ng-submit="sendMessage()">
-                    <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
-                        <div class="col-sm-11 ">
-
-                            <div class="list ">
-                                <label class="item item-input">
-                                    <input placeholder="Sua Mensagem" ng-model="message" my-enter="sendMessage()"/>
-                                </label>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-1">
-                            <button class="button-block button button-assertive send-button" type="submit" ng-disabled="!message">
-                                <i class="icon ion-paper-airplane"></i>
-                            </button>
-                        </div>
-                    </ion-footer-bar>
-
-                </form>
-            </div>
-
         </div>
 
+        <div class="row chat-text">
+            <form class="col-sm-12 wrapper-text-msg" ng-submit="sendMessage()">
+                <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+                    <div class="col-sm-11 ">
+
+                        <div class="list ">
+                            <label class="item item-input">
+                                <input placeholder="Sua Mensagem" ng-model="message" my-enter="sendMessage()"/>
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="button-block button button-assertive send-button" type="submit" ng-disabled="!message">
+                            <i class="icon ion-paper-airplane"></i>
+                        </button>
+                    </div>
+                </ion-footer-bar>
+
+            </form>
+        </div>
+
+
     </ion-content>
+
+
 </ion-view>

@@ -9,6 +9,7 @@ window.app.controller('GlobalCtrl',
         $rootScope.title = "";
         $rootScope.subtitle ="";
         $rootScope.hasLogged = false;
+        $rootScope.liveVotes = [];
 
         //Init Config Database
         DB.init();

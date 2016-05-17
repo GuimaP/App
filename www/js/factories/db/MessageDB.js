@@ -128,7 +128,7 @@ window.app.factory('MessageDB',function($rootScope){
             window.owner_conversation_id = owner_id;
             window.currentType = type.name;
             window.user_id = user_id;
-            console.log(user_id + ' e ' + owner_id + " ==> " +  window.q);
+            //console.log(user_id + ' e ' + owner_id + " ==> " +  window.q);
 
             return new Promise(function(resolve,reject){
 
@@ -137,13 +137,13 @@ window.app.factory('MessageDB',function($rootScope){
                     var regex,searchKey;
                     searchKey = window.user_id;
                     regex = new RegExp(searchKey,"i");
-                    console.log("===> " +window.q);
+                    //console.log("===> " +window.q);
 
 
 
                     //Se o objeto n tiver o _id, então ele ja foi removido
                     if(message._id != undefined) {
-                        console.log(message.type + " == " + currentType);
+                        //console.log(message.type + " == " + currentType);
                         if(message.type == currentType){
 
                             console.log(message.conversationWith.user_id + " == " + searchKey + " && " + message.owner.user_id + " == " + window.owner_conversation_id);

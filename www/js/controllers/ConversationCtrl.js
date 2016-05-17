@@ -1,10 +1,25 @@
 window.app.controller('ConversationCtrl',[
-    '$scope','$rootScope','$stateParams','MessageDB',
-    function ($scope,$rootScope,$stateParams,MessageDB) {
+    '$scope','$rootScope','$stateParams','MessageDB','$ionicScrollDelegate','$timeout',
+    function ($scope,$rootScope,$stateParams,MessageDB,$ionicScrollDelegate,$timeout) {
+        var viewScroll = $ionicScrollDelegate.$getByHandle('userMessageScroll');
+
 
 
         //Evento que da um update nas conversas do banco quando tem uma nova interação
         window.io.on('updateConversation',function(d){
+
+            console.log(d);
+            console.log($rootScope.messages);
+
+            var quantForDecrease = 0;
+
+            for(var i = 0;i < $rootScope.messages.length; i++){
+                var msg = $rootScope.messages[i];
+                if(msg.from.user_id == $rootScope.currentConversation.user_id){
+                    $rootScope.messages.splice(i,1);
+                    break;
+                }
+            }
 
             console.log($scope.currentConversation.user_id);
             console.log($rootScope.user.user_id);
@@ -12,14 +27,19 @@ window.app.controller('ConversationCtrl',[
             MessageDB.searchConversation($scope.currentConversation.user_id,$rootScope.user.user_id)
                 .then(function(result){
                     $scope.messages = result;
-                    //console.log($scope.messages);
                     $scope.$apply();
-                    $(".messages ion-scroll").animate({ scrollTop: $(document).height() }, "slow");
+                    $timeout(function() {
+                        viewScroll.scrollBottom();
+                    }, 0);
+                    //$(".messages ion-scroll").animate({ scrollTop: $(document).height() }, "slow");
                 });
+
         });
 
         $scope.$on("$ionicView.beforeEnter", function(event, data){
-
+            $timeout(function() {
+                viewScroll.scrollBottom();
+            }, 0);
             var index = $stateParams.index;
 
             //Subtraio o count dessa conversa do numero de mensagens recebidas do menu superior
@@ -38,16 +58,19 @@ window.app.controller('ConversationCtrl',[
                     $scope.messages = result;
                     console.log(result);
                     $scope.$apply();
+                    $timeout(function() {
+                        viewScroll.scrollBottom();
+                    }, 0);
                 });
 
-            MessageDB.searchConversation($scope.currentConversation.user_id,$rootScope.user.user_id)
+           /* MessageDB.searchConversation($scope.currentConversation.user_id,$rootScope.user.user_id)
                 .then(function(result){
                     $scope.messages = result;
                     console.log(result);
                     $scope.$apply();
-                });
+                });*/
 
-            $(".messages ion-scroll").animate({ scrollTop: $(document).height() }, "slow");
+            //$(".messages ion-scroll").animate({ scrollTop: $(document).height() }, "slow");
 
         });
 

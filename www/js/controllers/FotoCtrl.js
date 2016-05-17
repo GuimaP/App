@@ -41,7 +41,7 @@ window.app.controller('FotoCtrl',
         $scope.picture = function(){
             //document.addEventListener("deviceready", function () {
                 var options = {
-                    quality: 100,
+                    quality: 50,
                     destinationType: Camera.DestinationType.FILE_URI,
                     //destinationType: Camera.DestinationType.DATA_URL,
                     sourceType: Camera.PictureSourceType.CAMERA,
@@ -49,7 +49,7 @@ window.app.controller('FotoCtrl',
                     allowEdit: true,
                     targetWidth: 100,
                     targetHeight: 100,
-                    cameraDirection : 1,
+                    cameraDirection : 0,
                     popoverOptions: CameraPopoverOptions,
                     saveToPhotoAlbum: true,
                     correctOrientation:false
@@ -60,9 +60,9 @@ window.app.controller('FotoCtrl',
 
                     //Pego a imagem tirada e atualizo no objeto
 
-                    //$scope.imgURI = imageData;
+                    $scope.imgURI = imageData;
                     console.log(imageData);
-                    $scope.imgURI = "data:image/jpeg;base64,"+ imageData;
+                    //$scope.imgURI = "data:image/jpeg;base64,"+ imageData;
 
                     $scope.user.photoPath = $scope.imgURI;
 

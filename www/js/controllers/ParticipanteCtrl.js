@@ -1,21 +1,15 @@
-window.app.controller('ParticipanteCtrl',['$scope','$rootScope',function($scope,$rootScope){
+window.app.controller('ParticipanteCtrl',['$scope','$rootScope','PersonAPI',function($scope,$rootScope,PersonAPI){
     $scope.gridSelected = true;
 
     $rootScope.title = "Quem é Quem?";
 
 
-    $scope.participantes = [
-        {name:"Part 1", photo: "img/ionic.png"},
-        {name:"Part 2", photo: "img/ionic.png"},
-        {name:"Part 3", photo: "img/ionic.png"},
-        {name:"Part 4", photo: "img/ionic.png"},
-        {name:"Part 5", photo: "img/ionic.png"},
-        {name:"Part 6", photo: "img/ionic.png"},
-        {name:"Part 7", photo: "img/ionic.png"},
-        {name:"Part 8", photo: "img/ionic.png"},
-        {name:"Part 9", photo: "img/ionic.png"},
-        {name:"Part 10", photo: "img/ionic.png"},
-    ];
+
+    PersonAPI.allClients()
+    .then(function(d){
+        console.log(d);
+        $scope.participantes  = d.data;
+    });
 
     $scope.grid = function(){
         $scope.gridSelected = true;
