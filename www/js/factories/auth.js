@@ -3,7 +3,7 @@ window.app.factory('Auth',['host','$http',function(host,$http){
     check: function(user){
         return new Promise(function(resolve,reject){
             if(user instanceof Person){
-                console.log(JSON.stringify(user));
+                //console.log(JSON.stringify(user));
                 $http({
                     url: host.url+"/auth",
                     method: "POST",
@@ -13,14 +13,14 @@ window.app.factory('Auth',['host','$http',function(host,$http){
                     }
 
                 }).success(function(data){
-                    console.log(data);
+                    //console.log(data);
                     resolve(data);
                 }).error(function(er){
-                    console.log(er);
+                    //console.log(er);
 
                     reject(er);
                 });
-                console.log(user);
+                //console.log(user);
                /* var data = {
                     username: user.login,
                     password:user.password,

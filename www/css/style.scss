@@ -118,6 +118,7 @@ input {
 .container-home,
 .container-login,
 .container-participantes,
+.container-pergunta,
 .container-side-menu {
   font-family: $font;
 }
@@ -628,7 +629,6 @@ hr {
 
   padding: 0;
 
-
   //Barra de Busca
   .search {
     margin: 0;
@@ -1008,4 +1008,96 @@ hr {
     text-align: right;
   }
 
+}
+
+//Perguntas
+.container-pergunta {
+  .button {
+    color: $black;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .title-pergunta {
+    font-size: 24em;
+    color: $black;
+    text-transform: uppercase;
+    font-size: 3em;
+  }
+
+  .pergunta {
+    border: none;
+    padding-bottom: 0;
+    margin-bottom: 3px;
+
+    p{
+      padding: 10px;
+      width: 100%;
+      white-space: normal;
+    }
+    .badge {
+      float:right;
+    }
+
+    hr{
+      border-bottom:1px solid $color-primary;
+      color: $color-primary;
+      border-color: $color-primary;
+      margin-bottom: 0;
+    }
+
+    &.aproved {
+      background-color: $color-primary;
+      color: $font-white;
+      p{
+        color: $font-white;
+      }
+      .icon {
+
+        display: none;
+      }
+      .ion-checkmark-round {
+        display: block;
+        text-shadow: $black 0px 0px 5px;
+      }
+    }
+
+    &.reproved {
+      background-color: $gray;
+      color: $font-white;
+      p{
+        color: $font-white;
+      }
+
+      .icon {
+        display: none;
+      }
+      .ion-close-round {
+        display: block;
+        text-shadow: $black 0px 0px 5px;
+      }
+    }
+  }
+}
+
+//Quiz ADM
+.popup-quiz {
+  .popup{
+    top: 10%;
+    left: 0;
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    margin: auto 5%;
+
+    .answers {
+      .alternativa{
+        border: 2px solid $color-primary;
+        border-radius: 50%;
+        font-weight: 800;
+
+
+      }
+    }
+  }
 }

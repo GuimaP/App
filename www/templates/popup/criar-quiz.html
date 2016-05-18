@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="col-sm-12">
+
+        <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Nome do Quiz</span>
+                <input type="text" ng-model="quiz.quiz_name">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Quantidade de quiz</span>
+                <input type="number" ng-model="quiz.questionsCount">
+            </label>
+
+            <label class="item item-input">
+                <button class="button button-full save" ng-click="nextStep()">Adicionar Questões</button>
+            </label>
+
+        </div>
+    </div>
+
+    <!--Questoes-->
+    <div class="col-sm-6">
+        <div class="list">
+            <div class="item item-icon-right" ng-repeat="questao in questions track by $index" ng-click="selectQuestion(questao,$index)">
+                <input type="text" ng-model="questao.quiz_question_name">
+                <i class="icon ion-close-round" ng-click="removeQuestion($index)"></i>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Alternativas-->
+    <div class="col-sm-6 answers" ng-show="questionSelected">
+        <div class="col-sm-10">
+            <div class="list">
+                <div class="item item-input item-icon-right" ng-repeat="an in questions[currentIndex].quiz_question_answer track by $index">
+                    <label class="">
+                        <span class="input-label">
+                            {{convertToLetter($index)}}
+                        </span>
+                        <input type="text" ng-model="an.quiz_question_answer_name">
+                    </label>
+                    <span class="icon ion-close-round" ng-click="removeAnswer($index)"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-2" ng-click="addAnswer()">
+            <i class="icon ion-plus"></i>
+        </div>
+    </div>
+
+</div>

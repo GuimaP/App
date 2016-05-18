@@ -1,6 +1,6 @@
 window.app.controller('FotoCtrl',
-    ['$scope','$rootScope','$cordovaCamera','Person','$cookies','$state','PersonAPI',
-    function($scope,$rootScope,$cordovaCamera,Person,$cookies,$state,PersonAPI){
+    ['$scope','$rootScope','$cordovaCamera','Person','$cookies','$state','PersonAPI','PersonDB',
+    function($scope,$rootScope,$cordovaCamera,Person,$cookies,$state,PersonAPI,PersonDB){
         $scope.userCadastro = {
             name: "",
             lastname: "",
@@ -84,16 +84,17 @@ window.app.controller('FotoCtrl',
         }
 
         $scope.cancel = function(){
-            alert("ae");
-            //$rootScope.logoff();
+            if($rootScope.hasLogged){
+                $state.go('app.home');
+            }else {
+
+                $rootScope.logoff();
+            }
         }
 
         $scope.nextState = function(){
             $scope.show();
-
-
             try {
-
                 console.log(this.userCadastro);
                 $rootScope.user.name = this.userCadastro.name;
                 $rootScope.user.lastname = this.userCadastro.lastname;
@@ -101,39 +102,72 @@ window.app.controller('FotoCtrl',
 
                 console.log($rootScope.user);
 
+                //Se o cara n estiver logado ele faz o registro da api e tudo mais....
+                if(!$rootScope.hasLogged){
+
+                        $cookies.putObject("user",true);
+                        $cookies.putObject("userData",$rootScope.user.toJSON());
+
+                        console.log($rootScope.user);
+
+                        //Adiciono no BANCO
+                        Person.insert($rootScope.user);
+
+                        //Envio para a API
+                        PersonAPI.insert($rootScope.user)
+                            .then(function (d) {
+                                $scope.hide();
+
+                                //Verifica se o user ja foi cadastrado
+                                $state.transitionTo("app.home"); //Manda pra home
+                                $rootScope.hasLogged = true;
+
+                                //se não, manda pra foto
+
+                            }).catch(function (err) {
+                            $scope.hide();
+                            console.log(err);
+                        });
 
 
 
-                $cookies.putObject("user",true);
-                 $cookies.putObject("userData",$rootScope.user.toJSON());
 
-                console.log($rootScope.user);
+                }else {
 
-                //Adiciono no BANCO
-                Person.insert($rootScope.user);
+                    var person = Person.createFrom($rootScope.user);
+                    console.log(person);
+                    console.log($rootScope.user);
+                    //Adiciono no BANCO
+                    PersonDB.update(person);
 
-                //Envio para a API
-                PersonAPI.insert($rootScope.user)
-                    .then(function (d) {
+                    //Envio para a API
+                    PersonAPI.update($rootScope.user)
+                        .then(function (d) {
+                            $scope.hide();
+
+                            $rootScope.hasLogged = true;
+
+                            //$state.transitionTo("app.home"); //Manda pra home
+
+                            //Vinculo com o usuario do APPCTRL
+                            $scope.myUser = $rootScope.user;
+                            $scope.user = $rootScope.user;
+                            $scope.$apply();
+
+
+
+                        }).catch(function (err) {
                         $scope.hide();
-
-                        //Verifica se o user ja foi cadastrado
-                        $state.transitionTo("app.home"); //Manda pra home
-                        $rootScope.hasLogged = true;
-
-                        //se não, manda pra foto
-
-                    }).catch(function (err) {
-                    $scope.hide();
-                    console.log(err);
-                });
-
-
+                        console.log(err);
+                    });
+                }
 
             }catch(e){
                 $scope.hide();
                 console.error((e));
             }
+
+
 
             $rootScope.toDataUrl($rootScope.user.photo, function(url){
                 //$rootScope.user.setPhoto(url);

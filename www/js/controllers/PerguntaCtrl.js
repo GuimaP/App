@@ -2,73 +2,124 @@
  * Created by guilherme on 14/04/16.
  */
 window.app.controller('PerguntaCtrl',
-        ['$scope','$rootScope','Person','PersonDB','$ionicPopup',
-            function($scope,$rootScope,Person,PersonDB,$ionicPopup){
+['$scope','$rootScope','Person','PersonDB','$ionicPopup','PerguntaDB','$filter',
+    function($scope,$rootScope,Person,PersonDB,$ionicPopup,PerguntaDB,$filter){
 
 
-                $scope.pergunta = {};
-                $scope.myPerguntas = [
-                    {desc: "1"},
-                    {desc: "2"},
-                    {desc: "3"},
-                    {desc: "4"},
-                    {desc: "5"},
-                    {desc: "6"},
-                    {desc: "7"},
-                    {desc: "8"},
-                    //{desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consectetur mauris libero, vitae fermentum odio mollis ac. Proin imperdiet finibus faucibus. Maecenas quis commodo dui. Fusce at feugiat eros. Mauris magna erat, egestas ac lobortis ac, tincidunt et elit. Ut iaculis odio gravida ante semper semper ac eget neque. In vestibulum vitae est eu tempus. Aliquam ornare semper sapien, vel dapibus urna fermentum non. Phasellus id leo odio. "},
-                    /*{desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consectetur mauris libero, vitae fermentum odio mollis ac. Proin imperdiet finibus faucibus. Maecenas quis commodo dui. Fusce at feugiat eros. Mauris magna erat, egestas ac lobortis ac, tincidunt et elit. Ut iaculis odio gravida ante semper semper ac eget neque. In vestibulum vitae est eu tempus. Aliquam ornare semper sapien, vel dapibus urna fermentum non. Phasellus id leo odio. "},
-                    {desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consectetur mauris libero, vitae fermentum odio mollis ac. Proin imperdiet finibus faucibus. Maecenas quis commodo dui. Fusce at feugiat eros. Mauris magna erat, egestas ac lobortis ac, tincidunt et elit. Ut iaculis odio gravida ante semper semper ac eget neque. In vestibulum vitae est eu tempus. Aliquam ornare semper sapien, vel dapibus urna fermentum non. Phasellus id leo odio. "},
-                    {desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consectetur mauris libero, vitae fermentum odio mollis ac. Proin imperdiet finibus faucibus. Maecenas quis commodo dui. Fusce at feugiat eros. Mauris magna erat, egestas ac lobortis ac, tincidunt et elit. Ut iaculis odio gravida ante semper semper ac eget neque. In vestibulum vitae est eu tempus. Aliquam ornare semper sapien, vel dapibus urna fermentum non. Phasellus id leo odio. "},
-                    {desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consectetur mauris libero, vitae fermentum odio mollis ac. Proin imperdiet finibus faucibus. Maecenas quis commodo dui. Fusce at feugiat eros. Mauris magna erat, egestas ac lobortis ac, tincidunt et elit. Ut iaculis odio gravida ante semper semper ac eget neque. In vestibulum vitae est eu tempus. Aliquam ornare semper sapien, vel dapibus urna fermentum non. Phasellus id leo odio. "},
-                    {desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consectetur mauris libero, vitae fermentum odio mollis ac. Proin imperdiet finibus faucibus. Maecenas quis commodo dui. Fusce at feugiat eros. Mauris magna erat, egestas ac lobortis ac, tincidunt et elit. Ut iaculis odio gravida ante semper semper ac eget neque. In vestibulum vitae est eu tempus. Aliquam ornare semper sapien, vel dapibus urna fermentum non. Phasellus id leo odio. "},*/
-                ];
+        $scope.pergunta = {};
+        $scope.myPerguntas = [];
 
 
-    $scope.$on("$ionicView.beforeEnter", function(event, data){
-       
-    });
 
-    $scope.doAsk = function(){
+        $scope.$on("$ionicView.beforeEnter", function(event, data){
+            if(!$rootScope.user){ // se não tiver usuario no root, então eu pego de novo no banco
+                $rootScope.getUser()
+                .then(function(){
+                    PerguntaDB.all()
+                    .then(function(d){
+                        console.log(d);
+                        $rootScope.listAsks = d;
+                        $scope.myPerguntas = $rootScope.listAsks;
 
-        var myPopup = $ionicPopup.show({
-            template: '<input type="text" ng-model="pergunta.question">',
-            cssClass: 'popup-pergunta',
-            title: 'Pergunta',
-            subTitle: 'Escreve aqui a sua pergunta',
-            scope: $scope,
-            buttons: [
-                {
-                    text: '<b>Publicar</b>',
-                    type: 'button-positive',
-                    onTap: function(e) {
+                    });
+
+                    $scope.myPerguntas = $rootScope.listAsks;
+                });
+            }else {
+                PerguntaDB.all()
+                .then(function(d){
+                    console.log(d);
+                    $rootScope.listAsks = d;
+                    $scope.myPerguntas = $rootScope.listAsks;
+                });
 
 
-                        if (!$scope.pergunta.question) {
-                            //don't allow the user to close unless he enters wifi password
-                            e.preventDefault();
-                        } else {
-                            return $scope.pergunta;
+            }
+
+        });
+
+
+        $scope.aprove = function(question){
+            console.log(question);
+            question.status = true;
+            var pergunta = new Pergunta(question);
+            PerguntaDB.update(pergunta);
+
+
+
+            window.io.emit('questionForPresenter',pergunta);
+        }
+
+        $scope.reprove = function(question){
+            question.status = false;
+            var pergunta = new Pergunta(question);
+            PerguntaDB.update(pergunta);
+
+        }
+
+        $scope.doAsk = function(){
+
+            var myPopup = $ionicPopup.show({
+                template: '<input type="text" ng-model="pergunta.question">',
+                cssClass: 'popup-pergunta',
+                title: 'Pergunta',
+                subTitle: 'Escreve aqui a sua pergunta',
+                scope: $scope,
+                buttons: [
+                    {
+                        text: '<b>Publicar</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+
+
+                            if (!$scope.pergunta.question) {
+                                //don't allow the user to close unless he enters wifi password
+                                e.preventDefault();
+                            } else {
+                                return $scope.pergunta;
+                            }
                         }
-                    }
-                },
-                { text: 'Cancelar' },
-            ]
-        });
+                    },
+                    { text: 'Cancelar' },
+                ]
+            });
 
-        myPopup.then(function(res) {
-            var data = {
-                from: $rootScope.user,
-                question : res.question,
-                date: new Date()
-            };
+            myPopup.then(function(res) {
+                var data = {
+                    from: $rootScope.user,
+                    question : res.question,
+                    date: new Date(),
+                    status: null
+                };
 
-            console.log(data);
-            //Manda para o websocket as perguntas
-            io.emit('ask',data);
 
-        });
-    }
+                var pergunta = new Pergunta(data);
+                //console.log(pergunta);
+
+                PerguntaDB.insert(pergunta)
+                .then(function(d){
+                    console.log(d);
+                    data._id = d.id;
+                    data._rev = d.rev;
+                    $rootScope.listAsks.push(data);
+                    $rootScope.$apply();
+
+                    //Manda para o websocket as perguntas
+                    io.emit('ask',data);
+                });
+
+
+
+            });
+        }
+
+
+        $scope.getClass = function(pergunta){
+            if($scope.isModerator & pergunta.status != undefined){
+                return pergunta.status ?  'aproved' : 'reproved';
+            }
+        }
+
 
 
 

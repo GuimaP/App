@@ -9,39 +9,94 @@
         </div>
 
     </ion-nav-title>
-    <ion-content class=''>
-        <!--<div class="container-fluid fundo-inner padding-inner border has-header">
-            <div class="row">
-                <div class="col-sm-12 title-label center">
-                    <hr/>
-                    <h1>Bem Vindo</h1>
-                    <h4>{{user.name}}</h4>
-                    <hr/>
-                </div>
-            </div>
-        </div>-->
+    <ion-content class='container-pergunta'>
+
 
         <div class="container-fluid">
-            <div class="">
+            <div class="col-sm-10 col-sm-offset-1">
                 <div class="row">
-                    <div class="col-sm-4 col-sm-offset-8">
-                        <button class="button" ng-click="doAsk()">
+                    <div class="col-sm-3 col-sm-offset-9">
+                        <button class="button save button-full icon-left ion-plus" ng-click="doAsk()" ng-show="isClient">
                             Adicionar
                         </button>
+
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2>Perguntas Enviadas</h2>
+                        <h2 class="title-pergunta">Perguntas Enviadas</h2>
                     </div>
                 </div>
 
 
-                <div class="col-sm-12">
-                    <div class="row" ng-repeat="pergunta in myPerguntas">
-                        {{pergunta.desc}}
-                        <hr/>
+                <div class="col-sm-12 list" >
+
+                    <div class="" ng-class="{'col-sm-6': isModerator,'col-sm-12': isDefault }">
+                        <h4 ng-show="isModerator">Perguntas Recentes</h4>
+                        <ion-scroll style="max-height: 400px">
+                        <div class="col-sm-12 pergunta item" ng-repeat="pergunta in myPerguntas track by $index  " ng-if="pergunta.status == null" ng-class="getClass(pergunta)">
+                        <div class="col-sm-12 ">
+                            <!--Optinos to reprove or aprove a question-->
+                            <div class="col-sm-2 no-padding" ng-hide="isDefault">
+                                <div class="col-sm-6" ng-click="aprove(pergunta)">
+                                    <i class="icon ion-checkmark-round"></i>
+                                </div>
+                                <div class="col-sm-6" ng-click="reprove(pergunta)">
+                                    <i class="icon ion-close-round"></i>
+                                </div>
+                            </div>
+
+                            <div class="no-padding" ng-class="{'col-sm-8': isModerator, 'col-sm-10': isDefault }">
+                                <p>{{pergunta.question}}</p>
+                            </div>
+
+                            <div class="col-sm-2 no-padding">
+                                <!--<span class="badge">{{pergunta.date|date}}</span>-->
+                                <span class="badge" ng-if="isModerator || isPresenter">{{pergunta.from.name}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 no-padding">
+                            <hr/>
+                        </div>
+
+                    </div>
+                        </ion-scroll>
+                    </div>
+
+
+                    <div class="col-sm-6" ng-show="isModerator">
+                        <h4 ng-show="isModerator">Perguntas Aprovadas/Reprovadas</h4>
+                        <ion-scroll style="max-height: 400px">
+                        <div class="col-sm-12 pergunta item" ng-repeat="pergunta in myPerguntas track by $index  " ng-if="pergunta.status == true || pergunta.status == false" ng-class="getClass(pergunta)">
+                        <div class="col-sm-12 ">
+                            <!--Optinos to reprove or aprove a question-->
+                            <div class="col-sm-2 no-padding" ng-hide="isDefault">
+                                <div class="col-sm-6" ng-click="aprove(pergunta)">
+                                    <i class="icon ion-checkmark-round"></i>
+                                </div>
+                                <div class="col-sm-6" ng-click="reprove(pergunta)">
+                                    <i class="icon ion-close-round"></i>
+                                </div>
+                            </div>
+
+                            <div class="no-padding" ng-class="{'col-sm-8': isModerator, 'col-sm-10': isDefault }">
+                                <p>{{pergunta.question}}</p>
+                            </div>
+
+                            <div class="col-sm-2 no-padding">
+                                <span class="badge">{{pergunta.from.name}}</span>
+                                <!--<span class="badge">{{pergunta.date|date}}</span>-->
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 no-padding">
+                            <hr/>
+                        </div>
+
+                    </div>
+                        </ion-scroll>
                     </div>
                 </div>
             </div>

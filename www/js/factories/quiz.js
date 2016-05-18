@@ -48,6 +48,25 @@ window.app.factory('Quiz',['host','$http','$rootScope',function(host,$http,$root
                     reject(er);
                 });
             });
+        },
+        addAPI: function(quiz){
+            return new Promise(function(resolve,reject){
+                $http({
+                    url: host.url + "/api/quiz",
+                    method: "POST",
+                    withCredentials: true,
+                    data: quiz,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'Authorization' : $rootScope.user.access_token
+                    }
+
+                }).success(function (d) {
+                    resolve(d);
+                }).error(function (er) {
+                    reject(er);
+                });
+            });
         }
     }
 }]);

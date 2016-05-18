@@ -11,14 +11,13 @@
     <ion-content class="container-quiz has-footer">
         <div class="col-sm-10 col-sm-offset-1">
             <div class="row">
-                <ion-slide-box on-slide-changed="slideHasChanged($index)" ng-init="disableSwipe()">
+                <ion-slide-box class="col-sm-10 col-sm-offset-1" on-slide-changed="slideHasChanged($index)" ng-init="disableSwipe()">
 
                     <ion-slide ng-repeat="question in quiz.quiz_question" on-finish-render-slider="ngRepeatFinishedSlider">
                         <div class="quiz">
 
-                            <!--<h1>{{question.quiz_question_name}}</h1>-->
                             <ion-scroll zooming="false" direction="y" style="width: 100%; max-height: 126px;" >
-                                <h3 class="question-label">Qual percentual dos pacientes com LUTS apresentam associação de sintomas de armazenamento ("irritativos") e de esvaziamento ("obstrutivos") ?</h3>
+                                <h1>{{question.quiz_question_name}}</h1>
                             </ion-scroll>
                             <ul class="question">
                                 <li ng-repeat="answer in question.quiz_question_answer" ng-click="select(answer,question)" ng-class="answer.class">

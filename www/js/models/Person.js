@@ -1,6 +1,7 @@
 function Person(user){
-    this.access_token = "";
-    this._id  = 0;
+    this.access_token = user.access_token;
+    this._id  = user._id;
+    this._rev  = user._rev;
     this.user_id = user.user_id;
     this.login = user.login;
     this.email = user.email;
@@ -11,6 +12,7 @@ function Person(user){
     this.photoPath = user.photoPath;
     this.lastname = user.lastname;
     this.user_initial_information = user.user_initial_information;
+    this.type = user.type;
 
 
     this.setToken = function(token){
@@ -93,18 +95,23 @@ function Person(user){
     this.toJSON = function(){
 
         return {
-            access_token                : this.access_token,
-            _id                         :this._id,
-            user_id                     :this.user_id,
-            login                       :this.login,
-            email                       :this.email,
-            name                        :this.name,
-            password                    :this.password,
-            photo                       :this.photo,
-            role                        :this.role,
-            user_initial_information    : this.user_initial_information,
-            lastname                    : this.lastname,
-            photoPath                   : this.photoPath
+
+            access_token: this.access_token,
+            _id: this._id,
+            _rev: this._rev,
+            user_id: this.user_id,
+            login: this.login,
+            email: this.email,
+            name: this.name,
+            password: this.password,
+            role: this.role,
+            photo: this.photo,
+            photoPath: this.photoPath,
+            lastname: this.lastname,
+            user_initial_information: this.user_initial_information
+
+
+
 
         }
     }

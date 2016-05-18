@@ -180,10 +180,7 @@ window.app = angular.module('starter', ['ionic','ngCookies','ngCordova'])
     $httpProvider.defaults.headers.put = {};
     $httpProvider.defaults.headers.patch = {};
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    /*$httpProvider.defaults.headers.common = {};
-    $httpProvider.defaults.headers.post = {};
-    $httpProvider.defaults.headers.put = {};
-    $httpProvider.defaults.headers.patch = {};*/
+
 
 
 

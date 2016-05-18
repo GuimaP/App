@@ -78,7 +78,7 @@ window.app.controller('QuestionCtrl',[
             };
             answers.push(obj);
 
-            if(answers.length == 10){
+            if(answers.length == $scope.total){
                 $scope.saveButton = true;
             }else {
                 $scope.saveButton = false;
@@ -98,19 +98,17 @@ window.app.controller('QuestionCtrl',[
             console.log(answers.length);
             //Envia todas as respostas para a API
             for(var i =0; i < answers.length; i++){
-               /* Quiz.answer(answers[i].answer.quiz_question_answer_id)
+                Quiz.answer(answers[i].answer.quiz_question_answer_id)
                     .then(function(d){
                         console.log(d);
 
-                    });*/
+                    });
 
             }
             console.log(answers);
 
             //Salva essa question no banco, para identificar que ja foi respondida.
             var answersToPersist = [];
-            var question_id = 0;
-            var questions = {};
 
             for(var i =0; i < answers.length; i++){
                 question = answers[i].question;
@@ -123,12 +121,8 @@ window.app.controller('QuestionCtrl',[
                 questions: answersToPersist,
                 from : $rootScope.user
             };
-            //QuizDB.insert(quiz.quiz.quiz_id,quiz);
+            QuizDB.insert(quiz.quiz.quiz_id,quiz);
 
-
-
-
-            window.io.emit('liveVoting',quiz);
         }
 
 

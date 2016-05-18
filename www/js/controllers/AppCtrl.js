@@ -1,9 +1,12 @@
 /**
  * Created by guilherme on 14/04/16.
  */
-window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope','PersonDB','Person','$cookies','$ionicHistory','PopupFactory','$state','$ionicPopup',
-        function($scope,$ionicSideMenuDelegate,$rootScope,PersonDB,Person,$cookies,$ionicHistory,PopupFactory,$state,$ionicPopup){
-
+window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope','PersonDB','Person','$cookies','$ionicHistory','PopupFactory','$state','$ionicPopup','PerguntaDB',
+        function($scope,$ionicSideMenuDelegate,$rootScope,PersonDB,Person,$cookies,$ionicHistory,PopupFactory,$state,$ionicPopup,PerguntaDB){
+            $scope.isModerator = '';
+            $scope.isPresenter = '';
+            $scope.isDefault = '';
+            $scope.isClient = '';
 
 
             //$rootScope.messages = [];
@@ -26,24 +29,45 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
             window.io.on('questionPresenter', function(data){
                 console.log(data);
                 if($rootScope.user.role.name == 'presenter'){
-                    alert("Question de " + data.from.name + " - " + data.question);
+                    //Adiciona a pergunta na lista
+                    var pergunta = new Pergunta(data);
+                    console.log(pergunta);
+
+                    PerguntaDB.insert(pergunta)
+                        .then(function(d){
+                            if(!$scope.ask) { $scope.ask = {} };
+                            $scope.ask._id = d.id;
+                            $scope.ask._rev = d.rev;
+                            $scope.status = null;
+                            $rootScope.listAsks.push($scope.ask);
+                            $rootScope.$apply();
+                        });
                 }
             });
             window.io.on('pergunta',function(data){
 
+                //Somente moderadores recebem essa pergunta via websocket
                 if($rootScope.user.role.name == 'moderator'){
+                    //Guarda a pergunta na variavel ask
                     $scope.ask = data;
+
                     //Se o cara não estiver na tela de perguntas, então aparece um popup de pergunta recebida....
-                    console.log($ionicHistory.currentView());
-                    var state = $ionicHistory.currentView();
-                    if(state.stateId != "app.pergunta" || true){
+                    //var state = $ionicHistory.currentView();
+                    /*if(state.stateId != "app.pergunta" || true){
                         PopupFactory.perguntaReceived($scope);
-                    }
+                    }*/
 
                     //Adiciona a pergunta na lista
-                    $rootScope.listAsks.push($scope.ask);
+                    var pergunta = new Pergunta(data);
+                    console.log(pergunta);
 
-
+                    PerguntaDB.insert(pergunta)
+                    .then(function(d){
+                        $scope.ask._id = d.id;
+                        $scope.ask._rev = d.rev;
+                        $rootScope.listAsks.push($scope.ask);
+                        $rootScope.$apply();
+                    });
 
                 }
             });
@@ -79,6 +103,7 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
 
                 PersonDB.search("Person")
                 .then(function(data){
+
                     if(data.length > 0){
                         $rootScope.user = data[0].doc;
                         $scope.myUser = $rootScope.user;
@@ -86,8 +111,17 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
 
                         $scope.isModerator = $rootScope.user.role.name == 'moderator';
                         $scope.isDefault = $rootScope.user.role.name == 'client' || $rootScope.user.role.name == 'presenter';
+                        $scope.isPresenter = $rootScope.user.role.name == 'presenter';
+                        $scope.isClient = $rootScope.user.role.name == 'client';
+
+                        console.log($scope.isModerator);
+                        console.log($scope.isPresenter);
+
+                        console.log($scope.isDefault);
+                        console.log($scope.isModerator);
 
                         $scope.$apply();
+                        console.log(data);
                         console.log($rootScope.user);
                         $rootScope.$apply();
 

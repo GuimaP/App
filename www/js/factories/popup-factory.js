@@ -66,6 +66,58 @@ window.app.factory('PopupFactory',['$ionicPopup',function($ionicPopup){
         }
 
       });
+    },
+    criarQuiz: function(scope){
+      var myPopup = $ionicPopup.show({
+        templateUrl: 'templates/popup/criar-quiz.html',
+        cssClass: 'popup-quiz',
+        title: 'Criar quiz',
+        subTitle: 'criação de quiz',
+        scope: scope,
+        buttons: [
+          {
+            text: '<b>Criar</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              //Vincula as questoes no quiz
+              scope.quiz.quiz_question = scope.questions;
+
+              console.log('ae',scope.quiz);
+              if(scope.quiz.quiz_question == undefined){
+
+                if(scope.quiz.quiz_question.length == 0){
+                  //don't allow the user to close unless he enters wifi password
+                  e.preventDefault();
+                  return;
+                }else {
+                  //return scope.quiz;
+                }
+
+
+              } else {
+
+                return scope.quiz;
+              }
+            }
+          },
+          { text: 'Cancelar' },
+        ]
+      });
+
+      myPopup.then(function(res) {
+        console.log(res);
+        if(res != undefined) {
+
+          scope.saveQuiz();
+
+          //window.io.emit('questionForPresenter',res);
+
+        }else {
+          alert("AE");
+          console.log('cancelado');
+        }
+
+      });
     }
   }
 }])

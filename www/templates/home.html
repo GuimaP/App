@@ -23,7 +23,7 @@
             <!--Lista de Opções-->
             <div class="row">
 
-                <div class="opcoes row" ng-show="isModerator">
+                <div class="opcoes row" ng-if="isModerator || isPresenter">
 
                     <div class="col-sm-4" ng-repeat="opcao in opcoesModerator">
 
@@ -39,7 +39,7 @@
 
                 </div>
 
-                <div class="opcoes row" ng-show="isDefault">
+                <div class="opcoes row" ng-show="isClient">
                     <div class="col-sm-15" ng-repeat="opcao in opcoesFirst">
 
                         <a href="{{opcao.link}}">
@@ -56,7 +56,7 @@
 
             </div>
 
-            <div class="row" ng-show="isDefault">
+            <div class="row" ng-show="isClient">
               <div class="opcoes second row">
                   <div class="col-sm-15" ng-repeat="opcao in opcoesSecond">
 

@@ -7,6 +7,42 @@ window.app.factory('PersonAPI',function(PersonDB,host,$http,$rootScope){
     var roles = ["palestrante","moderador","participante"];
 
     return {
+        update: function(user){
+            return new Promise(function(resolve,reject){
+
+                var data = {
+                    client_name: user.name,
+                    client_second_name: user.lastname,
+                    client_email:user.email,
+                    client_photo: user.photo,
+
+                };
+
+                console.log(data);
+
+
+
+
+                var config = {
+                    url: host.url+"/api/client/"+user.user_id,
+                    data: JSON.stringify(data),
+                    method: "PUT",
+                    headers: {
+                        'Authorization' : user.access_token,
+                        'Content-Type'  : 'application/json'
+                    }
+
+                };
+
+                $http(config)
+                    .success(function(d){
+                        resolve(d);
+                    })
+                    .error(function(e){
+                        reject(e);
+                    });
+            });
+        },
         insert: function(user){
             return new Promise(function(resolve,reject){
                 console.log(user);

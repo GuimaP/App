@@ -87,6 +87,7 @@ window.app.factory('PersonDB',function($rootScope){
                     //Se o objeto n tiver o _id, então ele ja foi removido
                     if(person._id != undefined && person.type == type.name) {
 
+
                         if (
                             person.name.match(regex) || //Se Algum dos atributos for igual ao passado então atende
                             person.login.match(regex) || // Ex; Where name like %searchkey% OR login like %searchkey%
@@ -94,7 +95,7 @@ window.app.factory('PersonDB',function($rootScope){
                             person.type.match(regex)
                         ) {
                             emit(person._id, { //O primeiro argumento informa o ID do objeto, e o segundo, é como ele deve ser mostrado
-                                _id                         : person._doc_id_rev,
+                                _id                         : person._id,
                                 _rev                        : person._rev,
                                 user_id                     : person.user_id,
                                 access_token                : person.access_token,
@@ -138,6 +139,56 @@ window.app.factory('PersonDB',function($rootScope){
 
             });
 
+        },
+        update: function(person){
+            console.log(person);
+            return new Promise(function(resolve,reject){
+
+                if(person instanceof Person){
+
+                    console.log(person);
+                    console.log(person._id,person._rev);
+
+
+                    $rootScope.pdb.get(person._id).then(function(doc) {
+                        console.log(doc);
+
+                        console.log(person);
+
+                        doc._id                         = person._id;
+                        doc._rev                        = person._rev;
+                        doc.user_id                     = person.user_id;
+                        doc.user_id                     = person.user_id;
+                        doc.access_token                = person.access_token;
+                        doc.login                       = person.login;
+                        doc.photo                       = person.photo;
+                        doc.email                       = person.email;
+                        doc.name                        = person.name;
+                        doc.password                    = person.password;
+                        doc.type                        = person.type;
+                        doc.role                        = person.role;
+                        doc.lastname                    = person.lastname;
+                        doc.user_initial_information    = person.user_initial_information;
+                        doc.photoPath                   = person.photoPath;
+
+                        console.log(doc);
+
+
+                        return $rootScope.pdb.put(doc);
+                    }).then(function(response) {
+                        console.log(response);
+                        resolve(response);
+                    }).catch(function (err) {
+                        console.log(err);
+                        reject(err);
+                    });
+
+
+                }else {
+                    reject(Error("É preciso uma instancia de Pergunta"));
+                }
+
+            });
         },
         remove : function(doc_id){
             console.log('ae');
