@@ -36,32 +36,32 @@
                         <h4 ng-show="isModerator">Perguntas Recentes</h4>
                         <ion-scroll style="max-height: 400px">
                         <div class="col-sm-12 pergunta item" ng-repeat="pergunta in myPerguntas track by $index  " ng-if="pergunta.status == null" ng-class="getClass(pergunta)">
-                        <div class="col-sm-12 ">
-                            <!--Optinos to reprove or aprove a question-->
-                            <div class="col-sm-2 no-padding" ng-hide="isDefault">
-                                <div class="col-sm-6" ng-click="aprove(pergunta)">
-                                    <i class="icon ion-checkmark-round"></i>
+                            <div class="col-sm-12 ">
+                                <!--Optinos to reprove or aprove a question-->
+                                <div class="col-sm-2 no-padding" ng-hide="isDefault">
+                                    <div class="col-sm-6" ng-click="aprove(pergunta)">
+                                        <i class="icon ion-checkmark-round"></i>
+                                    </div>
+                                    <div class="col-sm-6" ng-click="reprove(pergunta)">
+                                        <i class="icon ion-close-round"></i>
+                                    </div>
                                 </div>
-                                <div class="col-sm-6" ng-click="reprove(pergunta)">
-                                    <i class="icon ion-close-round"></i>
+
+                                <div class="no-padding" ng-class="{'col-sm-8': isModerator, 'col-sm-10': isDefault }">
+                                    <p>{{pergunta.question}}</p>
+                                </div>
+
+                                <div class="col-sm-2 no-padding">
+                                    <!--<span class="badge">{{pergunta.date|date}}</span>-->
+                                    <span class="badge" ng-if="isModerator || isPresenter">{{pergunta.from.name}}</span>
                                 </div>
                             </div>
 
-                            <div class="no-padding" ng-class="{'col-sm-8': isModerator, 'col-sm-10': isDefault }">
-                                <p>{{pergunta.question}}</p>
+                            <div class="col-sm-12 no-padding">
+                                <hr/>
                             </div>
 
-                            <div class="col-sm-2 no-padding">
-                                <!--<span class="badge">{{pergunta.date|date}}</span>-->
-                                <span class="badge" ng-if="isModerator || isPresenter">{{pergunta.from.name}}</span>
-                            </div>
                         </div>
-
-                        <div class="col-sm-12 no-padding">
-                            <hr/>
-                        </div>
-
-                    </div>
                         </ion-scroll>
                     </div>
 
@@ -69,33 +69,33 @@
                     <div class="col-sm-6" ng-show="isModerator">
                         <h4 ng-show="isModerator">Perguntas Aprovadas/Reprovadas</h4>
                         <ion-scroll style="max-height: 400px">
-                        <div class="col-sm-12 pergunta item" ng-repeat="pergunta in myPerguntas track by $index  " ng-if="pergunta.status == true || pergunta.status == false" ng-class="getClass(pergunta)">
-                        <div class="col-sm-12 ">
-                            <!--Optinos to reprove or aprove a question-->
-                            <div class="col-sm-2 no-padding" ng-hide="isDefault">
-                                <div class="col-sm-6" ng-click="aprove(pergunta)">
-                                    <i class="icon ion-checkmark-round"></i>
+                            <div class="col-sm-12 pergunta item" ng-repeat="pergunta in myPerguntas track by $index  " ng-if="pergunta.status == true || pergunta.status == false" ng-class="getClass(pergunta)">
+                                <div class="col-sm-12 ">
+                                    <!--Optinos to reprove or aprove a question-->
+                                    <div class="col-sm-2 no-padding" ng-hide="isDefault">
+                                        <div class="col-sm-6" ng-click="aprove(pergunta)">
+                                            <i class="icon ion-checkmark-round"></i>
+                                        </div>
+                                        <div class="col-sm-6" ng-click="reprove(pergunta)">
+                                            <i class="icon ion-close-round"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="no-padding" ng-class="{'col-sm-8': isModerator, 'col-sm-10': isDefault }">
+                                        <p>{{pergunta.question}}</p>
+                                    </div>
+
+                                    <div class="col-sm-2 no-padding">
+                                        <span class="badge">{{pergunta.from.name}}</span>
+                                        <!--<span class="badge">{{pergunta.date|date}}</span>-->
+                                    </div>
                                 </div>
-                                <div class="col-sm-6" ng-click="reprove(pergunta)">
-                                    <i class="icon ion-close-round"></i>
+
+                                <div class="col-sm-12 no-padding">
+                                    <hr/>
                                 </div>
+
                             </div>
-
-                            <div class="no-padding" ng-class="{'col-sm-8': isModerator, 'col-sm-10': isDefault }">
-                                <p>{{pergunta.question}}</p>
-                            </div>
-
-                            <div class="col-sm-2 no-padding">
-                                <span class="badge">{{pergunta.from.name}}</span>
-                                <!--<span class="badge">{{pergunta.date|date}}</span>-->
-                            </div>
-                        </div>
-
-                        <div class="col-sm-12 no-padding">
-                            <hr/>
-                        </div>
-
-                    </div>
                         </ion-scroll>
                     </div>
                 </div>

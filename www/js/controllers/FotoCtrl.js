@@ -47,8 +47,8 @@ window.app.controller('FotoCtrl',
                     sourceType: Camera.PictureSourceType.CAMERA,
                     encodingType: Camera.EncodingType.JPEG,
                     allowEdit: true,
-                    targetWidth: 100,
-                    targetHeight: 100,
+                    targetWidth: 150,
+                    targetHeight: 150,
                     cameraDirection : 0,
                     popoverOptions: CameraPopoverOptions,
                     saveToPhotoAlbum: true,
@@ -67,6 +67,7 @@ window.app.controller('FotoCtrl',
                     $scope.user.photoPath = $scope.imgURI;
 
                     $rootScope.toDataUrl($scope.imgURI,function(url){
+                        console.log(url.length);
                         $scope.user.photo = url;
                     });
 

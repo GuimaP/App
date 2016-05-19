@@ -40,7 +40,7 @@ window.app.factory('DB',function($rootScope){
                     ')');
             });*/
 
-            $rootScope.pdb = new PouchDB('revmaisv2',{adapter:"websql"});
+            $rootScope.pdb = new PouchDB('revmaisv3',{adapter:"websql"});
             //$rootScope.pdb = new PouchDB('revmais');
             /*$rootScope.pdb.destroy()
             .then(function(d){

@@ -113,7 +113,46 @@ window.app.factory('PopupFactory',['$ionicPopup',function($ionicPopup){
           //window.io.emit('questionForPresenter',res);
 
         }else {
-          alert("AE");
+          //alert("AE");
+          console.log('cancelado');
+        }
+
+      });
+    },
+    mostrarResultadaoVotacao: function(scope){
+      var myPopup = $ionicPopup.show({
+        templateUrl: 'templates/popup/votacao-quiz.html',
+        cssClass: 'popup-quiz',
+        title: scope.currentQuiz.quiz_name,
+        subTitle: 'criação de quiz',
+        scope: scope,
+        buttons: [
+          {
+            text: '<b>Criar</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+              //Vincula as questoes no quiz
+
+
+
+
+            }
+          },
+          { text: 'Cancelar' },
+        ]
+      });
+
+      myPopup.then(function(res) {
+        //console.log(res);
+        if(res != undefined) {
+
+          //scope.saveQuiz();
+
+          //window.io.emit('questionForPresenter',res);
+
+        }else {
+          //alert("AE");
+          scope.questionSelectedVote = false;
           console.log('cancelado');
         }
 

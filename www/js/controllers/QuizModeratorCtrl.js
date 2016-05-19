@@ -7,13 +7,23 @@ window.app.controller('QuizModeratorCtrl',[
             $scope.currentIndex = 0;
 
 
+            $scope.allQuiz = [];
+            $scope.answersVote = [];
+            $scope.totalAnswers = 0;
 
             $scope.questionSelected;
 
             $scope.$on("$ionicView.beforeEnter",function(data,event){
                 console.log($rootScope.liveVotes);
-
-
+                $scope.show();
+                Quiz.all()
+                .then(function(d){
+                    $scope.hide();
+                    console.log(d);
+                    $scope.allQuiz = d.data;
+                }).catch(function(e){
+                    $scope.hide();
+                });
             });
 
             $scope.createQuiz = function(){
@@ -99,9 +109,66 @@ window.app.controller('QuizModeratorCtrl',[
                 //Criando o objeto de quiz
                 console.log($scope.quiz);
                 $scope.quiz.quiz_tag = 'votacao';
-                Quiz.addAPI($scope.quiz);
+                Quiz.addAPI($scope.quiz).then(function(){
+                    window.io.emit('newQuiz');
+                });
+                Quiz.all()
+                .then(function(d){
+                    $scope.hide();
+                    console.log(d);
+                    $scope.allQuiz = d.data;
+                }).catch(function(e){
+                    $scope.hide();
+                });
 
             }
+
+
+        //Resultado Votaçao
+
+            $scope.selectQuizVote = function(quiz){
+                $scope.currentQuiz = quiz;
+                console.log($scope.currentQuiz);
+
+                PopupFactory.mostrarResultadaoVotacao($scope);
+
+            }
+
+            $scope.selectQuestionVote = function(question){
+                console.log(question);
+                $scope.questionSelectedVote = true;
+                $scope.totalAnswers = 0;
+
+                Quiz.getStatic(question)
+                .then(function(d){
+                    $scope.answersVote = d.data;
+                    console.log($scope.answersVote);
+
+                    //Calculando o total de votes
+                    console.log($scope.answersVote.length);
+                    for(var i = 0; i < $scope.answersVote.length; i++){
+                        var d = $scope.answersVote[i];
+                        $scope.totalAnswers += d.client_quiz_response_answer;
+                    }
+
+                    $scope.$apply();
+
+                }).catch(function(er) {
+
+                });
+            }
+
+
+            $scope.formatPorcents = function(countVotes){
+                if($scope.totalAnswers == 0 ) {
+                    return 0;
+                }
+                return Math.round( (countVotes*100)/ $scope.totalAnswers );
+            }
+
+
+
+
 
 
     }]);

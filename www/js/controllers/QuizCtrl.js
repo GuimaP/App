@@ -4,6 +4,22 @@ window.app.controller("QuizCtrl",
             console.log($state);
             var quizAnswered = [];
 
+            window.io.on('updateQuiz',function(){
+                //Carrega todos os quiz da API
+                Quiz.all()
+                    .then(function(d){
+                        //var quizies = d.data.quiz;
+                        //console.log(d);
+                        $scope.quizies = d.data;
+                        $rootScope.allQuiz = d.data;
+                        $rootScope.$apply();
+                        $scope.$apply();
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    });
+            });
+
             $scope.$on('ngRepeatFinishedSlider', function(ngRepeatFinishedEvent) {
                 $ionicSlideBoxDelegate.update();
             });
@@ -14,17 +30,20 @@ window.app.controller("QuizCtrl",
             $scope.$on("$ionicView.beforeEnter", function(event, data){
                 $rootScope.canDrag = true;
 
+                //Carrega todos os quiz ja respondido por ele
                 QuizDB.all()
-                    .then(function(d) {
-                        quizAnswered = d;
-                    });
+                .then(function(d) {
+                    quizAnswered = d;
+                });
 
+
+                //Carrega todos os quiz da API
                 Quiz.all()
                 .then(function(d){
                     //var quizies = d.data.quiz;
                     //console.log(d);
-                    $scope.quizies = d.data;
                     $rootScope.allQuiz = d.data;
+                    $scope.quizies = d.data;
                 })
                 .catch(function(err){
                     console.log(err);

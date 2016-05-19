@@ -421,7 +421,7 @@ hr {
   border-color: #000000; }
 
 .chat-text {
-  position: fixed;
+  position: relative;
   bottom: 0; }
   .chat-text ion-footer-bar.bar.bar-stable.bar-footer {
     background: transparent;
@@ -515,6 +515,7 @@ hr {
     .chat-container .chat-messages .row.row-top .list-card {
       background-color: #facd00; }
   .chat-container .wrapper-text-msg {
+    margin-top: 30px;
     padding-right: 0; }
     .chat-container .wrapper-text-msg div[class^='col-sm']:first-child {
       padding-right: 0; }
@@ -532,6 +533,9 @@ hr {
       padding: 6px;
       border-radius: 0;
       background-color: #facd00; }
+  .chat-container.has-footer .scroll {
+    padding: 0;
+    height: 90%; }
 
 .container-confirmacao .wrapper-label {
   margin: 80px auto 0; }
@@ -610,19 +614,29 @@ hr {
     right: 0; }
 
 .nuvem-container .wrapper-nuvem {
-  min-height: 30vh;
   background-color: #facd00;
   position: relative; }
+  .nuvem-container .wrapper-nuvem,
+  .nuvem-container .wrapper-nuvem .palavras {
+    min-height: 30vh; }
+  .nuvem-container .wrapper-nuvem ion-scroll {
+    max-height: 25vh;
+    margin-top: 20px; }
   .nuvem-container .wrapper-nuvem .form-control {
-    position: absolute;
     border-radius: 0;
     border: 1px solid #000000;
-    bottom: 10px;
-    left: 5%;
-    width: 90%;
+    width: 100%;
+    padding: 22px;
     box-sizing: border-box;
     margin: auto;
     display: block; }
+  .nuvem-container .wrapper-nuvem .palavras {
+    height: 30vh; }
+  .nuvem-container .wrapper-nuvem .save {
+    border-color: #000000;
+    border-radius: 0;
+    margin: 0;
+    padding: 0; }
 
 .container-quiz {
   padding: 15px 0; }

@@ -67,6 +67,25 @@ window.app.factory('Quiz',['host','$http','$rootScope',function(host,$http,$root
                     reject(er);
                 });
             });
+        },
+        getStatic: function(question){
+            return new Promise(function(resolve,reject){
+
+                $http({
+                    url: host.url + "/api/client-quiz-response-result/" + question.quiz_question_id,
+                    method: "GET",
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'Authorization' : $rootScope.user.access_token
+                    }
+
+                }).success(function (d) {
+                    resolve(d);
+                }).error(function (er) {
+                    reject(er);
+                });
+            });
         }
     }
 }]);

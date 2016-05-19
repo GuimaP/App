@@ -11,15 +11,113 @@
     <ion-content class="nuvem-container container-fluid">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <div class="col-sm-12">
+                <div ng-if="isClient" class="col-sm-12">
                     <h2>Envie suas expressões</h2>
                     <p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </p>
                 </div>
 
-                <div class="col-sm-12">
-                    <div class="wrapper-nuvem">
-                        <input type="text" class="form-control" ng-model="palavra"/>
+                <div ng-if="isClient" class="col-sm-12 wrapper-nuvem">
+                    <div class="col-sm-12 palavras">
+                        <ul class="">
+                            <ion-scroll delegate-handle="userMessageScroll">
+                                <li ng-repeat="word in palavras track by $index">{{word.tag_name}}</li>
+                            </ion-scroll>
+                        </ul>
                     </div>
+
+                    <form ng-submit="sendWord()">
+                        <div class="col-sm-12 col-xs-12 no-padding">
+                            <div class="col-sm-9 col-xs-9">
+                                <input type="text" class="form-control" ng-model="tag_name"/>
+                            </div>
+                            <div class="col-sm-3 col-xs-3">
+
+                                <button class="button-block button button-assertive save" type="submit" ng-disabled="!tag_name">
+                                    <i class="icon ion-paper-airplane"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div ng-if="isModerator" class="col-sm-12">
+
+                    <div class="col-sm-6 palavras">
+
+                            <ion-scroll delegate-handle="userMessageScroll">
+
+                                <div class="col-sm-12 pergunta item" ng-repeat="word in palavras track by $index" ng-if="word.tag_status == 'false'" ng-class="getClass(pergunta)">
+                                    <div class="col-sm-12 ">
+                                        <!--Optinos to reprove or aprove a question-->
+                                        <div class="col-sm-2 no-padding" ng-hide="isDefault">
+                                            <div class="col-sm-6" ng-click="aprove(pergunta)">
+                                                <i class="icon ion-checkmark-round"></i>
+                                            </div>
+                                            <div class="col-sm-6" ng-click="reprove(pergunta)">
+                                                <i class="icon ion-close-round"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="no-padding" ng-class="{'col-sm-8': isModerator, 'col-sm-10': isDefault }">
+                                            <p>{{word.tag_name}}</p>
+                                        </div>
+
+                                        <div class="col-sm-2 no-padding">
+                                            <!--<span class="badge">{{pergunta.date|date}}</span>-->
+                                            <!--<span class="badge" ng-if="isModerator || isPresenter">{{pergunta.from.name}}</span>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 no-padding">
+                                        <hr/>
+                                    </div>
+
+                                </div>
+
+
+                            </ion-scroll>
+
+                    </div>
+
+                    <!--Palavras aprovadas-->
+                    <div class="col-sm-6 palavras">
+
+                        <ion-scroll delegate-handle="userMessageScroll">
+
+                            <div class="col-sm-12 pergunta item" ng-repeat="word in palavras track by $index" ng-if="word.tag_status == 'false'" ng-class="getClass(pergunta)">
+                                <div class="col-sm-12 ">
+                                    <!--Optinos to reprove or aprove a question-->
+                                    <div class="col-sm-2 no-padding" ng-hide="isDefault">
+                                        <div class="col-sm-6" ng-click="aprove(pergunta)">
+                                            <i class="icon ion-checkmark-round"></i>
+                                        </div>
+                                        <div class="col-sm-6" ng-click="reprove(pergunta)">
+                                            <i class="icon ion-close-round"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="no-padding" ng-class="{'col-sm-8': isModerator, 'col-sm-10': isDefault }">
+                                        <p>{{word.tag_name}}</p>
+                                    </div>
+
+                                    <div class="col-sm-2 no-padding">
+                                        <!--<span class="badge">{{pergunta.date|date}}</span>-->
+                                        <!--<span class="badge" ng-if="isModerator || isPresenter">{{pergunta.from.name}}</span>-->
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 no-padding">
+                                    <hr/>
+                                </div>
+
+                            </div>
+
+
+                        </ion-scroll>
+
+                    </div>
+
                 </div>
             </div>
         </div>

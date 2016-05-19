@@ -611,7 +611,7 @@ hr {
 
 //Conversation
 .chat-text {
-  position: fixed;
+  position: relative;
   bottom: 0;
 
   ion-footer-bar.bar.bar-stable.bar-footer {
@@ -770,6 +770,7 @@ hr {
 
   //Campo para digitar mensagem
   .wrapper-text-msg{
+    margin-top:30px;
     //Pega o primeiro grid, o de texto
     div[class^='col-sm']:first-child{
       padding-right: 0;
@@ -797,6 +798,14 @@ hr {
       background-color: $color-primary;
     }
   }
+  &.has-footer {
+    .scroll{
+      padding: 0;
+      height: 90%;
+    }
+
+  }
+
 }
 
 //Container Confirmação
@@ -928,19 +937,38 @@ hr {
 //Nuvem de Palabras
 .nuvem-container {
   .wrapper-nuvem {
-    min-height: 30vh;
     background-color: $color-primary;
     position: relative;
+
+    &,
+    .palavras {
+      min-height: 30vh;
+    }
+    ion-scroll {
+      max-height: 25vh;
+      margin-top: 20px;
+    }
+
     .form-control {
-      position: absolute;
+
       border-radius: 0;
       border: 1px solid $black;
-      bottom: 10px;
-      left: 5%;
-      width: 90%;
+      width: 100%;
+      padding: 22px;
       box-sizing: border-box;
       margin: auto;
       display: block;
+    }
+
+    .palavras {
+      height: 30vh;
+    }
+
+    .save {
+      border-color: $black;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
     }
   }
 }

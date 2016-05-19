@@ -1,8 +1,8 @@
 /**
  * Created by guilherme on 14/04/16.
  */
-window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope','PersonDB','Person','$cookies','$ionicHistory','PopupFactory','$state','$ionicPopup','PerguntaDB',
-        function($scope,$ionicSideMenuDelegate,$rootScope,PersonDB,Person,$cookies,$ionicHistory,PopupFactory,$state,$ionicPopup,PerguntaDB){
+window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope','PersonDB','Person','$cookies','$ionicHistory','PopupFactory','$state','$ionicPopup','PerguntaDB','WordCloudDB',
+        function($scope,$ionicSideMenuDelegate,$rootScope,PersonDB,Person,$cookies,$ionicHistory,PopupFactory,$state,$ionicPopup,PerguntaDB,WordCloudDB){
             $scope.isModerator = '';
             $scope.isPresenter = '';
             $scope.isDefault = '';
@@ -78,6 +78,20 @@ window.app.controller('AppCtrl',['$scope','$ionicSideMenuDelegate','$rootScope',
                 answer.quiz_id = answer.quiz.quiz_id;
                 $rootScope.liveVotes.push(answer);
                 console.log($rootScope.liveVotes);
+            });
+            window.io.on('wordReceive',function(word){
+
+                var data = new WordCloud(word);
+                data.client = $rootScope.user.user_id;
+                console.log(data);
+                //Insert into database
+                WordCloudDB.insert(data)
+                    .then(function(d){
+                        console.log(d);
+                    })
+                    .catch(function(er){
+                        console.log(er);
+                    });
             });
 
             $scope.$on('$ionicView.afterEnter',function(ev,data){

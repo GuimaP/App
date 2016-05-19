@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="col-sm-12">
+
+        <h2>{{currentQuiz.quiz_name}}</h2>
+    </div>
+
+    <!--Questoes-->
+    <div class="col-sm-6">
+        <div class="list">
+            <div class="item item-icon-right" ng-repeat="questao in currentQuiz.quiz_question track by $index" ng-click="selectQuestionVote(questao)">
+                <input type="text" ng-model="questao.quiz_question_name">
+                <!--<i class="icon ion-close-round" ng-click="removeQuestion($index)"></i>-->
+
+            </div>
+        </div>
+    </div>
+
+    <!--Alternativas-->
+    <div class="col-sm-6 answers" ng-show="questionSelectedVote">
+        <div class="col-sm-9">
+            <div class="list">
+                <div class="item item-input item-icon-right" ng-repeat="answer in answersVote track by $index">
+                    <label class="">
+                        <span class="input-label">
+                            {{convertToLetter($index)}}
+                        </span>
+
+
+
+                        <label>
+                            {{answer.quiz_question_answer.quiz_question_answer_name}}
+                            <span class="badge">{{answer.client_quiz_response_answer}}</span>
+                        </label>
+                        <label ng-if="formatPorcents(answer.client_quiz_response_answer) != undefined || formatPorcents(answer.client_quiz_response_answer) != NaN">
+                            {{ formatPorcents(answer.client_quiz_response_answer) }}%
+                        </label>
+                    </label>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <h4 ng-hide="totalAnswers == 0">Total de Votos: {{totalAnswers}}</h4>
+        </div>
+    </div>
+
+</div>
