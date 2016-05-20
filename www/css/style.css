@@ -308,8 +308,7 @@ ion-side-menu .has-header {
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top center; }
-  .container-home .container-fluid {
-    padding-left: 5%; }
+  .container-home .opcoes { margin-top: 30px; }
   .container-home .opcoes .circle {
     border-radius: 50%;
     border: 4px solid #facd00;
@@ -317,7 +316,7 @@ ion-side-menu .has-header {
     padding: 15px 0;
     background: #fff; }
     .container-home .opcoes .circle .img-responsive {
-      width: 85%;
+      max-width: 85%;
       margin: auto; }
     .container-home .opcoes .circle h4 {
       color: #000000; }
